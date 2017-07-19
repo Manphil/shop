@@ -1,6 +1,8 @@
 package com.neu.shop.mybatis;
 
+import com.neu.shop.dao.AdminMapper;
 import com.neu.shop.dao.DepartmentMapper;
+import com.neu.shop.pojo.Admin;
 import com.neu.shop.pojo.Department;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,9 @@ public class MapperTest {
     @Autowired(required = false)
     DepartmentMapper departmentMapper;
 
+    @Autowired(required = false)
+    AdminMapper adminMapper;
+
     /**
      * 测试DepartmentMapper
      */
@@ -31,10 +36,13 @@ public class MapperTest {
 
         /*System.out.println(bean);*/
 
-        System.out.println(departmentMapper);
+        /*System.out.println(departmentMapper);
 
         departmentMapper.insertSelective(new Department(null, "业务部"));
-        departmentMapper.insertSelective(new Department(null, "销售部"));
+        departmentMapper.insertSelective(new Department(null, "销售部"));*/
+
+        System.out.println(adminMapper.selectByName(new Admin(null,"root","root")));
+
     }
 
 }

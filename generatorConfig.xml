@@ -13,7 +13,7 @@
 
         <!--配置数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/ssm_crud?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"
+                        connectionURL="jdbc:mysql://localhost:3306/shop?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root"
                         password="yzy0418">
         </jdbcConnection>
@@ -38,7 +38,7 @@
         </javaClientGenerator>
 
         <!--指定哪个表的生成策略-->
-        <table tableName="tbl_dept" domainObjectName="Department" ></table>
+        <table tableName="admin" domainObjectName="Admin" ></table>
 
     </context>
 </generatorConfiguration>
