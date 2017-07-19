@@ -40,6 +40,6 @@ public class LoginController {
 
     @RequestMapping("/index")
     public String showAdminIndex() {
-        return "admin";
+        return "addGoods";
     }
 }
