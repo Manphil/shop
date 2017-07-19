@@ -1,7 +1,7 @@
 package com.neu.shop.controller.admin;
 
-import com.neu.shop.service.GoodsService;
 import com.neu.shop.pojo.Goods;
+import com.neu.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

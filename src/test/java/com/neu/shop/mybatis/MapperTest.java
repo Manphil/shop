@@ -1,9 +1,8 @@
 package com.neu.shop.mybatis;
 
 import com.neu.shop.dao.AdminMapper;
-import com.neu.shop.dao.DepartmentMapper;
+//import com.neu.shop.dao.DepartmentMapper;
 import com.neu.shop.pojo.Admin;
-import com.neu.shop.pojo.Department;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class MapperTest {
 
-    @Autowired(required = false)
-    DepartmentMapper departmentMapper;
+    /*@Autowired(required = false)
+    DepartmentMapper departmentMapper;*/
 
     @Autowired(required = false)
     AdminMapper adminMapper;
