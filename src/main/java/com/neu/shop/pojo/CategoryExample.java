@@ -3,14 +3,14 @@ package com.neu.shop.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentExample {
+public class CategoryExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public DepartmentExample() {
+    public CategoryExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,133 +104,133 @@ public class DepartmentExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andDeptIdIsNull() {
-            addCriterion("dept_id is null");
+        public Criteria andCateidIsNull() {
+            addCriterion("cateId is null");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdIsNotNull() {
-            addCriterion("dept_id is not null");
+        public Criteria andCateidIsNotNull() {
+            addCriterion("cateId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdEqualTo(Integer value) {
-            addCriterion("dept_id =", value, "deptId");
+        public Criteria andCateidEqualTo(Integer value) {
+            addCriterion("cateId =", value, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdNotEqualTo(Integer value) {
-            addCriterion("dept_id <>", value, "deptId");
+        public Criteria andCateidNotEqualTo(Integer value) {
+            addCriterion("cateId <>", value, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdGreaterThan(Integer value) {
-            addCriterion("dept_id >", value, "deptId");
+        public Criteria andCateidGreaterThan(Integer value) {
+            addCriterion("cateId >", value, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("dept_id >=", value, "deptId");
+        public Criteria andCateidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("cateId >=", value, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdLessThan(Integer value) {
-            addCriterion("dept_id <", value, "deptId");
+        public Criteria andCateidLessThan(Integer value) {
+            addCriterion("cateId <", value, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdLessThanOrEqualTo(Integer value) {
-            addCriterion("dept_id <=", value, "deptId");
+        public Criteria andCateidLessThanOrEqualTo(Integer value) {
+            addCriterion("cateId <=", value, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdIn(List<Integer> values) {
-            addCriterion("dept_id in", values, "deptId");
+        public Criteria andCateidIn(List<Integer> values) {
+            addCriterion("cateId in", values, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdNotIn(List<Integer> values) {
-            addCriterion("dept_id not in", values, "deptId");
+        public Criteria andCateidNotIn(List<Integer> values) {
+            addCriterion("cateId not in", values, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdBetween(Integer value1, Integer value2) {
-            addCriterion("dept_id between", value1, value2, "deptId");
+        public Criteria andCateidBetween(Integer value1, Integer value2) {
+            addCriterion("cateId between", value1, value2, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("dept_id not between", value1, value2, "deptId");
+        public Criteria andCateidNotBetween(Integer value1, Integer value2) {
+            addCriterion("cateId not between", value1, value2, "cateid");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameIsNull() {
-            addCriterion("dept_name is null");
+        public Criteria andCatenameIsNull() {
+            addCriterion("cateName is null");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameIsNotNull() {
-            addCriterion("dept_name is not null");
+        public Criteria andCatenameIsNotNull() {
+            addCriterion("cateName is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameEqualTo(String value) {
-            addCriterion("dept_name =", value, "deptName");
+        public Criteria andCatenameEqualTo(String value) {
+            addCriterion("cateName =", value, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameNotEqualTo(String value) {
-            addCriterion("dept_name <>", value, "deptName");
+        public Criteria andCatenameNotEqualTo(String value) {
+            addCriterion("cateName <>", value, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameGreaterThan(String value) {
-            addCriterion("dept_name >", value, "deptName");
+        public Criteria andCatenameGreaterThan(String value) {
+            addCriterion("cateName >", value, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameGreaterThanOrEqualTo(String value) {
-            addCriterion("dept_name >=", value, "deptName");
+        public Criteria andCatenameGreaterThanOrEqualTo(String value) {
+            addCriterion("cateName >=", value, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameLessThan(String value) {
-            addCriterion("dept_name <", value, "deptName");
+        public Criteria andCatenameLessThan(String value) {
+            addCriterion("cateName <", value, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameLessThanOrEqualTo(String value) {
-            addCriterion("dept_name <=", value, "deptName");
+        public Criteria andCatenameLessThanOrEqualTo(String value) {
+            addCriterion("cateName <=", value, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameLike(String value) {
-            addCriterion("dept_name like", value, "deptName");
+        public Criteria andCatenameLike(String value) {
+            addCriterion("cateName like", value, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameNotLike(String value) {
-            addCriterion("dept_name not like", value, "deptName");
+        public Criteria andCatenameNotLike(String value) {
+            addCriterion("cateName not like", value, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameIn(List<String> values) {
-            addCriterion("dept_name in", values, "deptName");
+        public Criteria andCatenameIn(List<String> values) {
+            addCriterion("cateName in", values, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameNotIn(List<String> values) {
-            addCriterion("dept_name not in", values, "deptName");
+        public Criteria andCatenameNotIn(List<String> values) {
+            addCriterion("cateName not in", values, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameBetween(String value1, String value2) {
-            addCriterion("dept_name between", value1, value2, "deptName");
+        public Criteria andCatenameBetween(String value1, String value2) {
+            addCriterion("cateName between", value1, value2, "catename");
             return (Criteria) this;
         }
 
-        public Criteria andDeptNameNotBetween(String value1, String value2) {
-            addCriterion("dept_name not between", value1, value2, "deptName");
+        public Criteria andCatenameNotBetween(String value1, String value2) {
+            addCriterion("cateName not between", value1, value2, "catename");
             return (Criteria) this;
         }
     }

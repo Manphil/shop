@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.neu.shop.dao.DepartmentMapper">
-  <resultMap id="BaseResultMap" type="com.neu.shop.pojo.Department">
-    <id column="dept_id" jdbcType="INTEGER" property="deptId" />
-    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+<mapper namespace="com.neu.shop.dao.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.neu.shop.pojo.Category">
+    <id column="cateId" jdbcType="INTEGER" property="cateid" />
+    <result column="cateName" jdbcType="VARCHAR" property="catename" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    dept_id, dept_name
+    cateId, cateName
   </sql>
-  <select id="selectByExample" parameterType="com.neu.shop.pojo.DepartmentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.neu.shop.pojo.CategoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tbl_dept
+    from category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,56 +83,56 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tbl_dept
-    where dept_id = #{deptId,jdbcType=INTEGER}
+    from category
+    where cateId = #{cateid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tbl_dept
-    where dept_id = #{deptId,jdbcType=INTEGER}
+    delete from category
+    where cateId = #{cateid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.neu.shop.pojo.DepartmentExample">
-    delete from tbl_dept
+  <delete id="deleteByExample" parameterType="com.neu.shop.pojo.CategoryExample">
+    delete from category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.neu.shop.pojo.Department">
-    insert into tbl_dept (dept_id, dept_name)
-    values (#{deptId,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.neu.shop.pojo.Category">
+    insert into category (cateId, cateName)
+    values (#{cateid,jdbcType=INTEGER}, #{catename,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.neu.shop.pojo.Department">
-    insert into tbl_dept
+  <insert id="insertSelective" parameterType="com.neu.shop.pojo.Category">
+    insert into category
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="deptId != null">
-        dept_id,
+      <if test="cateid != null">
+        cateId,
       </if>
-      <if test="deptName != null">
-        dept_name,
+      <if test="catename != null">
+        cateName,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="deptId != null">
-        #{deptId,jdbcType=INTEGER},
+      <if test="cateid != null">
+        #{cateid,jdbcType=INTEGER},
       </if>
-      <if test="deptName != null">
-        #{deptName,jdbcType=VARCHAR},
+      <if test="catename != null">
+        #{catename,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.neu.shop.pojo.DepartmentExample" resultType="java.lang.Long">
-    select count(*) from tbl_dept
+  <select id="countByExample" parameterType="com.neu.shop.pojo.CategoryExample" resultType="java.lang.Long">
+    select count(*) from category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tbl_dept
+    update category
     <set>
-      <if test="record.deptId != null">
-        dept_id = #{record.deptId,jdbcType=INTEGER},
+      <if test="record.cateid != null">
+        cateId = #{record.cateid,jdbcType=INTEGER},
       </if>
-      <if test="record.deptName != null">
-        dept_name = #{record.deptName,jdbcType=VARCHAR},
+      <if test="record.catename != null">
+        cateName = #{record.catename,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -140,25 +140,25 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tbl_dept
-    set dept_id = #{record.deptId,jdbcType=INTEGER},
-      dept_name = #{record.deptName,jdbcType=VARCHAR}
+    update category
+    set cateId = #{record.cateid,jdbcType=INTEGER},
+      cateName = #{record.catename,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.neu.shop.pojo.Department">
-    update tbl_dept
+  <update id="updateByPrimaryKeySelective" parameterType="com.neu.shop.pojo.Category">
+    update category
     <set>
-      <if test="deptName != null">
-        dept_name = #{deptName,jdbcType=VARCHAR},
+      <if test="catename != null">
+        cateName = #{catename,jdbcType=VARCHAR},
       </if>
     </set>
-    where dept_id = #{deptId,jdbcType=INTEGER}
+    where cateId = #{cateid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.neu.shop.pojo.Department">
-    update tbl_dept
-    set dept_name = #{deptName,jdbcType=VARCHAR}
-    where dept_id = #{deptId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.neu.shop.pojo.Category">
+    update category
+    set cateName = #{catename,jdbcType=VARCHAR}
+    where cateId = #{cateid,jdbcType=INTEGER}
   </update>
 </mapper>
