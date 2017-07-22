@@ -15,7 +15,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/shop?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root"
-                        password="yzy0418">
+                        password="123456">
         </jdbcConnection>
 
         <javaTypeResolver >
@@ -40,6 +40,7 @@
         <!--指定哪个表的生成策略-->
         <!--<table tableName="goods" domainObjectName="Goods" ></table>
         <table tableName="category" domainObjectName="Category" ></table>-->
-        <table tableName="imagepath" domainObjectName="ImagePath" ></table>
+        <!--<table tableName="imagepath" domainObjectName="ImagePath" ></table>-->
+        <table tableName="user" domainObjectName="User" ></table>
     </context>
 </generatorConfiguration>
