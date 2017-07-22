@@ -19,9 +19,10 @@ $(document).on("click",".templatemo-delete-btn",function () {
             title: "确定删除" + goodsname + "吗？",
             type: "warning",
             showCancelButton: true,
+            cancelButtonText:"取消",
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "确定删除！",
-            closeOnConfirm: true,
+            closeOnConfirm: false,
         },
         function () {
             /*swal("删除！", "你的虚拟文件已经被删除。", "success");*/
