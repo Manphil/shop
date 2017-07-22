@@ -1,5 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 target
-.idea/compiler.xml
-.idea/workspace.xml
-.idea/misc.xml
+.idea
+generatorConfig.xml
+shop.iml
