@@ -29,6 +29,9 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
+
 </head>
 <body>
 <!-- Left column -->
@@ -56,14 +59,14 @@
                         <tbody>
                         <c:forEach items="${pageInfo.list}" var="goods" varStatus="num">
                             <tr>
-                                <td>${num.index+1}</td>
+                                <td>${goods.goodsid}</td>
                                 <td>${goods.goodsname}</td>
                                 <td>${goods.price}</td>
                                 <td>${goods.num}</td>
                                 <td>${goods.detailcate}</td>
                                 <td><a href="" class="templatemo-link">详情</a></td>
-                                <td><a href="" class="templatemo-edit-btn">编辑</a></td>
-                                <td><a href="" class="templatemo-delete-btn">删除</a></td>
+                                <td><button href="" class="templatemo-edit-btn">编辑</button></td>
+                                <td><button href="" class="templatemo-delete-btn">删除</button></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -73,22 +76,42 @@
 
             <div class="pagination-wrap">
                 <div class="page-info">
-                    当前第1页，总共10页
+                    当前第${pageInfo.pageNum}页，总共${pageInfo.pages}页，总共${pageInfo.total}记录
                 </div>
                 <ul class="pagination">
                     <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true"><i class="fa fa-backward"></i></span></span>
+                        <a href="${pageContext.request.contextPath}/admin/goods/show?page=1" aria-label="Next">
+                            <span aria-hidden="true">首页</span>
                         </a>
                     </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li class="active"><a href="#">3 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
+
+                    <c:if test="${pageInfo.hasPreviousPage}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pageNum - 1}" aria-label="Previous">
+                                <span aria-hidden="true"><i class="fa fa-backward"></i></span></span>
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach items="${pageInfo.navigatepageNums}" var="pageNums">
+                        <c:if test="${pageNums == pageInfo.pageNum}">
+                            <li class="active"><a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageNums}">${pageNums}</a></li>
+                        </c:if>
+                        <c:if test="${pageNums != pageInfo.pageNum}">
+                            <li><a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageNums}">${pageNums}</a></li>
+                        </c:if>
+                    </c:forEach>
+
+                    <c:if test="${pageInfo.hasNextPage}">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pageNum + 1}" aria-label="Next">
+                                <span aria-hidden="true"><i class="fa fa-forward"></i></span>
+                            </a>
+                        </li>
+                    </c:if>
                     <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true"><i class="fa fa-forward"></i></span>
+                        <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pages}" aria-label="Next">
+                            <span aria-hidden="true">末页</span>
                         </a>
                     </li>
                 </ul>
@@ -96,11 +119,12 @@
         </div>
     </div>
 </div>
-
+<div id="path" style="display: none;">${pageContext.request.contextPath}</div>
 <!-- JS -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.2.min.js"></script>
 <!-- jQuery -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/templatemo-script.js"></script>
+<script src="${pageContext.request.contextPath}/js/goodsManage.js"></script>
 <!-- Templatemo Script -->
 <script>
     $(document).ready(function () {
