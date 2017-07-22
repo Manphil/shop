@@ -41,7 +41,7 @@ public class GoodsController {
     @RequestMapping("/show")
     public String goodsManage(@RequestParam(value = "page",defaultValue = "1") Integer pn, HttpServletResponse response, Model model) throws IOException {
 
-        PageHelper.startPage(pn, 5);
+        PageHelper.startPage(pn, 10);
 
         List<Goods> employees = goodsService.selectByExample(new GoodsExample());
 

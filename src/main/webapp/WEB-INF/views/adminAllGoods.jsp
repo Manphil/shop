@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,86 +54,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1.</td>
-                            <td>John</td>
-                            <td>Smith</td>
-                            <td>@jS</td>
-                            <td>js@company.com</td>
-                            <td><a href="" class="templatemo-link">详情</a></td>
-                            <td><a href="" class="templatemo-edit-btn">编辑</a></td>
-                            <td><a href="" class="templatemo-delete-btn">删除</a></td>
-                        </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td>Bill</td>
-                            <td>Jones</td>
-                            <td>@bJ</td>
-                            <td>bj@company.com</td>
-                            <td><a href="" class="templatemo-edit-btn">Edit</a></td>
-                            <td><a href="" class="templatemo-link">Action</a></td>
-                            <td><a href="" class="templatemo-link">Delete</a></td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td>Mary</td>
-                            <td>James</td>
-                            <td>@mJ</td>
-                            <td>mj@company.com</td>
-                            <td><a href="" class="templatemo-edit-btn">Edit</a></td>
-                            <td><a href="" class="templatemo-link">Action</a></td>
-                            <td><a href="" class="templatemo-link">Delete</a></td>
-                        </tr>
-                        <tr>
-                            <td>4.</td>
-                            <td>Steve</td>
-                            <td>Bride</td>
-                            <td>@sB</td>
-                            <td>sb@company.com</td>
-                            <td><a href="" class="templatemo-edit-btn">Edit</a></td>
-                            <td><a href="" class="templatemo-link">Action</a></td>
-                            <td><a href="" class="templatemo-link">Delete</a></td>
-                        </tr>
-                        <tr>
-                            <td>5.</td>
-                            <td>Paul</td>
-                            <td>Richard</td>
-                            <td>@pR</td>
-                            <td>pr@company.com</td>
-                            <td><a href="" class="templatemo-edit-btn">Edit</a></td>
-                            <td><a href="" class="templatemo-link">Action</a></td>
-                            <td><a href="" class="templatemo-link">Delete</a></td>
-                        </tr>
-                        <tr>
-                            <td>6.</td>
-                            <td>Will</td>
-                            <td>Brad</td>
-                            <td>@wb</td>
-                            <td>wb@company.com</td>
-                            <td><a href="" class="templatemo-edit-btn">Edit</a></td>
-                            <td><a href="" class="templatemo-link">Action</a></td>
-                            <td><a href="" class="templatemo-link">Delete</a></td>
-                        </tr>
-                        <tr>
-                            <td>7.</td>
-                            <td>Steven</td>
-                            <td>Eric</td>
-                            <td>@sE</td>
-                            <td>se@company.com</td>
-                            <td><a href="" class="templatemo-edit-btn">Edit</a></td>
-                            <td><a href="" class="templatemo-link">Action</a></td>
-                            <td><a href="" class="templatemo-link">Delete</a></td>
-                        </tr>
-                        <tr>
-                            <td>8.</td>
-                            <td>Landi</td>
-                            <td>Susan</td>
-                            <td>@lS</td>
-                            <td>ls@company.com</td>
-                            <td><a href="" class="templatemo-edit-btn">Edit</a></td>
-                            <td><a href="" class="templatemo-link">Action</a></td>
-                            <td><a href="" class="templatemo-link">Delete</a></td>
-                        </tr>
+                        <c:forEach items="${pageInfo.getList()}" var="goods" varStatus="index">
+                            <tr>
+                                <td>${index+1}</td>
+                                <td>${goods.getGoodsname()}</td>
+                                <td>${goods.getPrice()}</td>
+                                <td>${goods.getNum()}</td>
+                                <td>${goods.getDetailcate()}</td>
+                                <td><a href="" class="templatemo-link">详情</a></td>
+                                <td><a href="" class="templatemo-edit-btn">编辑</a></td>
+                                <td><a href="" class="templatemo-delete-btn">删除</a></td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
