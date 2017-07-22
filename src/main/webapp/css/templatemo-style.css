@@ -424,6 +424,7 @@ input[type="radio"]:checked + label span {
 	border: 1px solid #ddd;
 	border-radius: 3px;
 	color: black;
+    background: white;
 	padding: 5px 15px;
 	transition: all 0.3s ease;
 }
@@ -437,6 +438,7 @@ input[type="radio"]:checked + label span {
 	border: 1px solid #ddd;
 	border-radius: 3px;
 	color: red;
+    background: white;
 	padding: 5px 15px;
 	transition: all 0.3s ease;
 }

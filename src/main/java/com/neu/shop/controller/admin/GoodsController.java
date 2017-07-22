@@ -5,13 +5,12 @@ import com.github.pagehelper.PageInfo;
 import com.neu.shop.pojo.Goods;
 import com.neu.shop.pojo.GoodsExample;
 import com.neu.shop.pojo.ImagePath;
+import com.neu.shop.pojo.Msg;
 import com.neu.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -38,16 +37,36 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
-    @RequestMapping("/show")
-    public String goodsManage(@RequestParam(value = "page",defaultValue = "1") Integer pn, HttpServletResponse response, Model model) throws IOException {
-
+    @RequestMapping("/showjson")
+    @ResponseBody
+    public Msg getAllGoods(@RequestParam(value = "page",defaultValue = "1") Integer pn, HttpServletResponse response, Model model) {
+        //一页显示几个数据
         PageHelper.startPage(pn, 10);
 
         List<Goods> employees = goodsService.selectByExample(new GoodsExample());
 
-        PageInfo page = new PageInfo(employees,10);
+        //显示几个页号
+        PageInfo page = new PageInfo(employees,5);
 
         model.addAttribute("pageInfo", page);
+
+        return Msg.success().add("pageInfo", page);
+    }
+
+
+
+    @RequestMapping("/show")
+    public String goodsManage(@RequestParam(value = "page",defaultValue = "1") Integer pn, HttpServletResponse response, Model model) throws IOException {
+
+        /*//一页显示几个数据
+        PageHelper.startPage(pn, 10);
+
+        List<Goods> employees = goodsService.selectByExample(new GoodsExample());
+
+        //显示几个页号
+        PageInfo page = new PageInfo(employees,5);
+
+        model.addAttribute("pageInfo", page);*/
 
         return "adminAllGoods";
     }
@@ -61,6 +80,11 @@ public class GoodsController {
 
         //还需要查询分类传给addGoods页面
         return "addGoods";
+    }
+
+    @RequestMapping("/delete/{goodsid}")
+    public void deleteGoods(@PathVariable("goodsid") Integer goodsid) {
+
     }
 
     @RequestMapping("/addGoodsSuccess")
