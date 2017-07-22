@@ -6,9 +6,14 @@ $(document).ready(function () {
     var path = $("#path").text();
     alert(path);
 
-    /*$.ajax({
-        u
-    })*/
+    $.ajax({
+        url:path+"/admin/goods/showjson",
+        data:"page=1",
+        type:"get",
+        success:function (result) {
+            console.log(result);
+        }
+    })
 
     $(".templatemo-delete-btn").click(function () {
         var goodsname = $(this).parents("tr").find("td:eq(1)").text();
