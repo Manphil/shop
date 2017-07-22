@@ -136,7 +136,7 @@
       #{detailcate,jdbcType=VARCHAR}, #{activityid,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.neu.shop.pojo.Goods">
+  <insert id="insertSelective" parameterType="com.neu.shop.pojo.Goods" useGeneratedKeys="true" keyProperty="goodsid">
     insert into goods
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="goodsid != null">

@@ -27,19 +27,26 @@ public class LoginController {
 
     @RequestMapping("/confirmLogin")
     public String confirmLogin(Admin admin, Model model, HttpServletRequest request) {
-        Admin selectAdmin =  adminService.selectByName(admin);
-        if(selectAdmin == null) {
-            model.addAttribute("errorMsg","用户名或密码错误");
+        Admin selectAdmin = adminService.selectByName(admin);
+        if (selectAdmin == null) {
+            model.addAttribute("errorMsg", "用户名或密码错误");
             return "adminLogin";
         } else {
             HttpSession session = request.getSession();
-            session.setAttribute("admin",selectAdmin);
-            return "redirect:/admin/index";
+            session.setAttribute("admin", selectAdmin);
+            return "redirect:/admin/user";
         }
     }
 
-    @RequestMapping("/index")
-    public String showAdminIndex() {
-        return "addGoods";
+    @RequestMapping("/logout")
+    public String adminLogout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("admin");
+        return "redirect:/admin/login";
     }
+
+    /*@RequestMapping("/index")
+    public String showAdminIndex() {
+        return "user";
+    }*/
 }

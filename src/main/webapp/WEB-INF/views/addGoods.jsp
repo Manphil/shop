@@ -34,23 +34,12 @@
     <jsp:include page="sidebar.jsp"></jsp:include>
     <!-- Main content -->
     <div class="templatemo-content col-1 light-gray-bg">
-        <div class="templatemo-top-nav-container">
-            <div class="row">
-                <nav class="templatemo-top-nav col-lg-12 col-md-12">
-                    <ul class="text-uppercase">
-                        <li><a href="" class="active">添加商品</a></li>
-                        <li><a href="">。。。</a></li>
-                        <li><a href="">。。。</a></li>
-                        <li><a href="login.html">。。。</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <jsp:include page="goodsNav.jsp"></jsp:include>
         <div class="templatemo-content-container">
             <div class="templatemo-content-widget white-bg">
                 <h2 class="margin-bottom-10">添加商品</h2>
                 <p>商品的一些基本信息</p>
-                <form action="${pageContext.request.contextPath}/admin/addGoods" class="templatemo-login-form" method="post" enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath}/admin/goods/addGoodsSuccess" class="templatemo-login-form" method="post" enctype="multipart/form-data">
                     <div class="row form-group">
                         <div class="col-lg-12 form-group">
                             <label class="control-label" for="inputWithSuccess">商品名称</label>
@@ -90,7 +79,7 @@
                         <div class="col-lg-12">
                             <label class="control-label templatemo-block">图片</label>
                             <!-- <input type="file" name="fileToUpload" id="fileToUpload" class="margin-bottom-10"> -->
-                            <input type="file" name="fileToUpload" id="fileToUpload" class="filestyle" data-buttonName="btn-primary" data-buttonBefore="true" data-icon="false">
+                            <input type="file" name="fileToUpload" id="fileToUpload" class="filestyle" data-buttonName="btn-primary" data-buttonBefore="true" data-icon="false" multiple="multiple">
                             <!-- <p>Maximum upload size is 5 MB.</p>  -->
                         </div>
                     </div>

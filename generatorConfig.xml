@@ -40,6 +40,6 @@
         <!--指定哪个表的生成策略-->
         <!--<table tableName="goods" domainObjectName="Goods" ></table>
         <table tableName="category" domainObjectName="Category" ></table>-->
-        <table tableName="user" domainObjectName="User" ></table>
+        <table tableName="imagepath" domainObjectName="ImagePath" ></table>
     </context>
 </generatorConfiguration>

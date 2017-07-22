@@ -16,13 +16,13 @@
     </div>
     <nav class="templatemo-left-nav">
         <ul>
-            <li><a href="#" class="active"><i class="fa fa-user fa-fw"></i>用户管理</a></li>
-            <li><a href="data-visualization.html"><i class="fa fa-bar-chart fa-fw"></i>商品管理</a></li>
-            <li><a href="data-visualization.html"><i class="fa fa-database fa-fw"></i>活动管理</a></li>
-            <li><a href="maps.html"><i class="fa fa-map-marker fa-fw"></i>活动管理</a></li>
-            <li><a href="manage-users.html"><i class="fa fa-users fa-fw"></i>订单管理</a></li>
-            <li><a href="preferences.html"><i class="fa fa-sliders fa-fw"></i>客服管理</a></li>
-            <li><a href="login.html"><i class="fa fa-eject fa-fw"></i>退出系统</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/user" class="active"><i class="fa fa-user fa-fw"></i>用户管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/goods"><i class="fa fa-bar-chart fa-fw"></i>商品管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/goods"><i class="fa fa-database fa-fw"></i>活动管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/goods"><i class="fa fa-map-marker fa-fw"></i>活动管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/goods"><i class="fa fa-users fa-fw"></i>订单管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/goods"><i class="fa fa-sliders fa-fw"></i>客服管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/logout"><i class="fa fa-eject fa-fw"></i>退出系统</a></li>
         </ul>
     </nav>
 </div>
