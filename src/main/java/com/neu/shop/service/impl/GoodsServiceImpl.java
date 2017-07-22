@@ -39,4 +39,10 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> selectByExample(GoodsExample example) {
         return goodsMapper.selectByExample(example);
     }
+
+    @Override
+    public void deleteGoodsById(Integer goodsid) {
+
+        goodsMapper.deleteByPrimaryKey(goodsid);
+    }
 }

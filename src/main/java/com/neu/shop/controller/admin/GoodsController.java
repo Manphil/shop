@@ -82,9 +82,10 @@ public class GoodsController {
         return "addGoods";
     }
 
-    @RequestMapping("/delete/{goodsid}")
-    public void deleteGoods(@PathVariable("goodsid") Integer goodsid) {
-
+    @RequestMapping(value = "/delete/{goodsid}", method = RequestMethod.DELETE)
+    public Msg deleteGoods(@PathVariable("goodsid")Integer goodsid) {
+        goodsService.deleteGoodsById(goodsid);
+        return Msg.success();
     }
 
     @RequestMapping("/addGoodsSuccess")
