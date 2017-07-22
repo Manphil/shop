@@ -3,10 +3,13 @@ package com.neu.shop.service.impl;
 import com.neu.shop.dao.GoodsMapper;
 import com.neu.shop.dao.ImagePathMapper;
 import com.neu.shop.pojo.Goods;
+import com.neu.shop.pojo.GoodsExample;
 import com.neu.shop.pojo.ImagePath;
 import com.neu.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by 文辉 on 2017/7/19.
@@ -30,5 +33,10 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public void addImagePath(ImagePath imagePath) {
         imagePathMapper.insertSelective(imagePath);
+    }
+
+    @Override
+    public List<Goods> selectByExample(GoodsExample example) {
+        return goodsMapper.selectByExample(example);
     }
 }

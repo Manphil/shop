@@ -12,8 +12,8 @@
     </typeAliases>
 
     <!--分页插件-->
-    <!--<plugins>
-        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
-    </plugins>-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+    </plugins>
 
 </configuration>

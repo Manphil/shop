@@ -120,12 +120,12 @@
         </dependency>
 
 
-        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
-        <!--<dependency>
+         <!--https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-->
+        <dependency>
           <groupId>com.github.pagehelper</groupId>
           <artifactId>pagehelper</artifactId>
           <version>5.0.3</version>
-        </dependency>-->
+        </dependency>
 
     </dependencies>
     <build>

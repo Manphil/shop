@@ -10,7 +10,7 @@
     <div class="row">
         <nav class="templatemo-top-nav col-lg-12 col-md-12">
             <ul class="text-uppercase">
-                <li><a href="${pageContext.request.contextPath}/admin/goods/" class="active">所有商品</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/goods/show" class="active">所有商品</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/goods/add">添加商品</a></li>
                 <li><a href="">。。。</a></li>
                 <li><a href="login.html">。。。</a></li>
@@ -18,3 +18,10 @@
         </nav>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("a").click(function () {
+            $(this).addClass("active");
+        });
+    });
+</script>

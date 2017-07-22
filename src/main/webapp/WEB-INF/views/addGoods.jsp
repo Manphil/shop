@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +28,14 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
+    
+    <%--<c:if test="${empty msg}">
+        <script>
+            swal(${msg}, "成功","success");
+        </script>
+    </c:if>--%>
 </head>
 <body>
 <!-- Left column -->
@@ -97,6 +106,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.2.min.js"></script>        <!-- jQuery -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-filestyle.min.js"></script>  <!-- http://markusslima.github.io/bootstrap-filestyle/ -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/templatemo-script.js"></script>        <!-- Templatemo Script -->
+<c:if test="${!empty msg}">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            swal('${msg}', '成功', 'success');
+        });
+    </script>
+</c:if>
 </body>
 </html>
 
