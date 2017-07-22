@@ -54,13 +54,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${pageInfo.getList()}" var="goods" varStatus="index">
+                        <c:forEach items="${pageInfo.list}" var="goods" varStatus="num">
                             <tr>
-                                <td>${index+1}</td>
-                                <td>${goods.getGoodsname()}</td>
-                                <td>${goods.getPrice()}</td>
-                                <td>${goods.getNum()}</td>
-                                <td>${goods.getDetailcate()}</td>
+                                <td>${num.index+1}</td>
+                                <td>${goods.goodsname}</td>
+                                <td>${goods.price}</td>
+                                <td>${goods.num}</td>
+                                <td>${goods.detailcate}</td>
                                 <td><a href="" class="templatemo-link">详情</a></td>
                                 <td><a href="" class="templatemo-edit-btn">编辑</a></td>
                                 <td><a href="" class="templatemo-delete-btn">删除</a></td>
@@ -70,7 +70,11 @@
                     </table>
                 </div>
             </div>
+
             <div class="pagination-wrap">
+                <div class="page-info">
+                    当前第1页，总共10页
+                </div>
                 <ul class="pagination">
                     <li>
                         <a href="#" aria-label="Previous">

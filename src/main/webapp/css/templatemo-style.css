@@ -662,3 +662,8 @@ input[type="radio"]:checked + label span {
 	color: #f30404 !important;
 	float: right !important;
 }
+
+.page-info {
+	float: left !important;
+	margin: 30px;
+}
