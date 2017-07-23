@@ -13,13 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by 蒋松冬 on 2017/7/22.
  */
 @Controller
-@RequestMapping("/user")
 public class userLoginController {
 
     @RequestMapping("/login")
@@ -31,6 +31,21 @@ public class userLoginController {
 
     @Autowired
     private UserService userService;
+
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+    @RequestMapping("/registerresult")
+    public String registerResult(User user){
+        Date RegTime=new Date();
+        user.setRegtime(RegTime);
+        userService.insert(user);
+        return  "redirect:/login";
+    }
+
+
     @RequestMapping("/loginconfirm")
     public String loginConfirm(User user, HttpServletRequest request,Model loginResult,@RequestParam("confirmlogo") String confirmlogo){
         HttpSession session=request.getSession();

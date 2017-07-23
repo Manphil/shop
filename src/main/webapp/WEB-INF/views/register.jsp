@@ -4,108 +4,6 @@
 <%request.setCharacterEncoding("utf-8");%> 
 <%@ page import="java.sql.*"%>
 <%@ page import="java.text.*"%>
-<%--<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>--%>
-
-<%--<%
-	String UserID = request.getParameter("inputStuno");
-	String userRepeate = (String) session.getAttribute("userRepeate");
-%>--%>
-
-<%--<%
-	
-
-	String driver = "com.mysql.jdbc.Driver";
-
-	// URL指向要访问的数据库名test1
-
-	String url = "jdbc:mysql://127.0.0.1:3306/spare";
-
-	// MySQL配置时的用户名
-
-	String user = "root";
-
-	// Java连接MySQL配置时的密码
-
-	String password = "yzy0418";
-
-	try {
-		// 1 加载驱动程序
-
-		Class.forName(driver);
-
-		// 2 连接数据库
-
-		Connection conn = DriverManager.getConnection(url, user,
-				password);
-
-		// 3 用来执行SQL语句
-
-		Statement statement = conn.createStatement();
-		
-
-		String userID = request.getParameter("inputStuno");
-
-		String inputPassword = request.getParameter("inputPassword");
-
-		String Name = request.getParameter("inputName");
-
-		//out.print(Name);
-
-		String RegTime = new SimpleDateFormat("yyyy-MM-dd")
-				.format(Calendar.getInstance().getTime()); //获取系统时间 
-
-		String Credit = "100";
-
-		String inputTel = request.getParameter("inputTel");
-
-		String inputAddress = request.getParameter("inputAddress");
-
-		// 要执行的SQL语句
-
-		String flagtest = "1";
-
-		String flag = request.getParameter("flag");
-
-		if (userID != null) {
-			String sql = "select  *  from customer where UserID='"
-					+ userID + "'";
-
-			ResultSet rs = statement.executeQuery(sql);
-			if (rs.next()) {
-
-				userRepeate = "此用户被占用";
-				session.setAttribute("userRepeate", userRepeate);
-				response.setStatus(response.SC_MOVED_TEMPORARILY);
-				response.setHeader("Location", "./register.jsp");
-			} else {
-				sql = "insert into customer value ('" + userID + "','"
-						+ Name + "','" + inputPassword + "','"
-						+ RegTime + "','" + Credit + "','" + inputTel
-						+ "','" + inputAddress + "')";
-				statement.executeUpdate(sql);
-				out.print("asfd");
-				response.setStatus(response.SC_MOVED_TEMPORARILY);
-				response.setHeader("Location", "./login.jsp");
-
-			}
-		}
-
-		conn.close();
-	} catch (ClassNotFoundException e) {
-		System.out.println("Sorry,can`t find the Driver!");
-		e.printStackTrace();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-%>--%>
-
 
 <!DOCTYPE html>
 <html>
@@ -113,14 +11,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>注册</title>
-<script src="../../js/jquery.js"></script>
-<link rel="stylesheet" href="../../css/login.css">
-<link rel="stylesheet" href="../../css/main.css">
-<link rel="stylesheet" href=".././css/bootstrap/css/bootstrap.min.css">
-<script src=".././css/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../js/sort.js"></script>
-<script src="../../js/holder.js"></script>
-<script src="../../js/send.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/sort.js"></script>
+<script src="${pageContext.request.contextPath}/js/holder.js"></script>
+<script src="${pageContext.request.contextPath}/js/send.js"></script>
 </head>
 <body>
 	<div id="main" class="container">
@@ -176,11 +74,11 @@
 									aria-haspopup="true" aria-expanded="false">我的闲置 <span
 										class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="/user/login">出售中</a></li>
-										<li><a href="/user/login">交易中</a></li>
+										<li><a href="${pageContext.request.contextPath}/login">出售中</a></li>
+										<li><a href="${pageContext.request.contextPath}/login">交易中</a></li>
 										<li><a href="#">Something else here</a></li>
 										<li role="separator" class="divider"></li>
-										<li><a href="/user/login">新消息</a></li>
+										<li><a href="${pageContext.request.contextPath}/login">新消息</a></li>
 										<li role="separator" class="divider"></li>
 										<li><a href="#">One more separated link</a></li>
 									</ul></li>
@@ -206,7 +104,7 @@
 				<div class="col-md-5 form-register">
 					<div>
 						<!-- <h2 class="login-h2">登录</h2> -->
-						<form class="form-horizontal" action="/user/registerresult"
+						<form class="form-horizontal" action="${pageContext.request.contextPath}/registerresult"
 							method="post">
 							<div class="form-group">
 								<!-- <label for="inputStuno" class="col-sm-2 control-label">学号</label> -->
@@ -252,25 +150,12 @@
 										name="telephone" placeholder="联系方式">
 								</div>
 							</div>
-							<%--<div class="form-group">
-								<!-- <label for="inputAddress" class="col-sm-2 control-label">地址</label> -->
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="inputAddress"
-										name="inputAddress" placeholder="地址">
-								</div>
-							</div>--%>
 
 							<div class="form-group">
 								<div class="col-sm-10">
 									<input type="hidden" name="flag" id="flag" value="1"> <input
 										type="submit" class="btn btn-primary form-control" value="注册">
 									<div>
-										<%--<%
-											if (userRepeate != null) {
-												out.write(userRepeate);
-												session.removeAttribute("userRepeate");
-											}
-										%>--%>
 									</div>
 								</div>
 							</div>
