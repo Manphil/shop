@@ -2,10 +2,8 @@ package com.neu.shop.controller.admin;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.neu.shop.pojo.Goods;
-import com.neu.shop.pojo.GoodsExample;
-import com.neu.shop.pojo.ImagePath;
-import com.neu.shop.pojo.Msg;
+import com.neu.shop.pojo.*;
+import com.neu.shop.service.CateService;
 import com.neu.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by 文辉 on 2017/7/19.
@@ -121,4 +116,48 @@ public class GoodsController {
 
         return "redirect:/admin/goods/add";
     }
+
+    @RequestMapping("/addCategory")
+    public String addcategory(@ModelAttribute("succeseMsg") String msg, Model model) {
+
+        if(!msg.equals("")) {
+            model.addAttribute("msg", msg);
+        }
+        return "addCategory";
+    }
+
+    @Autowired
+    private CateService cateService;
+
+    @RequestMapping("/addCategoryResult")
+    public String addCategoryResult(Category category,Model addCategoryResult,RedirectAttributes redirectAttributes){
+        List<Category> categoryList=new ArrayList<>();
+        CategoryExample categoryExample=new CategoryExample();
+        categoryExample.or().andCatenameEqualTo(category.getCatename());
+        categoryList=cateService.selectByExample(categoryExample);
+        if (!categoryList.isEmpty())
+        {
+            addCategoryResult.addAttribute("errorMsg","分类已存在");
+            return "addCategory";
+        }
+        else {
+            cateService.insertSelective(category);
+            redirectAttributes.addFlashAttribute("succeseMsg","分类添加成功!");
+            return "redirect:/admin/goods/addCategory";
+        }
+    }
+
+    @RequestMapping("/test")
+    public String test(Model test){
+        CategoryExample categoryExample=new CategoryExample();
+        categoryExample.or();
+        List<Category> categoryList=new ArrayList<>();
+        categoryList=cateService.selectByExample(categoryExample);
+       Iterator it=categoryList.iterator();
+        List<String> categoryNameList=new ArrayList<>();
+        while (it.hasNext())
+        test.addAttribute("categoryList",categoryList);
+        return "test";
+    }
+
 }
