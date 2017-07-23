@@ -14,4 +14,6 @@ public interface UserService {
     public List<User> selectByExample(UserExample userExample);
 
     public void insertSelective(User user);
+
+    public void deleteUserById(Integer userid);
 }

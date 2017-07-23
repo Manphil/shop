@@ -9,7 +9,96 @@ $(document).ready(function () {
 
     to_page(path, 1);
 
+});
 
+/*$(document).ready(function () {
+    $(".templatemo-edit-btn").click(function () {
+        alert("asf");
+        $("#update-goods").modal({
+            backdrop:'static'
+        })
+    });
+});*/
+
+$(document).on("click",".description",function () {
+    $(this).popover();
+});
+
+$(document).on("click",".templatemo-edit-btn",function () {
+    $("#update-goods").modal({
+        backdrop:'static'
+    });
+
+    //获取当前点击商品的数据
+    var upGoodsid = $(this).parents("tr").find("td:eq(0)").text();
+    var upGoodsname = $(this).parents("tr").find("td:eq(1)").text();
+    var upGoodsPrice = $(this).parents("tr").find("td:eq(2)").text();
+    var upGoodsNum = $(this).parents("tr").find("td:eq(3)").text();
+    var upGoodsDetailCate = $(this).parents("tr").find("td:eq(4)").text();
+    var upGoodsDes = $(this).parents("tr").find(".description").attr("data-content");
+
+    $("#goodsid").text(upGoodsid);
+    $("#goodsname").val(upGoodsname);
+    $("#price").val(upGoodsPrice);
+    $("#num").val(upGoodsNum);
+    $("#detailcate").val(upGoodsDetailCate);
+    $("#description").val(upGoodsDes);
+});
+
+//修改商品信息
+$(document).on("click","#saveUpdate",function () {
+    var ugoodsid = $("#goodsid").text();
+    var ugoodsname = $("#goodsname").val();
+    var uprice = $("#price").val();
+    var unum = $("#num").val();
+    var udescription = $("#description").val();
+    var ucategory = $("#category").val();
+    var udetailcate = $("#detailcate").val();
+
+    /*var option = {
+        url: '/shop/admin/goods/update/'+goodsid,
+        type:'post',
+    };
+    $("#update-goods").ajaxForm(option);*/
+
+    $.ajax({
+        url:"/shop/admin/goods/update/",
+        type:"POST",
+        data:{
+            goodsid:ugoodsid,
+            goodsname:ugoodsname,
+            price:uprice,
+            num:unum,
+            description:udescription,
+            category:ucategory,
+            detailcate:udetailcate,
+        },
+        success:function(result){
+            $("#update-goods").modal('hide');
+            swal(result.msg,'','success');
+            to_page('/shop',currentPage);
+        },
+        error:function(){
+            alert("错误！！");
+        }
+    });
+
+    /*var goodsid = $("#goodsid").text();
+    var updateForm = new FormData(document.getElementById("update-goods"));
+    $.ajax({
+        url:"/shop/admin/goods/update/" + goodsid,
+        type:"post",
+        data:updateForm,
+        processData:false,
+        contentType:false,
+        success:function(result){
+            swal(result.msg,'','success');
+        },
+        error:function(){
+            alert("错误！！");
+            window.clearInterval(timer);
+        }
+    });*/
 });
 
 $(document).on("click",".templatemo-delete-btn",function () {
@@ -71,14 +160,16 @@ function build_goods_table(path,result) {
         var num = $("<td></td>").append(item.num);
         var detailcate = $("<td></td>").append(item.detailcate);
 
-        var detailA = $("<a href='#'></a>").addClass("templatemo-link").append("详情");
+        // var detailA = $('<a tabindex="0" class="btn btn-sm description" role="button" placement="top" data-toggle="popover" data-trigger="focus" title="描述" ></a>').append("描述");
+        var detailA = $('<button type="button" class="description" data-container="body" data-toggle="popover" data-placement="top"></button>').append("描述");
+
+        var detailA = detailA.attr("data-content",item.description);
         var editBtn = $("<button></button>").addClass("templatemo-edit-btn").append("编辑");
         var deleteBtn = $("<button></button>").addClass("templatemo-delete-btn").append("删除");
 
         var detailTd = $("<td></td>").append(detailA);
         var editTd = $("<td></td>").append(editBtn);
         var deleteTd = $("<td></td>").append(deleteBtn);
-
 
         $("<tr></tr>").append(goodsid).append(goodsname).append(price).append(num).append(detailcate).append(detailTd).append(editTd).append(deleteTd).appendTo("#goodsinfo tbody");
     })
@@ -148,3 +239,4 @@ function build_page_nav(path,result) {
 
     pageUl.append(nextPage).append(lastPage).appendTo("#page-div-nav");
 }
+

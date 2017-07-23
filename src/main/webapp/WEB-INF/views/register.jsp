@@ -1,7 +1,7 @@
 <%@page import="java.security.interfaces.RSAKey"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=utf-8"%>
-<%request.setCharacterEncoding("utf-8");%> 
+<%request.setCharacterEncoding("utf-8");%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.text.*"%>
 

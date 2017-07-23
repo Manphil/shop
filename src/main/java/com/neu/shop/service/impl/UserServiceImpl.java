@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService {
         userMapper.insertSelective(user);
     }
 
+    @Override
+    public void deleteUserById(Integer userid) {
+        userMapper.deleteByPrimaryKey(userid);
+    }
+
 
    /* @Override
     public User selectByPrimaryKeyAndPassword(int userId,String password){return userMapper.selectByPrimaryKeyAndPassword();}*/

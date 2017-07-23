@@ -37,12 +37,17 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<Goods> selectByExample(GoodsExample example) {
-        return goodsMapper.selectByExample(example);
+        return goodsMapper.selectByExampleWithBLOBs(example);
     }
 
     @Override
     public void deleteGoodsById(Integer goodsid) {
 
         goodsMapper.deleteByPrimaryKey(goodsid);
+    }
+
+    @Override
+    public void updateGoodsById(Goods goods) {
+        goodsMapper.updateByPrimaryKeySelective(goods);
     }
 }
