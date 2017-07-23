@@ -38,11 +38,22 @@ public class CustomerController {
     }
 
     @RequestMapping("/registerresult")
-    public String registerResult(User user){
-        Date RegTime=new Date();
-        user.setRegtime(RegTime);
-        userService.insertSelective(user);
-        return  "redirect:/login";
+    public String registerResult(User user,Model registerResult){
+        List<User> userList=new ArrayList<>();
+        UserExample userExample=new UserExample();
+        userExample.or().andUsernameLike(user.getUsername());
+        userList=userService.selectByExample(userExample);
+        if (!userList.isEmpty())
+        {
+            registerResult.addAttribute("errorMsg","用户名被占用");
+            return "register";
+        }
+        else {
+            Date RegTime=new Date();
+            user.setRegtime(RegTime);
+            userService.insertSelective(user);
+            return  "redirect:/login";
+        }
     }
 
 
@@ -52,7 +63,7 @@ public class CustomerController {
         String verificationCode = (String) session.getAttribute("certCode");
         List<User> userList=new ArrayList<User>();
         UserExample userExample=new UserExample();
-        userExample.or().andUseridEqualTo(user.getUserid()).andPasswordEqualTo(user.getPassword());
+        userExample.or().andUsernameEqualTo(user.getUsername()).andPasswordEqualTo(user.getPassword());
         userList=userService.selectByExample(userExample);
         if (!userList.isEmpty())
         {
@@ -66,7 +77,7 @@ public class CustomerController {
             }
         }
         else {
-            loginResult.addAttribute("errorMsg","学号与密码不匹配");
+            loginResult.addAttribute("errorMsg","用户名与密码不匹配");
             return "login";
         }
     }
