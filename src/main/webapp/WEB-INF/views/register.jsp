@@ -106,13 +106,13 @@
 						<!-- <h2 class="login-h2">登录</h2> -->
 						<form class="form-horizontal" action="${pageContext.request.contextPath}/registerresult"
 							method="post">
-							<div class="form-group">
+							<%--<div class="form-group">
 								<!-- <label for="inputStuno" class="col-sm-2 control-label">学号</label> -->
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="userid"
 										name="userid" placeholder="学号">
 								</div>
-							</div>
+							</div>--%>
 							<div class="form-group">
 								<!-- <label for="inputName" class="col-sm-2 control-label">昵称</label> -->
 								<div class="col-sm-10">
