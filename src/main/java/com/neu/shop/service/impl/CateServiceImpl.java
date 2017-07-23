@@ -1,0 +1,25 @@
+package com.neu.shop.service.impl;
+
+import com.neu.shop.dao.CategoryMapper;
+import com.neu.shop.pojo.Category;
+import com.neu.shop.pojo.CategoryExample;
+import com.neu.shop.service.CateService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * Created by 文辉 on 2017/7/23.
+ */
+@Service("cateService")
+public class CateServiceImpl implements CateService {
+
+    @Autowired(required = false)
+    CategoryMapper categoryMapper;
+
+    @Override
+    public List<Category> selectByExample(CategoryExample example) {
+        return categoryMapper.selectByExample(example);
+    }
+}

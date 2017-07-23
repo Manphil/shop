@@ -18,4 +18,5 @@ public interface GoodsService {
     public List<Goods> selectByExample(GoodsExample example);
 
     public void deleteGoodsById(Integer goodsid);
+
 }

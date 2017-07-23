@@ -572,7 +572,7 @@
 
             <div class="bd">
                 <div class="data">
-                    <ul
+                    <ul>
                         <li class="data-item-li">
                             <div>
                                 <a href="./detail.jsp?goodsid="> <img src="Images/goods/.jpg" alt=""
