@@ -17,17 +17,17 @@ public class Msg {
     //数据
     private Map<String, Object> info = new HashMap<String, Object>();
 
-    public static Msg success() {
+    public static Msg success(String msg) {
         Msg result = new Msg();
         result.setCode(100);
-        result.setMsg("处理成功!");
+        result.setMsg(msg);
         return result;
     }
 
-    public static Msg fail() {
+    public static Msg fail(String msg) {
         Msg result = new Msg();
         result.setCode(200);
-        result.setMsg("处理失败!");
+        result.setMsg(msg);
         return result;
     }
 

@@ -16,4 +16,6 @@ public interface GoodsService {
     public void addImagePath(ImagePath imagePath);
 
     public List<Goods> selectByExample(GoodsExample example);
+
+    public void deleteGoodsById(Integer goodsid);
 }

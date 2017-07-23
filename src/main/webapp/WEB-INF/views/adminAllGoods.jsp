@@ -43,7 +43,7 @@
         <div class="templatemo-content-container">
             <div class="templatemo-content-widget no-padding">
                 <div class="panel panel-default table-responsive">
-                    <table class="table table-striped table-bordered templatemo-user-table">
+                    <table id="goodsinfo" class="table table-striped table-bordered templatemo-user-table">
                         <thead>
                         <tr>
                             <td><a href="" class="white-text templatemo-sort-by">id<span class="caret"></span></a></td>
@@ -57,7 +57,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${pageInfo.list}" var="goods" varStatus="num">
+                        <%--<c:forEach items="${pageInfo.list}" var="goods" varStatus="num">
                             <tr>
                                 <td>${goods.goodsid}</td>
                                 <td>${goods.goodsname}</td>
@@ -68,17 +68,17 @@
                                 <td><button href="" class="templatemo-edit-btn">编辑</button></td>
                                 <td><button href="" class="templatemo-delete-btn">删除</button></td>
                             </tr>
-                        </c:forEach>
+                        </c:forEach>--%>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <div class="pagination-wrap">
-                <div class="page-info">
-                    当前第${pageInfo.pageNum}页，总共${pageInfo.pages}页，总共${pageInfo.total}记录
+            <div class="pagination-wrap" id="page-div-nav">
+                <div class="page-info" id="page-info-area">
+                    <%--当前第${pageInfo.pageNum}页，总共${pageInfo.pages}页，总共${pageInfo.total}记录--%>
                 </div>
-                <ul class="pagination">
+                <%--<ul class="pagination">
                     <li>
                         <a href="${pageContext.request.contextPath}/admin/goods/show?page=1" aria-label="Next">
                             <span aria-hidden="true">首页</span>
@@ -88,7 +88,7 @@
                     <c:if test="${pageInfo.hasPreviousPage}">
                         <li>
                             <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pageNum - 1}" aria-label="Previous">
-                                <span aria-hidden="true"><i class="fa fa-backward"></i></span></span>
+                                <span aria-hidden="true"><i class="fa fa-backward"></i></span>
                             </a>
                         </li>
                     </c:if>
@@ -114,7 +114,7 @@
                             <span aria-hidden="true">末页</span>
                         </a>
                     </li>
-                </ul>
+                </ul>--%>
             </div>
         </div>
     </div>

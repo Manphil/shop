@@ -50,7 +50,7 @@ public class GoodsController {
 
         model.addAttribute("pageInfo", page);
 
-        return Msg.success().add("pageInfo", page);
+        return Msg.success("查询成功!").add("pageInfo", page);
     }
 
 
@@ -82,9 +82,11 @@ public class GoodsController {
         return "addGoods";
     }
 
-    @RequestMapping("/delete/{goodsid}")
-    public void deleteGoods(@PathVariable("goodsid") Integer goodsid) {
-
+    @RequestMapping(value = "/delete/{goodsid}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Msg deleteGoods(@PathVariable("goodsid")Integer goodsid) {
+        goodsService.deleteGoodsById(goodsid);
+        return Msg.success("删除成功!");
     }
 
     @RequestMapping("/addGoodsSuccess")

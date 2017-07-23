@@ -669,3 +669,7 @@ input[type="radio"]:checked + label span {
 	float: left !important;
 	margin: 30px;
 }
+
+.li-none {
+    display: none !important;
+}
