@@ -41,7 +41,7 @@ public class CustomerController {
     public String registerResult(User user){
         Date RegTime=new Date();
         user.setRegtime(RegTime);
-        userService.insert(user);
+        userService.insertSelective(user);
         return  "redirect:/login";
     }
 

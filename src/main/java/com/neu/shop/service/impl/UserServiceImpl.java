@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void insert(User user) {
-        userMapper.insert(user);
+    public void insertSelective(User user) {
+        userMapper.insertSelective(user);
     }
 
 

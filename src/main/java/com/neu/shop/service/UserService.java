@@ -13,5 +13,5 @@ public interface UserService {
     /*public User selectByPrimaryKeyAndPassword(int userId,String password);*/
     public List<User> selectByExample(UserExample userExample);
 
-    public void insert(User user);
+    public void insertSelective(User user);
 }
