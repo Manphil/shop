@@ -7,36 +7,32 @@ $.validator.setDefaults({
 $(document).ready(function() {
 	$('#form').validate({
 		rules: {
-			inputName: "required",
-			inputStuno: "required",
-			inputTel: {
+			username: "required",
+            telephone: {
 				required: true,
 			},
-			inputEmail: {
+            email: {
 				required: true,
 				email: true,
 			},
-			inputAddress: "required",
-			inputPassword: {
+            password: {
 				required: true,
 				minlength: 8,
 			},
 			confirmPassword: {
 				required: true,
 				minlength: 8,
-				equalTo: "#inputPassword",
+				equalTo: "#password",
 			}
 		},
 		messages: {
-			inputName: "用户名不能为空",
-			inputStuno: "学号不能为空",
-			inputTel: "联系电话不能为空",
-			inputEmail: {
+            username: "用户名不能为空",
+            telephone: "联系电话不能为空",
+            email: {
 				required: "邮箱输入不能为空",
 				email: "请输入一个正确的邮箱",
 			},
-			inputAddress: "地址不能为空",
-			inputPassword: {
+            password: {
 				required: "密码输入不能为空",
 				minlength: "密码长度不能小于8位",
 			},
