@@ -84,8 +84,9 @@
                         <label for="category" class="col-sm-2 control-label">类别</label>
                         <div class="col-sm-9">
                             <select class="form-control" id="category" name="category">
-                                <option value="">1</option>
-                                <option value="">2</option>
+                                <c:forEach items="${categoryList}" var="item">
+                                    <option value="${item.cateid}">${item.catename}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>

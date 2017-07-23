@@ -75,8 +75,9 @@
                         <div class="col-lg-6 col-md-6 form-group">
                             <label class="control-label templatemo-block">类别</label>
                             <select class="form-control" name="category1">
-                                <option value="html">1</option>
-                                <option value="plain">2</option>
+                                <c:forEach items="${categoryList}" var="item">
+                                    <option value="${item.cateid}">${item.catename}</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="col-lg-6 col-md-6 form-group">
