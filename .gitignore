@@ -1,5 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 target
-.idea/compiler.xml
-.idea/workspace.xml
-.idea/misc.xml
+.idea
+generatorConfig.xml
+shop.iml
+generatorConfig.xml
+src/main/resources/dbconfig.properties
+src/test/java/com/neu/shop/mybatis/MBGTest.java
