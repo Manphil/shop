@@ -16,7 +16,7 @@
     </div>
     <nav class="templatemo-left-nav">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/admin/user" class="active"><i class="fa fa-user fa-fw"></i>用户管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/user/show" class="active"><i class="fa fa-user fa-fw"></i>用户管理</a></li>
             <li><a href="${pageContext.request.contextPath}/admin/goods/show"><i class="fa fa-bar-chart fa-fw"></i>商品管理</a></li>
             <li><a href="${pageContext.request.contextPath}/admin/goods/show"><i class="fa fa-database fa-fw"></i>活动管理</a></li>
             <li><a href="${pageContext.request.contextPath}/admin/goods/show"><i class="fa fa-map-marker fa-fw"></i>活动管理</a></li>

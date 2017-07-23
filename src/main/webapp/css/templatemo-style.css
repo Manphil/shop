@@ -434,6 +434,20 @@ input[type="radio"]:checked + label span {
 	color: white;
 }
 
+.description {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	color: black;
+	background: white;
+	padding: 5px 15px;
+	transition: all 0.3s ease;
+}
+.description {
+	background-color: #39ADB4;
+	border: 1px solid #39ADB4;
+	color: white;
+}
+
 .templatemo-delete-btn {
 	border: 1px solid #ddd;
 	border-radius: 3px;

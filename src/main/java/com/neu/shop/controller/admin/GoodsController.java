@@ -82,6 +82,14 @@ public class GoodsController {
         return "addGoods";
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg updateGoods(Goods goods) {
+       /* goods.setGoodsid(goodsid);*/
+        goodsService.updateGoodsById(goods);
+        return Msg.success("更新成功!");
+    }
+
     @RequestMapping(value = "/delete/{goodsid}", method = RequestMethod.DELETE)
     @ResponseBody
     public Msg deleteGoods(@PathVariable("goodsid")Integer goodsid) {

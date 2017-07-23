@@ -46,8 +46,6 @@ public class MainController {
 
         model.addAttribute("digGoods", digGoods);
 
-
-
         return "main";
     }
 }

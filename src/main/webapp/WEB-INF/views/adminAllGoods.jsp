@@ -18,8 +18,11 @@
     <meta name="author" content="templatemo">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet'
           type='text/css'>
+    <!-- JS -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.2.min.js"></script>
     <link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
     <link href="${pageContext.request.contextPath}/css/templatemo-style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -31,9 +34,78 @@
 
     <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
+    <%--<script src="${pageContext.request.contextPath}/js/jquery.form.min.js"></script>--%>
 
 </head>
 <body>
+
+<%--修改商品信息模态框--%>
+<!-- Modal -->
+<div class="modal fade" id="update-goods" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">修改商品信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="update-form" name="update-form" method="post">
+                    <div class="form-group">
+                        <label for="goodsid" class="col-sm-2 control-label">id</label>
+                        <div class="col-sm-9">
+                            <span id="goodsid"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="goodsname" class="col-sm-2 control-label">商品名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="goodsname" id="goodsname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="col-sm-2 control-label">价格</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="price" id="price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="num" class="col-sm-2 control-label">数量</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="num" name="num">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">描述</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category" class="col-sm-2 control-label">类别</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="category" name="category">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="detailcate" class="col-sm-2 control-label">详细分类</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="detailcate" name="detailcate">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="saveUpdate">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Left column -->
 <div class="templatemo-flex-row">
     <jsp:include page="sidebar.jsp"/>
@@ -120,8 +192,6 @@
     </div>
 </div>
 <div id="path" style="display: none;">${pageContext.request.contextPath}</div>
-<!-- JS -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.2.min.js"></script>
 <!-- jQuery -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/templatemo-script.js"></script>
 <script src="${pageContext.request.contextPath}/js/goodsManage.js"></script>
