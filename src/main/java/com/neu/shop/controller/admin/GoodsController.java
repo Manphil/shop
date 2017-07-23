@@ -62,6 +62,8 @@ public class GoodsController {
         PageInfo page = new PageInfo(employees,5);
 
         model.addAttribute("pageInfo", page);*/
+        List<Category> categoryList = cateService.selectByExample(new CategoryExample());
+        model.addAttribute("categoryList",categoryList);
 
         return "adminAllGoods";
     }
@@ -72,6 +74,9 @@ public class GoodsController {
         if(!msg.equals("")) {
             model.addAttribute("msg", msg);
         }
+
+        List<Category> categoryList = cateService.selectByExample(new CategoryExample());
+        model.addAttribute("categoryList",categoryList);
 
         //还需要查询分类传给addGoods页面
         return "addGoods";
@@ -155,17 +160,5 @@ public class GoodsController {
         }
     }
 
-    @RequestMapping("/test")
-    public String test(Model test){
-        CategoryExample categoryExample=new CategoryExample();
-        categoryExample.or();
-        List<Category> categoryList=new ArrayList<>();
-        categoryList=cateService.selectByExample(categoryExample);
-       Iterator it=categoryList.iterator();
-        List<String> categoryNameList=new ArrayList<>();
-        while (it.hasNext())
-        test.addAttribute("categoryList",categoryList);
-        return "test";
-    }
 
 }

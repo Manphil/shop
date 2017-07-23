@@ -22,4 +22,9 @@ public class CateServiceImpl implements CateService {
     public List<Category> selectByExample(CategoryExample example) {
         return categoryMapper.selectByExample(example);
     }
+
+    @Override
+    public void insertSelective(Category category) {
+        categoryMapper.insertSelective(category);
+    }
 }
