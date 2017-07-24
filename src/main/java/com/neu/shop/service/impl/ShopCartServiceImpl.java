@@ -20,7 +20,7 @@ public class ShopCartServiceImpl implements ShopCartService {
 
     @Override
     public void addShopCart(ShopCart shopCart) {
-        shopCartMapper.insert(shopCart);
+        shopCartMapper.insertSelective(shopCart);
     }
 
     @Override

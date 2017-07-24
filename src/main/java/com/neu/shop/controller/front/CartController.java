@@ -1,9 +1,7 @@
 package com.neu.shop.controller.front;
 
-import com.neu.shop.pojo.Msg;
-import com.neu.shop.pojo.ShopCart;
-import com.neu.shop.pojo.ShopCartExample;
-import com.neu.shop.pojo.User;
+import com.neu.shop.pojo.*;
+import com.neu.shop.service.GoodsService;
 import com.neu.shop.service.ShopCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by 文辉 on 2017/7/24.
@@ -24,6 +20,9 @@ public class CartController {
 
     @Autowired
     private ShopCartService shopCartService;
+
+    @Autowired
+    private GoodsService goodsService;
 
     @RequestMapping("/addCart")
     public String addCart(ShopCart shopCart, HttpServletRequest request) {
@@ -54,6 +53,9 @@ public class CartController {
     @ResponseBody
     public Msg getCart(HttpSession session) {
         User user = (User) session.getAttribute("user");
+        if(user == null) {
+            return Msg.fail("请先登录");
+        }
 
         //获取当前用户的购物车信息
         ShopCartExample shopCartExample = new ShopCartExample();
@@ -62,8 +64,26 @@ public class CartController {
 
         //获取购物车中的商品信息
         List<Integer> goodsId = new ArrayList<>();
+        for (ShopCart cart:shopCart) {
+            goodsId.add(cart.getGoodsid());
+        }
 
+        //查询商品信息
+        GoodsExample goodsExample = new GoodsExample();
+        goodsExample.or().andGoodsidIn(goodsId);
+        List<Goods> goodsList = goodsService.selectByExample(goodsExample);
 
-        return Msg.success("查询成功");
+        //商品和图片
+//        Map<Goods,List<ImagePath>> goodsAndImage = new HashMap<Goods,List<ImagePath>>();
+
+        List<Goods> goodsAndImage = new ArrayList<>();
+
+        for (Goods goods:goodsList) {
+            List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
+            goods.setImagePaths(imagePathList);
+            goodsAndImage.add(goods);
+        }
+
+        return Msg.success("查询成功").add("shopcart",goodsAndImage);
     }
 }
