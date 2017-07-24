@@ -63,12 +63,19 @@ public class CartController {
         List<ShopCart> shopCart = shopCartService.selectByExample(shopCartExample);
 
         //获取购物车中的商品信息
-        List<Integer> goodsId = new ArrayList<>();
+//        List<Integer> goodsId = new ArrayList<>();
+        List<Goods> goodsAndImage = new ArrayList<>();
         for (ShopCart cart:shopCart) {
-            goodsId.add(cart.getGoodsid());
+//            goodsId.add(cart.getGoodsid());
+            Goods goods = goodsService.selectById(cart.getGoodsid());
+
+            List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
+            goods.setImagePaths(imagePathList);
+            goods.setNum(cart.getGoodsnum());
+            goodsAndImage.add(goods);
         }
 
-        //查询商品信息
+        /*//查询商品信息
         GoodsExample goodsExample = new GoodsExample();
         goodsExample.or().andGoodsidIn(goodsId);
         List<Goods> goodsList = goodsService.selectByExample(goodsExample);
@@ -76,13 +83,13 @@ public class CartController {
         //商品和图片
 //        Map<Goods,List<ImagePath>> goodsAndImage = new HashMap<Goods,List<ImagePath>>();
 
-        List<Goods> goodsAndImage = new ArrayList<>();
+
 
         for (Goods goods:goodsList) {
             List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
             goods.setImagePaths(imagePathList);
             goodsAndImage.add(goods);
-        }
+        }*/
 
         return Msg.success("查询成功").add("shopcart",goodsAndImage);
     }
