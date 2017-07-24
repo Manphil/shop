@@ -5,7 +5,8 @@
   Time: 14:21
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,7 @@
 
     </div> -->
     <div id="header">
-        <%@ include file="header.jsp"%>
+        <%@ include file="header.jsp" %>
         <%--<%
             String userId = (String) session.getAttribute("userId");
             //out.println(userId);
@@ -224,7 +225,8 @@
                                         <a href="./categoty.jsp?categoty=手机">手机</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=手机壳">手机壳</a> <a href="./categoty.jsp?categoty=充电器">充电器</a> <a href="">电池</a> <a
+                                        <a href="./categoty.jsp?categoty=手机壳">手机壳</a> <a
+                                            href="./categoty.jsp?categoty=充电器">充电器</a> <a href="">电池</a> <a
                                             href="./categoty.jsp?categoty=耳机">耳机</a>
                                     </dd>
                                 </dl>
@@ -233,7 +235,9 @@
                                         <a href="./categoty.jsp?categoty=相机">相机</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=镜头">镜头</a> <a href="./categoty.jsp?categoty=单反">单反</a> <a href="./categoty.jsp?categoty=胶片">胶片</a> <a
+                                        <a href="./categoty.jsp?categoty=镜头">镜头</a> <a
+                                            href="./categoty.jsp?categoty=单反">单反</a> <a
+                                            href="./categoty.jsp?categoty=胶片">胶片</a> <a
                                             href="./categoty.jsp?categoty=摄像">摄像</a>
                                     </dd>
                                 </dl>
@@ -242,7 +246,9 @@
                                         <a href="./categoty.jsp?categoty=电脑">电脑</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=显示屏">显示屏</a> <a href="./categoty.jsp?categoty=显卡">显卡</a> <a href="./categoty.jsp?categoty=硬盘">硬盘</a> <a
+                                        <a href="./categoty.jsp?categoty=显示屏">显示屏</a> <a
+                                            href="./categoty.jsp?categoty=显卡">显卡</a> <a
+                                            href="./categoty.jsp?categoty=硬盘">硬盘</a> <a
                                             href="./categoty.jsp?categoty=内存条">内存条</a>
                                     </dd>
                                 </dl>
@@ -251,11 +257,14 @@
                                         <a href="./categoty.jsp?categoty=影音">影音</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=MP3">MP3</a> <a href="./categoty.jsp?categoty=音响">音响</a> <a href="./categoty.jsp?categoty=麦克风">麦克风</a> <a
+                                        <a href="./categoty.jsp?categoty=MP3">MP3</a> <a
+                                            href="./categoty.jsp?categoty=音响">音响</a> <a
+                                            href="./categoty.jsp?categoty=麦克风">麦克风</a> <a
                                             href="./categoty.jsp?categoty=收音机">收音机</a>
                                     </dd>
                                 </dl>
-                            </div></li>
+                            </div>
+                        </li>
                         <li class="list-group-item"><a href="./categoty.jsp?categoty=日用">闲置日用</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
@@ -263,7 +272,8 @@
                                         <a href="./categoty.jsp?categoty=护肤">护肤</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=洗发水">洗发水</a> <a href="./categoty.jsp?categoty=沐浴露">沐浴露</a> <a href="">洗面奶</a> <a
+                                        <a href="./categoty.jsp?categoty=洗发水">洗发水</a> <a
+                                            href="./categoty.jsp?categoty=沐浴露">沐浴露</a> <a href="">洗面奶</a> <a
                                             href="">洗手液</a>
                                     </dd>
                                 </dl>
@@ -272,7 +282,9 @@
                                         <a href="./categoty.jsp?categoty=美妆">美妆</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=面膜">面膜</a> <a href="./categoty.jsp?categoty=口红">口红</a> <a href="./categoty.jsp?categoty=防嗮">防嗮</a> <a
+                                        <a href="./categoty.jsp?categoty=面膜">面膜</a> <a
+                                            href="./categoty.jsp?categoty=口红">口红</a> <a
+                                            href="./categoty.jsp?categoty=防嗮">防嗮</a> <a
                                             href="./categoty.jsp?categoty=香水">香水</a>
                                     </dd>
                                 </dl>
@@ -281,11 +293,13 @@
                                         <a href="./categoty.jsp?categoty=家居">家居</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=书架">书架</a><a href="./categoty.jsp?categoty=鞋柜">鞋柜</a> <a href="./categoty.jsp?categoty=衣架">衣架</a> <a
+                                        <a href="./categoty.jsp?categoty=书架">书架</a><a href="./categoty.jsp?categoty=鞋柜">鞋柜</a>
+                                        <a href="./categoty.jsp?categoty=衣架">衣架</a> <a
                                             href="./categoty.jsp?categoty=台灯">台灯</a>
                                     </dd>
                                 </dl>
-                            </div></li>
+                            </div>
+                        </li>
                         <li class="list-group-item"><a href="./categoty.jsp?categoty=闲置书籍">闲置书籍</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
@@ -293,7 +307,9 @@
                                         <a href="./categoty.jsp?categoty=英语">英语</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=四六级">四六级</a> <a href="./categoty.jsp?categoty=充电器">商务英语</a> <a href="./categoty.jsp?categoty=听力">听力</a> <a
+                                        <a href="./categoty.jsp?categoty=四六级">四六级</a> <a
+                                            href="./categoty.jsp?categoty=充电器">商务英语</a> <a
+                                            href="./categoty.jsp?categoty=听力">听力</a> <a
                                             href="./categoty.jsp?categoty=考研">考研</a>
                                     </dd>
                                 </dl>
@@ -302,7 +318,9 @@
                                         <a href="./categoty.jsp?categoty=考研">考研</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=计算机">计算机</a> <a href="./categoty.jsp?categoty=自动化">自动化</a> <a href="./categoty.jsp?categoty=金融">金融</a> <a
+                                        <a href="./categoty.jsp?categoty=计算机">计算机</a> <a
+                                            href="./categoty.jsp?categoty=自动化">自动化</a> <a
+                                            href="./categoty.jsp?categoty=金融">金融</a> <a
                                             href="./categoty.jsp?categoty=其他">其他</a>
                                     </dd>
                                 </dl>
@@ -311,7 +329,9 @@
                                         <a href="./categoty.jsp?categoty=体育">体育</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=足球">足球</a> <a href="./categoty.jsp?categoty=乒乓球">乒乓球</a> <a href="./categoty.jsp?categoty=篮球">篮球</a> <a
+                                        <a href="./categoty.jsp?categoty=足球">足球</a> <a
+                                            href="./categoty.jsp?categoty=乒乓球">乒乓球</a> <a
+                                            href="./categoty.jsp?categoty=篮球">篮球</a> <a
                                             href="./categoty.jsp?categoty=羽毛球">羽毛球</a>
                                     </dd>
                                 </dl>
@@ -320,11 +340,14 @@
                                         <a href="./categoty.jsp?categoty=经典">经典</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=历史">历史</a> <a href="./categoty.jsp?categoty=名人">名人</a> <a href="./categoty.jsp?categoty=政治">政治</a> <a
+                                        <a href="./categoty.jsp?categoty=历史">历史</a> <a
+                                            href="./categoty.jsp?categoty=名人">名人</a> <a
+                                            href="./categoty.jsp?categoty=政治">政治</a> <a
                                             href="./categoty.jsp?categoty=小说">小说</a>
                                     </dd>
                                 </dl>
-                            </div></li>
+                            </div>
+                        </li>
                         <li class="list-group-item"><a href="./categoty.jsp?categoty=服饰">闲置服饰</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
@@ -332,7 +355,9 @@
                                         <a href="./categoty.jsp?categoty=女装">女装</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=连衣裙">连衣裙</a> <a href="./categoty.jsp?categoty=充电器"> 半身裙</a> <a href="./categoty.jsp?categoty= T恤"> T恤 衬衫</a> <a
+                                        <a href="./categoty.jsp?categoty=连衣裙">连衣裙</a> <a
+                                            href="./categoty.jsp?categoty=充电器"> 半身裙</a> <a
+                                            href="./categoty.jsp?categoty= T恤"> T恤 衬衫</a> <a
                                             href="./categoty.jsp?categoty=卫衣">卫衣</a>
                                     </dd>
                                 </dl>
@@ -341,7 +366,9 @@
                                         <a href="./categoty.jsp?categoty=男装">男装</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=外套">外套</a> <a href="./categoty.jsp?categoty=衬衫">衬衫</a> <a href="./categoty.jsp?categoty=夹克">夹克</a> <a
+                                        <a href="./categoty.jsp?categoty=外套">外套</a> <a
+                                            href="./categoty.jsp?categoty=衬衫">衬衫</a> <a
+                                            href="./categoty.jsp?categoty=夹克">夹克</a> <a
                                             href="./categoty.jsp?categoty=运动外套">运动外套</a>
                                     </dd>
                                 </dl>
@@ -350,7 +377,9 @@
                                         <a href="./categoty.jsp?categoty=鞋子">鞋子</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=运动鞋">运动鞋</a> <a href="./categoty.jsp?categoty=单鞋">单鞋</a> <a href="./categoty.jsp?categoty=皮鞋">皮鞋</a> <a
+                                        <a href="./categoty.jsp?categoty=运动鞋">运动鞋</a> <a
+                                            href="./categoty.jsp?categoty=单鞋">单鞋</a> <a
+                                            href="./categoty.jsp?categoty=皮鞋">皮鞋</a> <a
                                             href="./categoty.jsp?categoty=拖鞋">拖鞋</a>
                                     </dd>
                                 </dl>
@@ -359,10 +388,13 @@
                                         <a href="./categoty.jsp?categoty=箱包">箱包</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=女包">女包</a> <a href="./categoty.jsp?categoty=男包">男包</a> <a href="./categoty.jsp?categoty=旅行箱">旅行箱</a>
+                                        <a href="./categoty.jsp?categoty=女包">女包</a> <a
+                                            href="./categoty.jsp?categoty=男包">男包</a> <a
+                                            href="./categoty.jsp?categoty=旅行箱">旅行箱</a>
                                     </dd>
                                 </dl>
-                            </div></li>
+                            </div>
+                        </li>
                         <li class="list-group-item"><a href="./categoty.jsp?categoty=装饰品">装饰品</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
@@ -370,7 +402,9 @@
                                         <a href="./categoty.jsp?categoty=配饰">配饰</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=腰带">腰带</a> <a href="./categoty.jsp?categoty=皮带">皮带</a> <a href="./categoty.jsp?categoty=帽子">帽子</a> <a
+                                        <a href="./categoty.jsp?categoty=腰带">腰带</a> <a
+                                            href="./categoty.jsp?categoty=皮带">皮带</a> <a
+                                            href="./categoty.jsp?categoty=帽子">帽子</a> <a
                                             href="./categoty.jsp?categoty=围巾">围巾</a>
                                         <a
                                                 href="./categoty.jsp?categoty=手套">手套</a>
@@ -381,7 +415,8 @@
                                         <a href="./categoty.jsp?categoty=手表">手表</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=机械表">机械表</a><a href="./categoty.jsp?categoty=石英表">石英表</a> <a
+                                        <a href="./categoty.jsp?categoty=机械表">机械表</a><a
+                                            href="./categoty.jsp?categoty=石英表">石英表</a> <a
                                             href="./categoty.jsp?categoty=电子表">电子表</a>
                                     </dd>
                                 </dl>
@@ -390,7 +425,9 @@
                                         <a href="./categoty.jsp?categoty=饰品">饰品</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=眼镜">眼镜</a> <a href="./categoty.jsp?categoty=手链">手链</a> <a href="./categoty.jsp?categoty=项链">项链</a> <a
+                                        <a href="./categoty.jsp?categoty=眼镜">眼镜</a> <a
+                                            href="./categoty.jsp?categoty=手链">手链</a> <a
+                                            href="./categoty.jsp?categoty=项链">项链</a> <a
                                             href="./categoty.jsp?categoty=吊坠">吊坠</a>
                                     </dd>
                                 </dl>
@@ -399,11 +436,14 @@
                                         <a href="./categoty.jsp?categoty=收藏品">收藏品</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=古玩">古玩</a> <a href="./categoty.jsp?categoty=邮票">邮票</a> <a href="./categoty.jsp?categoty=钱币">钱币</a> <a
+                                        <a href="./categoty.jsp?categoty=古玩">古玩</a> <a
+                                            href="./categoty.jsp?categoty=邮票">邮票</a> <a
+                                            href="./categoty.jsp?categoty=钱币">钱币</a> <a
                                             href="./categoty.jsp?categoty=陶瓷">陶瓷</a>
                                     </dd>
                                 </dl>
-                            </div></li>
+                            </div>
+                        </li>
                         <li class="list-group-item"><a href="./categoty.jsp?categoty=学习用品">学习用品</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
@@ -411,7 +451,9 @@
                                         <a href="./categoty.jsp?categoty=编码">编码</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=Java">Java</a> <a href="./categoty.jsp?categoty=PHP">PHP</a> <a href="./categoty.jsp?categoty=C">C++</a> <a
+                                        <a href="./categoty.jsp?categoty=Java">Java</a> <a
+                                            href="./categoty.jsp?categoty=PHP">PHP</a> <a
+                                            href="./categoty.jsp?categoty=C">C++</a> <a
                                             href="./categoty.jsp?categoty=Python">Python</a>
                                     </dd>
                                 </dl>
@@ -420,7 +462,9 @@
                                         <a href="./categoty.jsp?categoty=培训">培训</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=驾照">驾照</a> <a href="./categoty.jsp?categoty=考研">考研</a> <a href="./categoty.jsp?categoty=计算机证书">计算机证书</a> <a
+                                        <a href="./categoty.jsp?categoty=驾照">驾照</a> <a
+                                            href="./categoty.jsp?categoty=考研">考研</a> <a
+                                            href="./categoty.jsp?categoty=计算机证书">计算机证书</a> <a
                                             href="./categoty.jsp?categoty=四六级">四六级</a>
                                     </dd>
                                 </dl>
@@ -429,10 +473,13 @@
                                         <a href="./categoty.jsp?categoty=线上课程">线上课程</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=健身">健身</a> <a href="./categoty.jsp?categoty=考证">考证</a> <a href="./categoty.jsp?categoty=学习">学习</a>
+                                        <a href="./categoty.jsp?categoty=健身">健身</a> <a
+                                            href="./categoty.jsp?categoty=考证">考证</a> <a
+                                            href="./categoty.jsp?categoty=学习">学习</a>
                                     </dd>
                                 </dl>
-                            </div></li>
+                            </div>
+                        </li>
                         <li class="list-group-item"><a href="./categoty.jsp?categoty=闲置百货">闲置百货</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
@@ -440,7 +487,9 @@
                                         <a href="./categoty.jsp?categoty=日用">日用</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=雨伞">雨伞</a> <a href="./categoty.jsp?categoty=口罩">口罩</a> <a href="./categoty.jsp?categoty=拖布">拖布</a> <a
+                                        <a href="./categoty.jsp?categoty=雨伞">雨伞</a> <a
+                                            href="./categoty.jsp?categoty=口罩">口罩</a> <a
+                                            href="./categoty.jsp?categoty=拖布">拖布</a> <a
                                             href="./categoty.jsp?categoty=电风扇">电风扇</a>
                                     </dd>
                                 </dl>
@@ -449,7 +498,9 @@
                                         <a href="./categoty.jsp?categoty=餐具">餐具</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=餐盘">餐盘</a> <a href="./categoty.jsp?categoty=保温杯">保温杯</a> <a href="./categoty.jsp?categoty=饭盒">饭盒</a> <a
+                                        <a href="./categoty.jsp?categoty=餐盘">餐盘</a> <a
+                                            href="./categoty.jsp?categoty=保温杯">保温杯</a> <a
+                                            href="./categoty.jsp?categoty=饭盒">饭盒</a> <a
                                             href="./categoty.jsp?categoty=餐具套装">餐具套装</a>
                                     </dd>
                                 </dl>
@@ -458,10 +509,13 @@
                                         <a href="./categoty.jsp?categoty=出行">出行</a>
                                     </dt>
                                     <dd>
-                                        <a href="./categoty.jsp?categoty=自行车">自行车</a> <a href="./categoty.jsp?categoty=电动车">电动车</a> <a href="./categoty.jsp?categoty=滑板">滑板</a>
+                                        <a href="./categoty.jsp?categoty=自行车">自行车</a> <a
+                                            href="./categoty.jsp?categoty=电动车">电动车</a> <a
+                                            href="./categoty.jsp?categoty=滑板">滑板</a>
                                     </dd>
                                 </dl>
-                            </div></li>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <!-- <div class="sort-detail">
@@ -496,17 +550,17 @@
             <div id="mycarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="./image/4.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/image/4.jpg" alt="">
                     </div>
 
                     <div class="item">
-                        <img src="./image/3.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/image/3.jpg" alt="">
                     </div>
                     <div class="item">
-                        <img src="./image/5.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/image/5.jpg" alt="">
                     </div>
                     <div class="item">
-                        <img src="./image/6.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/image/6.jpg" alt="">
                     </div>
                 </div>
 
@@ -531,140 +585,171 @@
         </div>
     </div>
     <div class="content">
-        <div class="module">
-            <div class="hd">
-                <h2>数码</h2>
-                <hr>
-            </div>
 
-            <div class="bd">
-                <div class="data">
-                    <ul>
-                        <li class="data-item-li">
-                            <div>
-                                <a href="./detail.jsp?goodsid="> <img src="Images/goods/.jpg" alt=""
-                                                                                               width="260" height="260">
-                                </a>
-                            </div>
-                            <p class="text-right">
-                                <a href="./detail.jsp?goodsid=</a>
-                            </p>
-                            <div class="text-right">
-                                <b>￥</b>
-                            </div>
-                            <div>
-                                <button
-                                        class="like-button glyphicon glyphicon-heart-empty btn btn-default" data-id=""
-                                        style="display: none;"></button>
-                                <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
-                            </div>
-                        </li>
+        <c:if test="${!empty digGoods}">
+            <div class="module">
+                <div class="hd">
+                    <h2>数码</h2>
+                    <hr>
+                </div>
 
-                        <div class="clear-float" style="clear: both;"></div>
-                    </ul>
+                <div class="bd">
+                    <div class="data">
+                        <ul>
+                            <c:forEach items="${digGoods}" var="goods">
+                                <li class="data-item-li">
+                                    <div>
+                                        <a href=""><img src="/goodsimage/${goods.value[0].path}" alt=""
+                                                        width="200" height="200"/>
+                                        </a>
+                                    </div>
+                                    <p class="text-right">
+                                        <a href="">${goods.key.goodsname}</a>
+                                    </p>
+                                    <div class="text-right">
+                                        <b>￥${goods.key.price}</b>
+                                    </div>
+                                    <div>
+                                        <button
+                                                class="like-button glyphicon glyphicon-heart-empty btn btn-default"
+                                                data-id=""
+                                                style="display: none;"></button>
+                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
+                                    </div>
+                                </li>
+                            </c:forEach>
+
+
+                            <div class="clear-float" style="clear: both;"></div>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        <div class="module">
-            <div class="hd">
-                <h2>日用品</h2>
-                <hr>
-            </div>
+        </c:if>
 
-            <div class="bd">
-                <div class="data">
-                    <ul>
-                        <li class="data-item-li">
-                            <div>
-                                <a href="./detail.jsp?goodsid="> <img src="Images/goods/.jpg" alt=""
-                                                                      width="260" height="260">
-                                </a>
-                            </div>
-                            <p class="text-right">
-                                <a href="./detail.jsp?goodsid="></a>
-                            </p>
-                            <div class="text-right">
-                                <b>￥</b>
-                            </div>
-                            <div>
-                                <button
-                                        class="like-button glyphicon glyphicon-heart-empty btn btn-default" data-id=""
-                                        style="display: none;"></button>
-                                <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
-                            </div>
-                        </li>
-                        <div class="clear-float" style="clear: both;"></div>
-                    </ul>
+        <c:if test="${!empty houseGoods}">
+            <div class="module">
+                <div class="hd">
+                    <h2>家电</h2>
+                    <hr>
+                </div>
 
+                <div class="bd">
+                    <div class="data">
+                        <ul>
+                            <c:forEach items="${houseGoods}" var="housegoods">
+                                <li class="data-item-li">
+                                    <div>
+                                        <a href="./detail.jsp?goodsid="> <img
+                                                src="/goodsimage/${housegoods.value[0].path}" alt=""
+                                                width="200" height="200">
+                                        </a>
+                                    </div>
+                                    <p class="text-right">
+                                        <a href="./detail.jsp?goodsid=">${housegoods.key.goodsname}</a>
+                                    </p>
+                                    <div class="text-right">
+                                        <b>￥${housegoods.key.price}</b>
+                                    </div>
+                                    <div>
+                                        <button
+                                                class="like-button glyphicon glyphicon-heart-empty btn btn-default"
+                                                data-id=""
+                                                style="display: none;"></button>
+                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
+                                    </div>
+                                </li>
+                            </c:forEach>
+
+                            <div class="clear-float" style="clear: both;"></div>
+                        </ul>
+
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:if>
 
-        <div class="module">
-            <div class="hd">
-                <h2>书籍</h2>
-                <hr>
-            </div>
+        <c:if test="${!empty colGoods}">
+            <div class="module">
+                <div class="hd">
+                    <h2>服饰</h2>
+                    <hr>
+                </div>
 
-            <div class="bd">
-                <div class="data">
-                    <ul>
-                        <li class="data-item-li">
-                            <div>
-                                <a href="./detail.jsp?goodsid="> <img src="Images/goods/.jpg" alt=""
-                                                                                               width="260" height="260">
-                                </a>
-                            </div>
-                            <p class="text-right">
-                                <a href="./detail.jsp?goodsid="></a>
-                            </p>
-                            <div class="text-right">
-                                <b>￥</b>
-                            </div>
-                            <div>
-                                <button
-                                        class="like-button glyphicon glyphicon-heart-empty btn btn-default" data-id=""
-                                        style="display: none;"></button>
-                                <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
-                            </div>
-                        </li>
-                        <div class="clear-float" style="clear: both;"></div>
-                    </ul>
+                <div class="bd">
+                    <div class="data">
+                        <ul>
+                            <c:forEach items="${colGoods}" var="colgoods">
+                                <li class="data-item-li">
+                                    <div>
+                                        <a href="./detail.jsp?goodsid="> <img
+                                                src="/goodsimage/${colgoods.value[0].path}" alt=""
+                                                width="200" height="200">
+                                        </a>
+                                    </div>
+                                    <p class="text-right">
+                                        <a href="./detail.jsp?goodsid=">${colgoods.key.goodsname}</a>
+                                    </p>
+                                    <div class="text-right">
+                                        <b>￥${colgoods.key.price}</b>
+                                    </div>
+                                    <div>
+                                        <button
+                                                class="like-button glyphicon glyphicon-heart-empty btn btn-default"
+                                                data-id=""
+                                                style="display: none;"></button>
+                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
+                                    </div>
+                                </li>
+                            </c:forEach>
+
+                            <div class="clear-float" style="clear: both;"></div>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="module">
-            <div class="hd">
-                <h2>服饰</h2>
-                <hr>
-            </div>
+        </c:if>
 
-            <div class="bd">
-                <div class="data">
-                    <ul>
-                        <li class="data-item-li">
-                            <div>
-                                <a href="./detail.jsp?goodsid="> <img src="Images/goods/.jpg" alt=""
-                                                                                               width="260" height="260">
-                                </a>
-                            </div>
-                            <p class="text-right">
-                                <a href="./detail.jsp?goodsid=">></a>
-                            </p>
-                            <div class="text-right">
-                                <b>￥</b>
-                            </div>
-                            <div>
-                                <button
-                                        class="like-button glyphicon glyphicon-heart-empty btn btn-default" data-id=""
-                                        style="display: none;"></button>
-                                <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
-                            </div>
-                        </li>
-                        <div class="clear-float" style="clear: both;"></div>
-                    </ul>
+        <c:if test="${!empty bookGoods}">
+            <div class="module">
+                <div class="hd">
+                    <h2>书籍</h2>
+                    <hr>
+                </div>
+
+                <div class="bd">
+                    <div class="data">
+                        <ul>
+                            <c:forEach items="${bookGoods}" var="bookgoods">
+                                <li class="data-item-li">
+                                    <div>
+                                        <a href="./detail.jsp?goodsid="> <img
+                                                src="/goodsimage/${bookgoods.value[0].path}" alt=""
+                                                width="200" height="200">
+                                        </a>
+                                    </div>
+                                    <p class="text-right">
+                                        <a href="./detail.jsp?goodsid=">${bookgoods.key.goodsname}</a>
+                                    </p>
+                                    <div class="text-right">
+                                        <b>￥${bookgoods.key.price}</b>
+                                    </div>
+                                    <div>
+                                        <button
+                                                class="like-button glyphicon glyphicon-heart-empty btn btn-default"
+                                                data-id=""
+                                                style="display: none;"></button>
+                                        <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
+                                    </div>
+                                </li>
+                            </c:forEach>
+
+                            <div class="clear-float" style="clear: both;"></div>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:if>
     </div>
 </div>
 </body>

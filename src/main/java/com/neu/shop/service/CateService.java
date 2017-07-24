@@ -13,4 +13,6 @@ import java.util.List;
 public interface CateService {
     public List<Category> selectByExample(CategoryExample example);
     public void insertSelective(Category category);
+
+    public List<Category> selectByExampleLimit(CategoryExample digCategoryExample);
 }

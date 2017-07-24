@@ -27,4 +27,9 @@ public class CateServiceImpl implements CateService {
     public void insertSelective(Category category) {
         categoryMapper.insertSelective(category);
     }
+
+    @Override
+    public List<Category> selectByExampleLimit(CategoryExample digCategoryExample) {
+        return categoryMapper.selectByExampleLimit(digCategoryExample);
+    }
 }

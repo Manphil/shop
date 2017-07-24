@@ -20,4 +20,6 @@ public interface GoodsService {
     public void deleteGoodsById(Integer goodsid);
 
     public void updateGoodsById(Goods goods);
+
+    public List<ImagePath> findImagePath(Integer goodsid);
 }

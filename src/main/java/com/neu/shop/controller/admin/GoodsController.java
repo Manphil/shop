@@ -112,12 +112,13 @@ public class GoodsController {
 
                 String realPath = request.getSession().getServletContext().getRealPath("/");
 //                    String realPath = request.getContextPath();
-                System.out.println(realPath);
+//                System.out.println(realPath);
                 //图片路径
-                String imagePath = realPath.substring(0,realPath.indexOf("shop")) + "shopimage\\" + UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
-
+                String imageName = UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
+                String imagePath = realPath.substring(0,realPath.indexOf("shop")) + "shopimage\\" + imageName;
+//                String imagePath = UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
                 //把图片路径存入数据库中
-                goodsService.addImagePath(new ImagePath(null, goods.getGoodsid(),imagePath));
+                goodsService.addImagePath(new ImagePath(null, goods.getGoodsid(),imageName));
                 //存图片
                 multipartFile.transferTo(new File(imagePath));
             }

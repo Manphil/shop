@@ -18,6 +18,8 @@ public interface CategoryMapper {
 
     List<Category> selectByExample(CategoryExample example);
 
+    List<Category> selectByExampleLimit(CategoryExample example);
+
     Category selectByPrimaryKey(Integer cateid);
 
     int updateByExampleSelective(@Param("record") Category record, @Param("example") CategoryExample example);
