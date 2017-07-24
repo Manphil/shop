@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
 	$('.delete-goods').click(function(){
 		var goodsid = $(this).attr("data-goodsid");
@@ -19,4 +20,28 @@ function deleteGoods(goodsid){
 
 function confirmOrders(){
 	$.post("servlet/SaleServlet");
+}*/
+$(document).ready(function () {
+    var path = $("path").text();
+   showcart();
+});
+
+function showcart() {
+    $.ajax({
+        url: path + "/cartjson",
+        type: "post",
+        success: function (result) {
+
+            //解析显示
+            build_user_table(path, result);
+
+            //页面信息
+            build_page_info(path, result);
+
+            //分页
+            build_page_nav(path, result);
+
+            currentPage = page;
+        }
+    });
 }

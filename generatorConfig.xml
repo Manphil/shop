@@ -41,6 +41,6 @@
         <!--<table tableName="goods" domainObjectName="Goods" ></table>
         <table tableName="category" domainObjectName="Category" ></table>-->
         <!--<table tableName="imagepath" domainObjectName="ImagePath" ></table>-->
-        <table tableName="user" domainObjectName="User" ></table>
+        <table tableName="shopcart" domainObjectName="ShopCart" ></table>
     </context>
 </generatorConfiguration>

@@ -159,7 +159,6 @@
                             </span>
                     </div>
 
-
                     <div class="new_meta">
                             <span class="sku_wrapper big-font">
                                 优惠:
@@ -180,8 +179,9 @@
                                 联系客服
                             </a>
                         </div>
-                        <form class="cart-btn-area new_meta" action="#">
-                            <input type="number" value="1">
+                        <form class="cart-btn-area new_meta" action="${pageContext.request.contextPath}/addCart" method="post">
+                            <input type="hidden" value="${goodsInfo['goods'].goodsid}" name="goodsid"/>
+                            <input type="number" value="1" name="goodsnum">
                             <button class="add-tocart cart_zpf" type="submit">加入购物车</button>
                         </form>
                         <div class="add_defi new_meta">
