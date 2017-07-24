@@ -5,6 +5,15 @@ public class ShopCartKey {
 
     private Integer goodsid;
 
+    public ShopCartKey() {
+    }
+
+    public ShopCartKey(Integer userid, Integer goodsid) {
+
+        this.userid = userid;
+        this.goodsid = goodsid;
+    }
+
     public Integer getUserid() {
         return userid;
     }

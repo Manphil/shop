@@ -3,6 +3,7 @@ package com.neu.shop.service.impl;
 import com.neu.shop.dao.ShopCartMapper;
 import com.neu.shop.pojo.ShopCart;
 import com.neu.shop.pojo.ShopCartExample;
+import com.neu.shop.pojo.ShopCartKey;
 import com.neu.shop.service.ShopCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,10 @@ public class ShopCartServiceImpl implements ShopCartService {
     public List<ShopCart> selectByExample(ShopCartExample shopCartExample) {
 
         return shopCartMapper.selectByExample(shopCartExample);
+    }
+
+    @Override
+    public void deleteByKey(ShopCartKey shopCartKey) {
+        shopCartMapper.deleteByPrimaryKey(shopCartKey);
     }
 }

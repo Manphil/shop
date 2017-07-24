@@ -20,6 +20,8 @@
     <script src="${pageContext.request.contextPath}/js/sort.js"></script>
     <script src="${pageContext.request.contextPath}/js/holder.js"></script>
     <script src="${pageContext.request.contextPath}/js/shopcart.js"></script>
+    <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
     <!-- 	<script>
             $(document).ready(function(){
                 $(".list-group-item").hover(function(){
@@ -49,7 +51,7 @@
                     <div class="wishlist-content wishlist-content-2">
                         <form action="#">
                             <div class="wishlist-table wishlist-table-2 table-responsive">
-                                <table>
+                                <table id="cart-table">
                                     <thead>
                                     <tr>
                                         <th class="product-remove"><span class="nobr"></span></th>
@@ -64,34 +66,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="product-remove product-remove_2"><a href=""
-                                                                                       class="delete-goods"
-                                                                                       data-goodsid="用户id">×</a></td>
-                                        <td class="product-thumbnail product-thumbnail-2"><a
-                                                href="#"><img
-                                                src="Images/goods/.jpg"
-                                                alt="" /></a></td>
-                                        <td class="product-name product-name_2"><a
-                                                href="./detail.jsp?goodsid=商品id">名</a></td>
-                                        <td class="product-price"><span
-                                                class="amount-list amount-list-2">￥价格
-														总价</span></td>
-                                        <td class="product-stock-status">
-                                            <div class="latest_es_from_2">
-                                                <input type="number" value="1">
-                                            </div>
-                                        </td>
-                                        <td class="product-price"><span
-                                                class="amount-list amount-list-2">￥价格</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">
-                                            <div class="coupon" style="margin-left:37%;">
-                                                购物车还是空的，快去<a href="./index.jsp" style="color:red;">首页</a>看看吧！
-                                            </div>
-                                        </td>
-                                    </tr>
+
+
 
 
                                     </tbody>
@@ -122,14 +98,14 @@
                                             <th>小计</th>
                                             <td data-title="Subtotal"><span
                                                     class="woocommerce-Price-amount amount"> <span
-                                                    class="woocommerce-Price-currencySymbol">￥</span> 总价
+                                                    class="woocommerce-Price-currencySymbol" id="total-num"></span>
 													</span></td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>总额</th>
                                             <td data-title="Total"><strong> <span
                                                     class="woocommerce-Price-amount amount"> <span
-                                                    class="woocommerce-Price-currencySymbol">￥</span> 价格
+                                                    class="woocommerce-Price-currencySymbol" id="total-price"></span>
 														</span>
                                             </strong></td>
                                         </tr>
