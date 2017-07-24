@@ -84,7 +84,7 @@
 <div class="elavator_area">
     <div class="container">
         <jsp:include page="header.jsp"/>
-        <div class="shop_menu shop_menu_2">
+        <div class="shop_menu shop_menu_2 main-detail-div">
             <ul class="cramb_area cramb_area_5 main-detail-nav">
                 <li><a href="index.html">首页 /</a></li>
                 <%--<li><a href="index.html">Shop /</a></li>

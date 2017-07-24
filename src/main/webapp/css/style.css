@@ -56,6 +56,10 @@ CSS INDEX
   display: inline-block;
 }
 
+.main-detail-nav {
+  margin-left: 15px !important;
+}
+
 html,
 body {
  height: 100%;

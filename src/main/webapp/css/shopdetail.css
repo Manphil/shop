@@ -20,6 +20,7 @@
 #leftbox{
 	width:400px;
 	z-index:999;
+	margin-left: 15px;
 	/*position:absolute;*/
 }
 #showbox { background:#eee;}
