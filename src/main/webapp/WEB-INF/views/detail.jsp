@@ -159,31 +159,37 @@
                             </span>
                     </div>
 
-                    <c:if test="${goodsInfo['goods'].activityid != 1}">
-                        <div class="new_meta">
+
+                    <div class="new_meta">
                             <span class="sku_wrapper big-font">
                                 优惠:
-                                <span class="sku">W-hat-8</span>
+                                <c:if test="${goodsInfo['goods'].activityid != 1}">
+                                    <span class="sku">W-hat-8</span>
+                                </c:if>
+                                <c:if test="${goodsInfo['goods'].activityid == 1}">
+                                    <span class="sku">暂无优惠，敬请期待！</span>
+                                </c:if>
                             </span>
-                        </div>
-                    </c:if>
-
-
-                    <div class="add_defi new_meta">
-                        <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
-                            <i class="fa fa-commenting"></i>
-                            联系客服
-                        </a>
                     </div>
-                    <form class="cart-btn-area new_meta" action="#">
-                        <input type="number" value="1">
-                        <button class="add-tocart cart_zpf" type="submit">加入购物车</button>
-                    </form>
-                    <div class="add_defi new_meta">
-                        <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
-                            <i class="fa fa-heart"></i>
-                            收藏
-                        </a>
+                    <%--<div class="new_meta"></div>--%>
+
+                    <div class="rel-div">
+                        <div class="add_defi new_meta">
+                            <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
+                                <i class="fa fa-commenting"></i>
+                                联系客服
+                            </a>
+                        </div>
+                        <form class="cart-btn-area new_meta" action="#">
+                            <input type="number" value="1">
+                            <button class="add-tocart cart_zpf" type="submit">加入购物车</button>
+                        </form>
+                        <div class="add_defi new_meta">
+                            <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
+                                <i class="fa fa-heart"></i>
+                                收藏
+                            </a>
+                        </div>
                     </div>
 
                     <!-- <div class="add_defi_2">
