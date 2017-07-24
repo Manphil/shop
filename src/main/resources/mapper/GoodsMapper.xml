@@ -94,6 +94,23 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByExampleWithBLOBsLimit" parameterType="com.neu.shop.pojo.GoodsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    limit 8
+  </select>
   <select id="selectByExample" parameterType="com.neu.shop.pojo.GoodsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

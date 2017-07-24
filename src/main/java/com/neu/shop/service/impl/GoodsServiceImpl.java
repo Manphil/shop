@@ -59,4 +59,14 @@ public class GoodsServiceImpl implements GoodsService {
 
         return imagePathMapper.selectByExample(imagePathExample);
     }
+
+    @Override
+    public Goods selectById(Integer goodsid) {
+        return goodsMapper.selectByPrimaryKey(goodsid);
+    }
+
+    @Override
+    public List<Goods> selectByExampleLimit(GoodsExample digGoodsExample) {
+        return goodsMapper.selectByExampleWithBLOBsLimit(digGoodsExample);
+    }
 }

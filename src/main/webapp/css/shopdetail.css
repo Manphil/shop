@@ -20,9 +20,12 @@
 #leftbox{
 	width:400px;
 	z-index:999;
-	position:absolute;
+	/*position:absolute;*/
 }
 #showbox { background:#eee;}
+#showbox img{
+	z-index: 100;
+}
 #showbox span {
 	background:url(../image/whitebg.png) repeat;
 }

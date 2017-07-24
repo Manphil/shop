@@ -51,7 +51,7 @@ public class MainController {
         //查询分类
         CategoryExample digCategoryExample = new CategoryExample();
         digCategoryExample.or().andCatenameLike(cate);
-        List<Category> digCategoryList = cateService.selectByExampleLimit(digCategoryExample);
+        List<Category> digCategoryList = cateService.selectByExample(digCategoryExample);
 
         //查询属于刚查到的分类的商品
         GoodsExample digGoodsExample = new GoodsExample();
@@ -61,7 +61,7 @@ public class MainController {
         }
         digGoodsExample.or().andCategoryIn(digCateId);
 
-        List<Goods> goodsList = goodsService.selectByExample(digGoodsExample);
+        List<Goods> goodsList = goodsService.selectByExampleLimit(digGoodsExample);
 
         Map<Goods,List<ImagePath>> goodsAndImage = new HashMap<Goods,List<ImagePath>>();
         //获取每个商品的图片

@@ -32,4 +32,9 @@ public class CateServiceImpl implements CateService {
     public List<Category> selectByExampleLimit(CategoryExample digCategoryExample) {
         return categoryMapper.selectByExampleLimit(digCategoryExample);
     }
+
+    @Override
+    public Category selectById(Integer category) {
+        return categoryMapper.selectByPrimaryKey(category);
+    }
 }

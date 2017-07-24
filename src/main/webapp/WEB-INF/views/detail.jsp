@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -18,6 +18,7 @@
 
     <!-- all css here -->
     <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
@@ -65,8 +66,6 @@
 
                 $(".tabs li:first a").click(); //web 浏览器，单击第一个标签吧
 
-
-
             }); //end ready
 
             $(".centerbox li").click(function() {
@@ -78,28 +77,21 @@
     </script>
 
 </head>
-<body>
 
-<!--  <div class="shop_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="shop_menu shop_menu_2">
-                    <ul class="cramb_area cramb_area_5">
-                        <li><a href="index.html">Home /</a></li>
-                        <li><a href="index.html">Shop /</a></li>
-                        <li><a href="index.html">Headlight/</a></li>
-                        <li><a href="index.html">Hats /</a></li>
-                        <li class="br-active">Cras nec nisl ut erat</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+<body>
 <!--zoom elavator area one start-->
 <div class="elavator_area">
     <div class="container">
+        <jsp:include page="header.jsp"/>
+        <div class="shop_menu shop_menu_2">
+            <ul class="cramb_area cramb_area_5 main-detail-nav">
+                <li><a href="index.html">首页 /</a></li>
+                <%--<li><a href="index.html">Shop /</a></li>
+                <li><a href="index.html">Headlight/</a></li>
+                <li><a href="index.html">Hats /</a></li>--%>
+                <li class="br-active">商品名</li>
+            </ul>
+        </div>
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                 <div class="shopdetails">
@@ -178,15 +170,10 @@
 
                     </div>
 
-                    <%--<div class="add_defi new_meta">
-                        <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class="big-font">
-                            <i class="fa fa-commenting another_icon"></i>
-                            联系客服
-                        </a>
-                    </div>--%>
+
                     <div class="add_defi new_meta">
                         <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
-                            <i class="fa fa-commenting another_icon"></i>
+                            <i class="fa fa-commenting"></i>
                             联系客服
                         </a>
                     </div>
@@ -196,7 +183,7 @@
                     </form>
                     <div class="add_defi new_meta">
                         <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
-                            <i class="fa fa-heart another_icon"></i>
+                            <i class="fa fa-heart"></i>
                             收藏
                         </a>
                     </div>
@@ -222,8 +209,9 @@
                 <div class="my-tabs">
                     <!-- Nav tabs -->
                     <ul class="favtabs favtabs-2 favtabs-nytr" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Discription</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews (2)</a></li>
+                        <%--<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Discription</a></li>--%>
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">商品描述</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">评价 (2)</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -231,7 +219,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
                                     <div class="tb_desc">
-                                        <h2>Product Description</h2>
+                                        <h2>商品描述</h2>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante.</p>
                                         <p>Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget. Nam erat mi, rutrum at sollicitudin rhoncus, ultricies posuere erat. Duis convallis, arcu nec aliquam consequat, purus felis vehicula felis, a dapibus enim lorem nec augue.</p>
                                     </div>
@@ -244,7 +232,7 @@
                                     <div class="tb_desc">
                                         <div class="review_area_heading">
                                             <div id="comnt">
-                                                <h2>2 reviews for Cras nec nisl ut erat</h2>
+                                                <h2>2条评论</h2>
                                                 <ol class="commentlist">
                                                     <li id="li-comment-22" class="comment even thread-even depth-1" itemscope="" >
                                                         <div id="comment-22" class="comment_container">

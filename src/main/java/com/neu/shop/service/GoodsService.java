@@ -22,4 +22,8 @@ public interface GoodsService {
     public void updateGoodsById(Goods goods);
 
     public List<ImagePath> findImagePath(Integer goodsid);
+
+    public Goods selectById(Integer goodsid);
+
+    public List<Goods> selectByExampleLimit(GoodsExample digGoodsExample);
 }
