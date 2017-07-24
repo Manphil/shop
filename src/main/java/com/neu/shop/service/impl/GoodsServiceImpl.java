@@ -5,6 +5,7 @@ import com.neu.shop.dao.ImagePathMapper;
 import com.neu.shop.pojo.Goods;
 import com.neu.shop.pojo.GoodsExample;
 import com.neu.shop.pojo.ImagePath;
+import com.neu.shop.pojo.ImagePathExample;
 import com.neu.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,5 +50,23 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public void updateGoodsById(Goods goods) {
         goodsMapper.updateByPrimaryKeySelective(goods);
+    }
+
+    @Override
+    public List<ImagePath> findImagePath(Integer goodsid) {
+        ImagePathExample imagePathExample = new ImagePathExample();
+        imagePathExample.or().andGoodidEqualTo(goodsid);
+
+        return imagePathMapper.selectByExample(imagePathExample);
+    }
+
+    @Override
+    public Goods selectById(Integer goodsid) {
+        return goodsMapper.selectByPrimaryKey(goodsid);
+    }
+
+    @Override
+    public List<Goods> selectByExampleLimit(GoodsExample digGoodsExample) {
+        return goodsMapper.selectByExampleWithBLOBsLimit(digGoodsExample);
     }
 }
