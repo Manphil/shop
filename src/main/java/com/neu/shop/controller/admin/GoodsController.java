@@ -48,8 +48,6 @@ public class GoodsController {
         return Msg.success("查询成功!").add("pageInfo", page);
     }
 
-
-
     @RequestMapping("/show")
     public String goodsManage(@RequestParam(value = "page",defaultValue = "1") Integer pn, HttpServletResponse response, Model model) throws IOException {
 
@@ -104,7 +102,7 @@ public class GoodsController {
                            HttpServletResponse response,
                            RedirectAttributes redirectAttributes) throws IOException {
 
-        goods.setCategory(1);
+        /*goods.setCategory(1);*/
         goods.setUptime(new Date());
         goods.setActivityid(1);
         goodsService.addGoods(goods);
