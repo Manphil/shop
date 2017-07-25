@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 文辉
@@ -33,7 +34,7 @@
     <script src="${pageContext.request.contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/detail.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var showproduct = {
                 "boxid": "showbox",
                 "sumid": "showsum",
@@ -50,9 +51,9 @@
             }; //参数定义
             $.ljsGlasses.pcGlasses(showproduct); //方法调用，务必在加载完后执行
 
-            $(function() {
+            $(function () {
 
-                $('.tabs a').click(function() {
+                $('.tabs a').click(function () {
 
                     var $this = $(this);
                     $('.panel').hide();
@@ -68,7 +69,7 @@
 
             }); //end ready
 
-            $(".centerbox li").click(function() {
+            $(".centerbox li").click(function () {
                 $("li").removeClass("now");
                 $(this).addClass("now");
 
@@ -83,13 +84,13 @@
 <div class="elavator_area">
     <div class="container">
         <jsp:include page="header.jsp"/>
-        <div class="shop_menu shop_menu_2">
+        <div class="shop_menu shop_menu_2 main-detail-div">
             <ul class="cramb_area cramb_area_5 main-detail-nav">
                 <li><a href="index.html">首页 /</a></li>
                 <%--<li><a href="index.html">Shop /</a></li>
                 <li><a href="index.html">Headlight/</a></li>
                 <li><a href="index.html">Hats /</a></li>--%>
-                <li class="br-active">商品名</li>
+                <li class="br-active">${goodsInfo['goods'].goodsname}</li>
             </ul>
         </div>
         <div class="row">
@@ -97,14 +98,9 @@
                 <div class="shopdetails">
                     <div id="leftbox">
                         <div id="showbox">
-                            <img src="${pageContext.request.contextPath}/image/img02.png" width="400" height="400" />
-                            <img src="${pageContext.request.contextPath}/image/img03.png" width="400" height="400" />
-                            <img src="${pageContext.request.contextPath}/image/img04.png" width="400" height="400" />
-                            <img src="${pageContext.request.contextPath}/image/img05.png" width="400" height="400" />
-                            <img src="${pageContext.request.contextPath}/image/img01.png" width="400" height="400" />
-                            <img src="${pageContext.request.contextPath}/image/img04.png" width="400" height="400" />
-                            <img src="${pageContext.request.contextPath}/image/img05.png" width="400" height="400" />
-                            <img src="${pageContext.request.contextPath}/image/img01.png" width="400" height="400" />
+                            <c:forEach items="${goodsInfo['image']}" var="path">
+                                <img src="/goodsimage/${path.path}" width="400" height="400"/>
+                            </c:forEach>
                         </div>
                         <div id="showsum">
                         </div>
@@ -118,7 +114,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="elav_titel">
                     <div class="elv_heading">
-                        <h3>Cras nec nisl ut erat</h3>
+                        <h3>${goodsInfo['goods'].goodsname}</h3>
                     </div>
                     <div class="price_rating">
                         <a href="#">
@@ -149,43 +145,51 @@
                 <div class="elav_info">
                     <!-- 价格 -->
                     <div class="price_box price_box_acr">
-                        <span class="old- price old- price-2">$250.00</span>
-                        <span class="spical-price spical-price-2">$200.00</span>
+                        <%--<span class="old- price old- price-2">$250.00</span>--%>
+                        <span class="spical-price spical-price-2">￥${goodsInfo['goods'].price}</span>
                     </div>
                     <div class="new_meta">
                             <span class="sku_wrapper big-font">
                                 类别:
-                                <span class="sku">W-hat-8</span>
+                                <span class="sku">${goodsInfo['cate'].catename}</span>
                             </span>
                         <span class="sku_wrapper big-font">
                                 数量:
-                                <span class="sku">W-hat-8</span>
+                                <span class="sku">${goodsInfo['goods'].num}</span>
                             </span>
                     </div>
+
                     <div class="new_meta">
                             <span class="sku_wrapper big-font">
                                 优惠:
-                                <span class="sku">W-hat-8</span>
+                                <c:if test="${goodsInfo['goods'].activityid != 1}">
+                                    <span class="sku">W-hat-8</span>
+                                </c:if>
+                                <c:if test="${goodsInfo['goods'].activityid == 1}">
+                                    <span class="sku">暂无优惠，敬请期待！</span>
+                                </c:if>
                             </span>
-
                     </div>
+                    <%--<div class="new_meta"></div>--%>
 
-
-                    <div class="add_defi new_meta">
-                        <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
-                            <i class="fa fa-commenting"></i>
-                            联系客服
-                        </a>
-                    </div>
-                    <form class="cart-btn-area new_meta" action="#">
-                        <input type="number" value="1">
-                        <button class="add-tocart cart_zpf" type="submit">加入购物车</button>
-                    </form>
-                    <div class="add_defi new_meta">
-                        <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
-                            <i class="fa fa-heart"></i>
-                            收藏
-                        </a>
+                    <div class="rel-div">
+                        <div class="add_defi new_meta">
+                            <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
+                                <i class="fa fa-commenting"></i>
+                                联系客服
+                            </a>
+                        </div>
+                        <form class="cart-btn-area new_meta" action="${pageContext.request.contextPath}/addCart" method="post">
+                            <input type="hidden" value="${goodsInfo['goods'].goodsid}" name="goodsid"/>
+                            <input type="number" value="1" name="goodsnum">
+                            <button class="add-tocart cart_zpf" type="submit">加入购物车</button>
+                        </form>
+                        <div class="add_defi new_meta">
+                            <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
+                                <i class="fa fa-heart"></i>
+                                收藏
+                            </a>
+                        </div>
                     </div>
 
                     <!-- <div class="add_defi_2">
@@ -210,8 +214,10 @@
                     <!-- Nav tabs -->
                     <ul class="favtabs favtabs-2 favtabs-nytr" role="tablist">
                         <%--<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Discription</a></li>--%>
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">商品描述</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">评价 (2)</a></li>
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                                                  data-toggle="tab">商品描述</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">评价
+                            (2)</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -220,8 +226,7 @@
                                 <div class="col-md-12 col-xs-12">
                                     <div class="tb_desc">
                                         <h2>商品描述</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante.</p>
-                                        <p>Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget. Nam erat mi, rutrum at sollicitudin rhoncus, ultricies posuere erat. Duis convallis, arcu nec aliquam consequat, purus felis vehicula felis, a dapibus enim lorem nec augue.</p>
+                                        <p>${goodsInfo['goods'].description}</p>
                                     </div>
                                 </div>
                             </div>
@@ -234,11 +239,14 @@
                                             <div id="comnt">
                                                 <h2>2条评论</h2>
                                                 <ol class="commentlist">
-                                                    <li id="li-comment-22" class="comment even thread-even depth-1" itemscope="" >
+                                                    <li id="li-comment-22" class="comment even thread-even depth-1"
+                                                        itemscope="">
                                                         <div id="comment-22" class="comment_container">
-                                                            <img class="avatar avatar-60 photo" width="60" height="60" src="img/icon/men_icon.jpg" alt="">
+                                                            <img class="avatar avatar-60 photo" width="60" height="60"
+                                                                 src="img/icon/men_icon.jpg" alt="">
                                                             <div class="comment-text">
-                                                                <div class="star-rating" title="Rated 4 out of 5" itemscope="">
+                                                                <div class="star-rating" title="Rated 4 out of 5"
+                                                                     itemscope="">
                                                                     <div class="price_rating price_rating_2">
                                                                         <a href="#">
                                                                             <i class="fa fa-star"></i>
@@ -253,46 +261,8 @@
                                                                             <i class="fa fa-star"></i>
                                                                         </a>
                                                                         <a class="not-rated" href="#">
-                                                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                        </a>
-                                                                        <span>
-                                                                                <strong >4</strong>
-                                                                                out of 5
-                                                                            </span>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="meta">
-                                                                    <strong>admin</strong>
-                                                                    –
-                                                                    <time datetime="2015-12-16T15:26:49+00:00">December 16, 2015</time>
-                                                                    :
-                                                                </p>
-                                                                <div class="description">
-                                                                    <p>like</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li  class="comment even thread-even depth-1" itemscope="">
-                                                        <div class="comment_container">
-                                                            <img class="avatar avatar-60 photo" width="60" height="60" src="img/icon/men_icon.jpg" alt="">
-                                                            <div class="comment-text">
-                                                                <div class="star-rating" title="Rated 4 out of 5" itemscope="">
-                                                                    <div class="price_rating price_rating_2">
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a class="not-rated" href="#">
-                                                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                                            <i class="fa fa-star-o"
+                                                                               aria-hidden="true"></i>
                                                                         </a>
                                                                         <span>
                                                                                 <strong>4</strong>
@@ -301,9 +271,55 @@
                                                                     </div>
                                                                 </div>
                                                                 <p class="meta">
-                                                                    <strong >alex</strong>
+                                                                    <strong>admin</strong>
                                                                     –
-                                                                    <time datetime="2015-12-16T15:26:49+00:00">December 18, 2015</time>
+                                                                    <time datetime="2015-12-16T15:26:49+00:00">December
+                                                                        16, 2015
+                                                                    </time>
+                                                                    :
+                                                                </p>
+                                                                <div class="description">
+                                                                    <p>like</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="comment even thread-even depth-1" itemscope="">
+                                                        <div class="comment_container">
+                                                            <img class="avatar avatar-60 photo" width="60" height="60"
+                                                                 src="img/icon/men_icon.jpg" alt="">
+                                                            <div class="comment-text">
+                                                                <div class="star-rating" title="Rated 4 out of 5"
+                                                                     itemscope="">
+                                                                    <div class="price_rating price_rating_2">
+                                                                        <a href="#">
+                                                                            <i class="fa fa-star"></i>
+                                                                        </a>
+                                                                        <a href="#">
+                                                                            <i class="fa fa-star"></i>
+                                                                        </a>
+                                                                        <a href="#">
+                                                                            <i class="fa fa-star"></i>
+                                                                        </a>
+                                                                        <a href="#">
+                                                                            <i class="fa fa-star"></i>
+                                                                        </a>
+                                                                        <a class="not-rated" href="#">
+                                                                            <i class="fa fa-star-o"
+                                                                               aria-hidden="true"></i>
+                                                                        </a>
+                                                                        <span>
+                                                                                <strong>4</strong>
+                                                                                out of 5
+                                                                            </span>
+                                                                    </div>
+                                                                </div>
+                                                                <p class="meta">
+                                                                    <strong>alex</strong>
+                                                                    –
+                                                                    <time datetime="2015-12-16T15:26:49+00:00">December
+                                                                        18, 2015
+                                                                    </time>
                                                                     :
                                                                 </p>
                                                                 <div class="description">
@@ -314,7 +330,7 @@
                                                     </li>
                                                 </ol>
                                             </div>
-                                            <div class="review_form_area">
+                                            <%--<div class="review_form_area">
                                                 <div class="review_form">
                                                     <div class="revew_form_content">
                                                         <h3 id="reply-title" class="comment-reply-title">
@@ -368,7 +384,7 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>

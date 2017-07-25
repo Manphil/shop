@@ -20,6 +20,7 @@
 #leftbox{
 	width:400px;
 	z-index:999;
+	margin-left: 15px;
 	/*position:absolute;*/
 }
 #showbox { background:#eee;}
@@ -60,4 +61,10 @@
 }
 .showpage a:hover {
 	background:#ccc;
-	color:#777;}
+	color:#777;
+}
+
+.rel-div {
+    position: relative;
+    top: 100px;
+}

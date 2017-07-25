@@ -1,6 +1,7 @@
 package com.neu.shop.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Goods {
     private Integer goodsid;
@@ -20,6 +21,8 @@ public class Goods {
     private Integer activityid;
 
     private String description;
+
+    private List<ImagePath> imagePaths;
 
     public Integer getGoodsid() {
         return goodsid;
@@ -91,5 +94,13 @@ public class Goods {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public List<ImagePath> getImagePaths() {
+        return imagePaths;
+    }
+
+    public void setImagePaths(List<ImagePath> imagePaths) {
+        this.imagePaths = imagePaths;
     }
 }

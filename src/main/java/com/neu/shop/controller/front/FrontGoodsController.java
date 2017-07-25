@@ -30,6 +30,10 @@ public class FrontGoodsController {
     @RequestMapping(value = "/detail",method = RequestMethod.GET)
     public String detailGoods(Integer goodsid, Model model) {
 
+        if(goodsid == null) {
+            return "redirect:/main";
+        }
+
         //要传回的数据存在HashMap中
         Map<String,Object> goodsInfo = new HashMap<String,Object>();
 
@@ -50,7 +54,9 @@ public class FrontGoodsController {
         goodsInfo.put("goods", goods);
         goodsInfo.put("cate", category);
         goodsInfo.put("image", imagePath);
-        model.addAllAttributes(goodsInfo);
+        goodsInfo.put("test",1);
+        model.addAttribute("goodsInfo",goodsInfo);
+//        model.addAllAttributes(goodsInfo);
 
         return "detail";
     }
