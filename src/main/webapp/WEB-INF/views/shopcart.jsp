@@ -67,9 +67,6 @@
                                     </thead>
                                     <tbody>
 
-
-
-
                                     </tbody>
                                     <%--<tfoot>
                                     <tr>
@@ -112,7 +109,7 @@
                                         </tbody>
                                     </table>
                                     <div class="wc-proceed-to-checkout">
-                                        <a class="button_act button_act-tc confirm-orders" href="">确认订单</a>
+                                        <a class="button_act button_act-tc confirm-orders" href="">结算</a>
                                     </div>
                                 </div>
                             </div>

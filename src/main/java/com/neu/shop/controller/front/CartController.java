@@ -85,4 +85,16 @@ public class CartController {
         shopCartService.deleteByKey(new ShopCartKey(user.getUserid(), goodsid));
         return Msg.success("删除成功");
     }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public Msg updateCart(Integer goodsid,Integer num,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        ShopCart shopCart = new ShopCart();
+        shopCart.setUserid(user.getUserid());
+        shopCart.setGoodsid(goodsid);
+        shopCart.setGoodsnum(num);
+        shopCartService.updateCartByKey(shopCart);
+        return Msg.success("更新购物车成功");
+    }
 }

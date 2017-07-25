@@ -62,14 +62,37 @@ function deleteCartGoods(goodsid) {
     })
 }
 
+//改变商品数量更新购物车
+function updateCart(goodsid) {
+    //获取当前数量
+    var newNum = $(".num").val();
+    $.ajax({
+        url: "/shop/update",
+        data: {
+            goodsid: goodsid,
+            num:newNum,
+        },
+        method: "post",
+        success: function (result) {
+            // swal(result.msg, "", "success");
+            showcart();
+        },
+        error: function (result) {
+            swal("更新购物车失败");
+        }
+    });
+}
+
 function showcart() {
     $.ajax({
         url: "/shop" + "/cartjson",
         type: "post",
         success: function (result) {
-
             //显示购物车
             build_cart_table(result);
+        },
+        error: function (result) {
+            swal("获取购物车失败");
         }
     });
 }
@@ -105,9 +128,15 @@ function build_cart_table(result) {
             var goodsprice = $("<td></td>").addClass("product-price")
                 .append($("<span></span>").addClass("amount-list amount-list-2").append("￥"+item.price));
 
+            var numIput = $("<input/>").addClass("num").attr("type","number").attr("value",item.num);
+
             var num = $("<td></td>").addClass("product-stock-status")
                 .append($("<div></div>").addClass("latest_es_from_2")
-                    .append($("<input/>").attr("type","number").attr("value",item.num)));
+                    .append(numIput));
+
+            numIput.change(function () {
+               updateCart(item.goodsid);
+            });
 
             var totalPrice = $("<td></td>").addClass("product-price")
                 .append($("<span></span>").addClass("amount-list amount-list-2").append("￥"+item.price*item.num));

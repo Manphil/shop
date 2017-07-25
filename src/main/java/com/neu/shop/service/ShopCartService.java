@@ -15,4 +15,6 @@ public interface ShopCartService {
     public List<ShopCart> selectByExample(ShopCartExample shopCartExample);
 
     public void deleteByKey(ShopCartKey shopCartKey);
+
+    public void updateCartByKey(ShopCart shopCart);
 }
