@@ -26,8 +26,6 @@ public class CustomerController {
 
     @RequestMapping("/login")
     public String loginView(){
-        ModelAndView loginView=new ModelAndView();
-        loginView.setViewName("login");
         return "login";
     }
 
@@ -61,22 +59,23 @@ public class CustomerController {
 
     @RequestMapping("/loginconfirm")
     public String loginConfirm(User user, HttpServletRequest request,Model loginResult,@RequestParam("confirmlogo") String confirmlogo){
+
         HttpSession session=request.getSession();
         String verificationCode = (String) session.getAttribute("certCode");
+        if (!confirmlogo.equals(verificationCode))
+        {
+            loginResult.addAttribute("errorMsg","验证码错误");
+            return "login";
+
+        }
         List<User> userList=new ArrayList<User>();
         UserExample userExample=new UserExample();
         userExample.or().andUsernameEqualTo(user.getUsername()).andPasswordEqualTo(user.getPassword());
         userList=userService.selectByExample(userExample);
         if (!userList.isEmpty())
         {
-            if (confirmlogo.equals(verificationCode))
-            {
-                return "redirect:/main";
-            }
-            else {
-                loginResult.addAttribute("errorMsg","验证码错误");
-                return "login";
-            }
+            session.setAttribute("user",userList.get(0));
+            return "redirect:/main";
         }
         else {
             loginResult.addAttribute("errorMsg","用户名与密码不匹配");

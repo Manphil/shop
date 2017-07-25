@@ -56,6 +56,10 @@ CSS INDEX
   display: inline-block;
 }
 
+.main-detail-nav {
+  margin-left: 15px !important;
+}
+
 html,
 body {
  height: 100%;
@@ -1508,7 +1512,7 @@ button.add-tocart:hover{
 }
 #comnt{
  float: left;
- width: 60%;
+ width: 100%;
  padding-right: 20px;    
 }
 .review_form_area {
