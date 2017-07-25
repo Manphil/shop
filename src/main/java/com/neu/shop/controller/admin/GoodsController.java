@@ -147,17 +147,13 @@ public class GoodsController {
         CategoryExample categoryExample=new CategoryExample();
         categoryExample.or().andCatenameEqualTo(category.getCatename());
         categoryList=cateService.selectByExample(categoryExample);
-        if (!categoryList.isEmpty())
-        {
+        if (!categoryList.isEmpty()) {
             addCategoryResult.addAttribute("errorMsg","分类已存在");
             return "addCategory";
-        }
-        else {
+        } else {
             cateService.insertSelective(category);
             redirectAttributes.addFlashAttribute("succeseMsg","分类添加成功!");
             return "redirect:/admin/goods/addCategory";
         }
     }
-
-
 }

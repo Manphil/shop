@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: 文辉
-  Date: 2017/7/24
-  Time: 21:11
+  Date: 2017/7/25
+  Time: 10:22
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,18 +20,9 @@
     <script src="${pageContext.request.contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/sort.js"></script>
     <script src="${pageContext.request.contextPath}/js/holder.js"></script>
-    <script src="${pageContext.request.contextPath}/js/shopcart.js"></script>
     <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
-    <!-- 	<script>
-            $(document).ready(function(){
-                $(".list-group-item").hover(function(){
-                    $(this).children("div.sort-detail").show();
-                },function(){
-                    $(this).children("div.sort-detail").hide();
-                });
-            })
-        </script> -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/order.css">
 </head>
 <body>
 <div id="main" class="container">
@@ -41,10 +33,28 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="account_heading account_heading_ah">
-                    <h1>购物车</h1>
+                    <h1 class="header-border">确认订单</h1>
                 </div>
             </div>
         </div>
+
+        <%--确认收货地址--%>
+        <h4 class="header-border h4-mar">确认收货地址<a href="#" class="pull-right manage-a">管理收货地址</a></h4>
+
+
+        <div class="address">
+            <c:forEach items="${address}" var="addItem">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optionsRadios" class="address-check" value="${addItem.addressid}" checked>
+                        ${addItem.detailaddr}（${addItem.conname}收）${addItem.contel}
+                    </label>
+                </div>
+            </c:forEach>
+        </div>
+
+        <%--商品信息--%>
+        <h4 class="header-border h4-mar-2">确认收货信息</h4>
         <div class="row">
             <div class="all_wis_frm">
                 <div class="col-md-12">
@@ -54,7 +64,6 @@
                                 <table id="cart-table">
                                     <thead>
                                     <tr>
-                                        <th class="product-remove"><span class="nobr"></span></th>
                                         <th class="product-thumbnail product-thumbnail-2"></th>
                                         <th class="product-name product-name_2"><span
                                                 class="nobr">商品</span></th>
@@ -66,9 +75,27 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
-
-
+                                    <c:set var="totalPrice" value="0"/>
+                                    <c:forEach items="${goodsAndImage}" var="goods">
+                                        <tr>
+                                            <td class="product-thumbnail product-thumbnail-2"><a
+                                                    href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"><img
+                                                    src="/goodsimage/${goods.imagePaths[0].path}"
+                                                    alt="" /></a></td>
+                                            <td class="product-name product-name_2"><a
+                                                    href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}">${goods.goodsname}</a></td>
+                                            <td class="product-price"><span
+                                                    class="amount-list amount-list-2">￥${goods.price}</span></td>
+                                            <td class="product-stock-status">
+                                                <div class="latest_es_from_2">
+                                                    <span>${goods.num}</span>
+                                                </div>
+                                            </td>
+                                            <td class="product-price"><span
+                                                    class="amount-list amount-list-2">￥${goods.price*goods.num}</span></td>
+                                            <c:set value="${totalPrice+goods.price*goods.num}" var="totalPrice"/>
+                                        </tr>
+                                    </c:forEach>
 
                                     </tbody>
                                     <%--<tfoot>
@@ -90,29 +117,29 @@
                         </form>
                         <div class="row">
                             <div class="col-md-6 col-xs-12">
-                                <div class="cart_totals ">
+                                <div class="cart_totals">
                                     <h2>总价</h2>
                                     <table class="shop_table shop_table_responsive">
                                         <tbody>
                                         <tr class="cart-subtotal">
-                                            <th>小计</th>
+                                            <th>总额</th>
                                             <td data-title="Subtotal"><span
                                                     class="woocommerce-Price-amount amount"> <span
-                                                    class="woocommerce-Price-currencySymbol" id="total-num"></span>
+                                                    class="woocommerce-Price-currencySymbol" id="total-num">${totalPrice}</span>
 													</span></td>
                                         </tr>
                                         <tr class="order-total">
-                                            <th>总额</th>
+                                            <th>实付款</th>
                                             <td data-title="Total"><strong> <span
                                                     class="woocommerce-Price-amount amount"> <span
-                                                    class="woocommerce-Price-currencySymbol" id="total-price"></span>
+                                                    class="woocommerce-Price-currencySymbol" id="total-price">${totalPrice}</span>
 														</span>
                                             </strong></td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <div class="wc-proceed-to-checkout">
-                                        <a class="button_act button_act-tc confirm-orders" href="${pageContext.request.contextPath}/order">确认订单</a>
+                                        <a class="button_act button_act-tc confirm-orders" href="">结算</a>
                                     </div>
                                 </div>
                             </div>
@@ -127,3 +154,4 @@
 <div id="path" hidden>${pageContext.request.contextPath}</div>
 </body>
 </html>
+
