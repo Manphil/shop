@@ -41,6 +41,6 @@
         <!--<table tableName="goods" domainObjectName="Goods" ></table>
         <table tableName="category" domainObjectName="Category" ></table>-->
         <!--<table tableName="imagepath" domainObjectName="ImagePath" ></table>-->
-        <table tableName="address" domainObjectName="Address" ></table>
+        <table tableName="indent" domainObjectName="Order" ></table>
     </context>
 </generatorConfiguration>
