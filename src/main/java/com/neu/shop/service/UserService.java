@@ -16,4 +16,6 @@ public interface UserService {
     public void insertSelective(User user);
 
     public void deleteUserById(Integer userid);
+
+    public void updateByPrimaryKeySelective(User user);
 }

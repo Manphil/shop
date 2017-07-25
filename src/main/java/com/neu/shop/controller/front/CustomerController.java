@@ -5,8 +5,10 @@ import com.neu.shop.pojo.User;
 import com.neu.shop.pojo.UserExample;
 import com.neu.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 蒋松冬 on 2017/7/22.
@@ -58,8 +61,7 @@ public class CustomerController {
 
 
     @RequestMapping("/loginconfirm")
-    public String loginConfirm(User user, HttpServletRequest request,Model loginResult,@RequestParam("confirmlogo") String confirmlogo){
-
+    public String loginConfirm(User user,Model loginResult,HttpServletRequest request,@RequestParam("confirmlogo") String confirmlogo){
         HttpSession session=request.getSession();
         String verificationCode = (String) session.getAttribute("certCode");
         if (!confirmlogo.equals(verificationCode))
@@ -84,15 +86,38 @@ public class CustomerController {
     }
 
     @RequestMapping("/information")
-    public String information(){
+    public String information(Model userModel,HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user;
+        Integer userId;
+        user=(User) session.getAttribute("user");
+        userId=user.getUserid();
+        user=userService.selectByPrimaryKey(userId);
+        userModel.addAttribute("user",user);
         return "information";
     }
 
     @RequestMapping("/saveInfo")
     @ResponseBody
-    public Msg changeInfo(){
-        Msg msg=new Msg();
-        msg.setMsg("123");
-        return msg;
+    public Msg saveInfo(String name, String email, String telephone,HttpServletRequest request){
+        HttpSession session=request.getSession();
+        UserExample userExample=new UserExample();
+        User user,updateUser=new User();
+        List<User> userList=new ArrayList<>();
+        Integer userid;
+        user=(User)session.getAttribute("user");
+        userid= user.getUserid();
+        userExample.or().andUsernameEqualTo(name);
+        userList=userService.selectByExample(userExample);
+        if (userList.isEmpty())
+        {
+            updateUser.setUserid(userid);
+            updateUser.setUsername(name);
+            updateUser.setEmail(email);
+            updateUser.setTelephone(telephone);
+            userService.updateByPrimaryKeySelective(updateUser);
+            return Msg.success("更新成功");
+        }
+        else  {return Msg.fail("更新失败");}
     }
 }

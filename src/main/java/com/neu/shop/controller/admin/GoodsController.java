@@ -149,8 +149,8 @@ public class GoodsController {
         categoryList=cateService.selectByExample(categoryExample);
         if (!categoryList.isEmpty())
         {
-            addCategoryResult.addAttribute("errorMsg","分类已存在");
-            return "addCategory";
+            redirectAttributes.addAttribute("succeseMsg","分类已存在");
+            return "redirect:/admin/goods/addCategory";
         }
         else {
             cateService.insertSelective(category);

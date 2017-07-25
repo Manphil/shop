@@ -48,7 +48,7 @@
             <div class="templatemo-content-widget white-bg">
                 <h2 class="margin-bottom-10">添加商品分类</h2>
                 <label class="control-label" for="catename">分类名称</label>
-                <form action="${pageContext.request.contextPath}/admin/goods/addCategoryResult">
+                <form action="${pageContext.request.contextPath}/admin/goods/addCategoryResult" method="post">
                     <div class="row form-group">
                         <div class="col-lg-6 form-group">
                             <input type="text" class="form-control" id="catename" name="catename">
@@ -70,7 +70,7 @@
 <c:if test="${!empty msg}">
     <script type="text/javascript">
         $(document).ready(function () {
-            swal('${msg}', '成功', 'success');
+            swal('${msg}');
         });
     </script>
 </c:if>
