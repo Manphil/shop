@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
         userMapper.deleteByPrimaryKey(userid);
     }
 
+    @Override
+    public void updateByPrimaryKeySelective(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
 
    /* @Override
     public User selectByPrimaryKeyAndPassword(int userId,String password){return userMapper.selectByPrimaryKeyAndPassword();}*/

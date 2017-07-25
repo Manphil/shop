@@ -53,12 +53,9 @@ public class GoodsController {
 
         /*//一页显示几个数据
         PageHelper.startPage(pn, 10);
-
         List<Goods> employees = goodsService.selectByExample(new GoodsExample());
-
         //显示几个页号
         PageInfo page = new PageInfo(employees,5);
-
         model.addAttribute("pageInfo", page);*/
         List<Category> categoryList = cateService.selectByExample(new CategoryExample());
         model.addAttribute("categoryList",categoryList);
@@ -147,10 +144,12 @@ public class GoodsController {
         CategoryExample categoryExample=new CategoryExample();
         categoryExample.or().andCatenameEqualTo(category.getCatename());
         categoryList=cateService.selectByExample(categoryExample);
-        if (!categoryList.isEmpty()) {
-            addCategoryResult.addAttribute("errorMsg","分类已存在");
-            return "addCategory";
-        } else {
+        if (!categoryList.isEmpty())
+        {
+            redirectAttributes.addAttribute("succeseMsg","分类已存在");
+            return "redirect:/admin/goods/addCategory";
+        }
+        else {
             cateService.insertSelective(category);
             redirectAttributes.addFlashAttribute("succeseMsg","分类添加成功!");
             return "redirect:/admin/goods/addCategory";
