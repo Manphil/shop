@@ -3,16 +3,19 @@ package com.neu.shop.controller.front;
 import com.neu.shop.pojo.*;
 import com.neu.shop.service.AddressService;
 import com.neu.shop.service.GoodsService;
+import com.neu.shop.service.OrderService;
 import com.neu.shop.service.ShopCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +24,8 @@ import java.util.List;
 @Controller
 public class OrderController {
 
-    @Value("#{addressService}")
+    /*@Value("#{addressService}")*/
+    @Autowired
     private AddressService addressService;
 
     @Autowired
@@ -29,6 +33,9 @@ public class OrderController {
 
     @Autowired
     private GoodsService goodsService;
+
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping("/order")
     public String showOrder(HttpSession session, Model model) {
@@ -65,7 +72,8 @@ public class OrderController {
     }
 
     @RequestMapping("/orderFinish")
-    public String orderFinish(Integer addressid,HttpSession session) {
+    @ResponseBody
+    public Msg orderFinish(Integer oldPrice, Integer newPrice, Boolean isPay, Integer addressid,HttpSession session) {
         User user = (User) session.getAttribute("user");
 
         //获取订单信息
@@ -73,6 +81,23 @@ public class OrderController {
         shopCartExample.or().andUseridEqualTo(user.getUserid());
         List<ShopCart> shopCart = shopCartService.selectByExample(shopCartExample);
 
-        return null;
+        //删除购物车
+        for (ShopCart cart : shopCart) {
+            shopCartService.deleteByKey(new ShopCartKey(cart.getUserid(),cart.getGoodsid()));
+        }
+
+        //把订单信息写入数据库
+        Order order = new Order(null, user.getUserid(), new Date(), oldPrice, newPrice, isPay, false, false, false, addressid);
+        orderService.insertOrder(order);
+        //插入的订单号
+        Integer orderId = order.getOrderid();
+
+        //把订单项写入orderitem表中
+        for (ShopCart cart : shopCart) {
+//            orderService.insertOrderItem(new OrderItem(null, orderId, cart.getGoodsid(), cart.getGoodsnum()));
+        }
+
+        return Msg.success("购买成功");
     }
+
 }

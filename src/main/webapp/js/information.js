@@ -20,14 +20,15 @@ $(document).ready(function(){
             data:saveInfo,
             dateType:"json",
             success: function(result){
-                $("#update-goods").modal('hide');
                 if (result.msg=="更新失败")
                 {
                     swal(result.msg);
                 }
                 else {
+                    $("#update-info").modal('hide');
+                    swal("修改成功", "", "success");
                     location.reload();
-                };
+                }
             },
             error:function (){
                 alert("更新失败");
