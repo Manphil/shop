@@ -1,11 +1,17 @@
 package com.neu.shop.pojo;
 
+import java.util.Date;
+
 public class Order {
     private Integer orderid;
 
     private Integer userid;
 
-    private Integer ordergoods;
+    private Date ordertime;
+
+    private Integer oldprice;
+
+    private Integer newprice;
 
     private Boolean ispay;
 
@@ -16,6 +22,22 @@ public class Order {
     private Boolean iscomplete;
 
     private Integer addressid;
+
+    public Order() {
+    }
+
+    public Order(Integer orderid, Integer userid, Date ordertime, Integer oldprice, Integer newprice, Boolean ispay, Boolean issend, Boolean isreceive, Boolean iscomplete, Integer addressid) {
+        this.orderid = orderid;
+        this.userid = userid;
+        this.ordertime = ordertime;
+        this.oldprice = oldprice;
+        this.newprice = newprice;
+        this.ispay = ispay;
+        this.issend = issend;
+        this.isreceive = isreceive;
+        this.iscomplete = iscomplete;
+        this.addressid = addressid;
+    }
 
     public Integer getOrderid() {
         return orderid;
@@ -33,12 +55,28 @@ public class Order {
         this.userid = userid;
     }
 
-    public Integer getOrdergoods() {
-        return ordergoods;
+    public Date getOrdertime() {
+        return ordertime;
     }
 
-    public void setOrdergoods(Integer ordergoods) {
-        this.ordergoods = ordergoods;
+    public void setOrdertime(Date ordertime) {
+        this.ordertime = ordertime;
+    }
+
+    public Integer getOldprice() {
+        return oldprice;
+    }
+
+    public void setOldprice(Integer oldprice) {
+        this.oldprice = oldprice;
+    }
+
+    public Integer getNewprice() {
+        return newprice;
+    }
+
+    public void setNewprice(Integer newprice) {
+        this.newprice = newprice;
     }
 
     public Boolean getIspay() {

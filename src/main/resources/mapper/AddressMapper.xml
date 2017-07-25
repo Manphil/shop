@@ -4,6 +4,9 @@
   <resultMap id="BaseResultMap" type="com.neu.shop.pojo.Address">
     <id column="addressID" jdbcType="INTEGER" property="addressid" />
     <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="county" jdbcType="VARCHAR" property="county" />
     <result column="detailAddr" jdbcType="VARCHAR" property="detailaddr" />
     <result column="conName" jdbcType="VARCHAR" property="conname" />
     <result column="conTel" jdbcType="VARCHAR" property="contel" />
@@ -67,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    addressID, userId, detailAddr, conName, conTel
+    addressID, userId, province, city, county, detailAddr, conName, conTel
   </sql>
   <select id="selectByExample" parameterType="com.neu.shop.pojo.AddressExample" resultMap="BaseResultMap">
     select
@@ -100,9 +103,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.neu.shop.pojo.Address">
-    insert into address (addressID, userId, detailAddr, 
+    insert into address (addressID, userId, province, 
+      city, county, detailAddr, 
       conName, conTel)
-    values (#{addressid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{detailaddr,jdbcType=VARCHAR}, 
+    values (#{addressid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{detailaddr,jdbcType=VARCHAR}, 
       #{conname,jdbcType=VARCHAR}, #{contel,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.neu.shop.pojo.Address">
@@ -113,6 +118,15 @@
       </if>
       <if test="userid != null">
         userId,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="county != null">
+        county,
       </if>
       <if test="detailaddr != null">
         detailAddr,
@@ -130,6 +144,15 @@
       </if>
       <if test="userid != null">
         #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
       </if>
       <if test="detailaddr != null">
         #{detailaddr,jdbcType=VARCHAR},
@@ -157,6 +180,15 @@
       <if test="record.userid != null">
         userId = #{record.userid,jdbcType=INTEGER},
       </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.county != null">
+        county = #{record.county,jdbcType=VARCHAR},
+      </if>
       <if test="record.detailaddr != null">
         detailAddr = #{record.detailaddr,jdbcType=VARCHAR},
       </if>
@@ -175,6 +207,9 @@
     update address
     set addressID = #{record.addressid,jdbcType=INTEGER},
       userId = #{record.userid,jdbcType=INTEGER},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
       detailAddr = #{record.detailaddr,jdbcType=VARCHAR},
       conName = #{record.conname,jdbcType=VARCHAR},
       conTel = #{record.contel,jdbcType=VARCHAR}
@@ -187,6 +222,15 @@
     <set>
       <if test="userid != null">
         userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        county = #{county,jdbcType=VARCHAR},
       </if>
       <if test="detailaddr != null">
         detailAddr = #{detailaddr,jdbcType=VARCHAR},
@@ -203,6 +247,9 @@
   <update id="updateByPrimaryKey" parameterType="com.neu.shop.pojo.Address">
     update address
     set userId = #{userid,jdbcType=INTEGER},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
       detailAddr = #{detailaddr,jdbcType=VARCHAR},
       conName = #{conname,jdbcType=VARCHAR},
       conTel = #{contel,jdbcType=VARCHAR}
