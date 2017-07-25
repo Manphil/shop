@@ -38,10 +38,6 @@
         </javaClientGenerator>
 
         <!--指定哪个表的生成策略-->
-        <!--<table tableName="goods" domainObjectName="Goods" ></table>
-        <table tableName="category" domainObjectName="Category" ></table>-->
-        <!--<table tableName="imagepath" domainObjectName="ImagePath" ></table>-->
-        <!--<table tableName="address" domainObjectName="Address" ></table>-->
-        <!--<table tableName="collection" domainObjectName="Collection" ></table>-->
+        <!--<table tableName="collection" domainObjectName="Favorite" ></table>-->
     </context>
 </generatorConfiguration>
