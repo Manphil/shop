@@ -9,6 +9,17 @@ public class OrderItem {
 
     private Integer num;
 
+    public OrderItem() {
+    }
+
+    public OrderItem(Integer itemid, Integer orderid, Integer goodsid, Integer num) {
+
+        this.itemid = itemid;
+        this.orderid = orderid;
+        this.goodsid = goodsid;
+        this.num = num;
+    }
+
     public Integer getItemid() {
         return itemid;
     }

@@ -94,7 +94,7 @@ public class OrderController {
 
         //把订单项写入orderitem表中
         for (ShopCart cart : shopCart) {
-//            orderService.insertOrderItem(new OrderItem(null, orderId, cart.getGoodsid(), cart.getGoodsnum()));
+            orderService.insertOrderItem(new OrderItem(null, orderId, cart.getGoodsid(), cart.getGoodsnum()));
         }
 
         return Msg.success("购买成功");

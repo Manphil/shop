@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
-<generatorConfiguration>
+<!--<generatorConfiguration>
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
@@ -11,7 +11,7 @@
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
 
-        <!--配置数据库连接信息-->
+        &lt;!&ndash;配置数据库连接信息&ndash;&gt;
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/shop?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root"
@@ -27,21 +27,21 @@
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <!--xml-->
+        &lt;!&ndash;xml&ndash;&gt;
         <sqlMapGenerator targetPackage="mapper"  targetProject=".\src\main\resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <!--dao接口-->
+        &lt;!&ndash;dao接口&ndash;&gt;
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.neu.shop.dao"  targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <!--指定哪个表的生成策略-->
-        <!--<table tableName="goods" domainObjectName="Goods" ></table>
-        <table tableName="category" domainObjectName="Category" ></table>-->
-        <!--<table tableName="imagepath" domainObjectName="ImagePath" ></table>-->
-        <!--<table tableName="address" domainObjectName="Address" ></table>-->
-        <table tableName="orderitem" domainObjectName="OrderItem" ></table>
+        &lt;!&ndash;指定哪个表的生成策略&ndash;&gt;
+        &lt;!&ndash;<table tableName="goods" domainObjectName="Goods" ></table>
+        <table tableName="category" domainObjectName="Category" ></table>&ndash;&gt;
+        &lt;!&ndash;<table tableName="imagepath" domainObjectName="ImagePath" ></table>&ndash;&gt;
+        <table tableName="address" domainObjectName="Address" ></table>
+        &lt;!&ndash;<table tableName="orderitem" domainObjectName="OrderItem" ></table>&ndash;&gt;
     </context>
-</generatorConfiguration>
+</generatorConfiguration>-->
