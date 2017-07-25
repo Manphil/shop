@@ -59,7 +59,7 @@
             <div class="all_wis_frm">
                 <div class="col-md-12">
                     <div class="wishlist-content wishlist-content-2">
-                        <form action="#">
+
                             <div class="wishlist-table wishlist-table-2 table-responsive">
                                 <table id="cart-table">
                                     <thead>
@@ -114,7 +114,6 @@
                                     </tfoot>--%>
                                 </table>
                             </div>
-                        </form>
                         <div class="row">
                             <div class="col-md-6 col-xs-12">
                                 <div class="cart_totals">
@@ -125,21 +124,21 @@
                                             <th>总额</th>
                                             <td data-title="Subtotal"><span
                                                     class="woocommerce-Price-amount amount"> <span
-                                                    class="woocommerce-Price-currencySymbol" id="total-num">${totalPrice}</span>
+                                                    class="woocommerce-Price-currencySymbol" id="total-num">￥${totalPrice}</span>
 													</span></td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>实付款</th>
                                             <td data-title="Total"><strong> <span
                                                     class="woocommerce-Price-amount amount"> <span
-                                                    class="woocommerce-Price-currencySymbol" id="total-price">${totalPrice}</span>
+                                                    class="woocommerce-Price-currencySymbol" id="total-price">￥${totalPrice}</span>
 														</span>
                                             </strong></td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <div class="wc-proceed-to-checkout">
-                                        <a class="button_act button_act-tc confirm-orders" href="">结算</a>
+                                        <button class="button_act button_act-tc confirm-orders">结算</button>
                                     </div>
                                 </div>
                             </div>
