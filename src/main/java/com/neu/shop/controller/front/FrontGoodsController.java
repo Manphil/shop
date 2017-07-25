@@ -1,8 +1,8 @@
 package com.neu.shop.controller.front;
 
-import com.neu.shop.pojo.Category;
-import com.neu.shop.pojo.Goods;
-import com.neu.shop.pojo.ImagePath;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.neu.shop.pojo.*;
 import com.neu.shop.service.CateService;
 import com.neu.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,5 +61,42 @@ public class FrontGoodsController {
 //        model.addAllAttributes(goodsInfo);
 
         return "detail";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchGoods(@RequestParam(value = "page",defaultValue = "1") Integer pn, String keyword, Model model) {
+        //一页显示几个数据
+        PageHelper.startPage(pn, 16);
+
+        //查询数据
+        GoodsExample goodsExample = new GoodsExample();
+        goodsExample.or().andGoodsnameLike("%" + keyword + "%");
+        List<Goods> goodsList = goodsService.selectByExample(goodsExample);
+
+        //获取图片地址
+        for (int i = 0; i < goodsList.size(); i++) {
+            Goods goods = goodsList.get(i);
+
+            List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
+
+            goods.setImagePaths(imagePathList);
+
+            goodsList.set(i, goods);
+        }
+
+        //显示几个页号
+        PageInfo page = new PageInfo(goodsList,5);
+        model.addAttribute("pageInfo", page);
+        model.addAttribute("keyword", keyword);
+
+        return "search";
+    }
+
+    @RequestMapping("/collect")
+    public Msg collectGoods(Integer goodsid, HttpSession session) {
+        //取登录用户信息,未登录重定向至登录页面
+        User user = (User) session.getAttribute("user");
+
+        return Msg.success("收藏成功");
     }
 }
