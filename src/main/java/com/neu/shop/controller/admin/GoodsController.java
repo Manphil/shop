@@ -155,6 +155,4 @@ public class GoodsController {
             return "redirect:/admin/goods/addCategory";
         }
     }
-
-
 }
