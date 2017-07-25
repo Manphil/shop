@@ -63,4 +63,16 @@ public class OrderController {
 
         return "orderConfirm";
     }
+
+    @RequestMapping("/orderFinish")
+    public String orderFinish(Integer addressid,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+
+        //获取订单信息
+        ShopCartExample shopCartExample = new ShopCartExample();
+        shopCartExample.or().andUseridEqualTo(user.getUserid());
+        List<ShopCart> shopCart = shopCartService.selectByExample(shopCartExample);
+
+        return null;
+    }
 }

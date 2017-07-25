@@ -41,25 +41,26 @@
         <%--确认收货地址--%>
         <h4 class="header-border h4-mar">确认收货地址<a href="#" class="pull-right manage-a">管理收货地址</a></h4>
 
+        <form action="" method="post">
+            <div class="address">
+                <c:forEach items="${address}" var="addItem">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="addressid" class="address-check" value="${addItem.addressid}"
+                                   checked>
+                                ${addItem.detailaddr}（${addItem.conname}收）${addItem.contel}
+                        </label>
+                    </div>
+                </c:forEach>
+            </div>
 
-        <div class="address">
-            <c:forEach items="${address}" var="addItem">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" class="address-check" value="${addItem.addressid}" checked>
-                        ${addItem.detailaddr}（${addItem.conname}收）${addItem.contel}
-                    </label>
-                </div>
-            </c:forEach>
-        </div>
+            <%--商品信息--%>
+            <h4 class="header-border h4-mar-2">确认收货信息</h4>
+            <div class="row">
+                <div class="all_wis_frm">
+                    <div class="col-md-12">
+                        <div class="wishlist-content wishlist-content-2">
 
-        <%--商品信息--%>
-        <h4 class="header-border h4-mar-2">确认收货信息</h4>
-        <div class="row">
-            <div class="all_wis_frm">
-                <div class="col-md-12">
-                    <div class="wishlist-content wishlist-content-2">
-                        <form action="#">
                             <div class="wishlist-table wishlist-table-2 table-responsive">
                                 <table id="cart-table">
                                     <thead>
@@ -81,9 +82,10 @@
                                             <td class="product-thumbnail product-thumbnail-2"><a
                                                     href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"><img
                                                     src="/goodsimage/${goods.imagePaths[0].path}"
-                                                    alt="" /></a></td>
+                                                    alt=""/></a></td>
                                             <td class="product-name product-name_2"><a
-                                                    href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}">${goods.goodsname}</a></td>
+                                                    href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}">${goods.goodsname}</a>
+                                            </td>
                                             <td class="product-price"><span
                                                     class="amount-list amount-list-2">￥${goods.price}</span></td>
                                             <td class="product-stock-status">
@@ -114,41 +116,44 @@
                                     </tfoot>--%>
                                 </table>
                             </div>
-                        </form>
-                        <div class="row">
-                            <div class="col-md-6 col-xs-12">
-                                <div class="cart_totals">
-                                    <h2>总价</h2>
-                                    <table class="shop_table shop_table_responsive">
-                                        <tbody>
-                                        <tr class="cart-subtotal">
-                                            <th>总额</th>
-                                            <td data-title="Subtotal"><span
-                                                    class="woocommerce-Price-amount amount"> <span
-                                                    class="woocommerce-Price-currencySymbol" id="total-num">${totalPrice}</span>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="cart_totals">
+                                        <h2>总价</h2>
+                                        <table class="shop_table shop_table_responsive">
+                                            <tbody>
+                                            <tr class="cart-subtotal">
+                                                <th>总额</th>
+                                                <td data-title="Subtotal"><span
+                                                        class="woocommerce-Price-amount amount"> <span
+                                                        class="woocommerce-Price-currencySymbol"
+                                                        id="total-num">￥${totalPrice}</span>
 													</span></td>
-                                        </tr>
-                                        <tr class="order-total">
-                                            <th>实付款</th>
-                                            <td data-title="Total"><strong> <span
-                                                    class="woocommerce-Price-amount amount"> <span
-                                                    class="woocommerce-Price-currencySymbol" id="total-price">${totalPrice}</span>
+                                            </tr>
+                                            <tr class="order-total">
+                                                <th>实付款</th>
+                                                <td data-title="Total"><strong> <span
+                                                        class="woocommerce-Price-amount amount"> <span
+                                                        class="woocommerce-Price-currencySymbol"
+                                                        id="total-price">￥${totalPrice}</span>
 														</span>
-                                            </strong></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="wc-proceed-to-checkout">
-                                        <a class="button_act button_act-tc confirm-orders" href="">结算</a>
+                                                </strong></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="wc-proceed-to-checkout">
+                                            <input type="submit" class="button_act button_act-tc confirm-orders" value="结算"/>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6 col-xs-12"></div>
                             </div>
-                            <div class="col-md-6 col-xs-12"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
     </div>
 </div>
 <div id="path" hidden>${pageContext.request.contextPath}</div>
