@@ -1,5 +1,6 @@
 package com.neu.shop.controller.front;
 
+import com.neu.shop.pojo.Msg;
 import com.neu.shop.pojo.User;
 import com.neu.shop.pojo.UserExample;
 import com.neu.shop.service.UserService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,5 +82,18 @@ public class CustomerController {
             loginResult.addAttribute("errorMsg","用户名与密码不匹配");
             return "login";
         }
+    }
+
+    @RequestMapping("/information")
+    public String information(){
+        return "information";
+    }
+
+    @RequestMapping("/saveInfo")
+    @ResponseBody
+    public Msg changeInfo(){
+        Msg msg=new Msg();
+        msg.setMsg("123");
+        return msg;
     }
 }
