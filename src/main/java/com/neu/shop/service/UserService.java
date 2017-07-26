@@ -18,5 +18,5 @@ public interface UserService {
     public void deleteUserById(Integer userid);
 
     public void updateByPrimaryKeySelective(User user);
-    
+
 }

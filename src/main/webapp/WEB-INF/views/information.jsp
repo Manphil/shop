@@ -72,6 +72,11 @@ limitations under the License
             margin-bottom: 40px;
             z-index: 900;
         }
+        .templatemo-blue-button {
+            background-color: #39ADB4;
+            border: none;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -158,8 +163,9 @@ limitations under the License
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/main"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>主页</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>个人信息</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>订单管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/information"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>个人信息</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/list"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>订单管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>地址管理</a>
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
@@ -197,7 +203,7 @@ limitations under the License
                         </table>
                     </div>
                 <div class="mdl-card__actions mdl-card--border">
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="changeInfo"><h4>修改信息</h4></button>
+                    <button class="templatemo-blue-button" id="changeInfo"><h5>修改信息</h5></button>
                 </div>
             </div>
         </div>

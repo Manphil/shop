@@ -165,8 +165,10 @@
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
             <span class="mdl-layout-title">收货地址</span>
-            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-layout-spacer">
+            </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                <button class="templatemo-blue-button" name="insertAddr"><h5>添加地址</h5></button>
                 <%-- <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
                      <i class="material-icons">search</i>
                  </label>
@@ -204,16 +206,12 @@
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/main"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>主页</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>个人信息</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>订单管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/information"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>个人信息</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/list"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>订单管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>地址管理</a>
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content" >
-            <div class="demo-charts mdl-color--white  mdl-shadow--2dp mdl-cell mdl-cell--1-col mdl-grid">
-        <button class="templatemo-blue-button" name="insertAddr"><h5>添加地址</h5></button>
-            </div>
-        </div>
 <c:forEach items="${addressList}" var="item">
         <div class="mdl-grid demo-content" id="parent">
             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
@@ -260,6 +258,11 @@
             </div>
         </div>
 </c:forEach>
+       <%-- <div class="mdl-grid demo-content" >
+            <div class="demo-charts mdl-color--white  mdl-shadow--2dp mdl-cell mdl-cell--2-col mdl-grid">
+                <button class="templatemo-blue-button" name="insertAddr"><h5>添加地址</h5></button>
+            </div>
+        </div>--%>
     </main>
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">

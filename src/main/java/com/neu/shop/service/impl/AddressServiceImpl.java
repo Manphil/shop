@@ -42,4 +42,9 @@ public class AddressServiceImpl implements AddressService {
     public void insertSelective(Address address) {
         addressMapper.insertSelective(address);
     }
+
+    @Override
+    public Address selectByPrimaryKey(Integer addressid) {
+        return addressMapper.selectByPrimaryKey(addressid);
+    }
 }
