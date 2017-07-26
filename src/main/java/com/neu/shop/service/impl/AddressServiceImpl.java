@@ -22,4 +22,24 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> getAllAddressByExample(AddressExample addressExample) {
         return addressMapper.selectByExample(addressExample);
     }
+
+    @Override
+    public void updateByPrimaryKeySelective(Address address) {
+        addressMapper.updateByPrimaryKeySelective(address);
+    }
+
+    @Override
+    public void deleteByPrimaryKey(Integer addressid) {
+        addressMapper.deleteByPrimaryKey(addressid);
+    }
+
+    @Override
+    public void insert(Address address) {
+        addressMapper.insert(address);
+    }
+
+    @Override
+    public void insertSelective(Address address) {
+        addressMapper.insertSelective(address);
+    }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 蒋松冬
@@ -42,9 +43,10 @@
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/css/bootstrap.min.css">
     <script src="${pageContext.request.contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/information.js"></script>
+    <script src="${pageContext.request.contextPath}/js/address.js"></script>
     <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
+    <script src="${pageContext.request.contextPath}/js/distpicker.js"></script>
     <style>
         #view-source {
             position: fixed;
@@ -55,44 +57,105 @@
             margin-bottom: 40px;
             z-index: 900;
         }
+
+        .templatemo-blue-button {
+            background-color: #39ADB4;
+            border: none;
+            color: white;
+        }
     </style>
 </head>
 <body>
 
-<%--修改商品信息模态框--%>
+<%--修改地址模态框--%>
 <!-- Modal -->
-<div class="modal fade" id="update-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="update-addr" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" id="parentModal">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">修改个人信息</h4>
+                <h4 class="modal-title" id="myModalLabel">修改地址</h4>
             </div>
             <div class="modal-body">
+                <form class="form-inline mt-2 mb-4">
+                    <div  data-toggle="distpicker" data-autoselect="3">
+                        <label for="telephone" class="col-sm-2 control-label" style="padding-left: 28px;padding-top: 10px">省市区</label>
+                        <select class="form-control" id="provinceUpdate"></select>
+                        <select class="form-control" id="cityUpdate"></select>
+                        <select class="form-control" id="countyUpdate"></select>
+                    </div>
+                </form>
                 <form class="form-horizontal" id="update-form" name="update-form" method="post">
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">昵称</label>
+                        <label for="detailaddress" class="col-sm-2 control-label">详细地址</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="detailaddress" id="detailaddress"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">收货人</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="name" id="name">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="col-sm-2 control-label">邮箱</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="email" id="email">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="telephone" class="col-sm-2 control-label">手机号</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="telephone" name="telephone">
+                            <input type="text" class="form-control" name="telephone" id="telephone">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="saveInfo" >保存</button>
+                <button type="button" class="btn btn-primary" id="saveAddr" >保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--添加地址模态框--%>
+<!-- Modal -->
+<div class="modal fade" id="insert-addr" tabindex="-1" role="dialog" aria-labelledby="myModalLabelInsert">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="parentModalInsert">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabelInsert">添加地址</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline mt-2 mb-4">
+                    <div  data-toggle="distpicker" data-autoselect="3">
+                        <label for="telephone" class="col-sm-2 control-label" style="padding-left: 28px;padding-top: 10px">省市区</label>
+                        <select class="form-control" id="provinceInsert"></select>
+                        <select class="form-control" id="cityInsert"></select>
+                        <select class="form-control" id="countyInsert"></select>
+                    </div>
+                </form>
+                <form class="form-horizontal" id="insert-form" name="insert-form" method="post">
+                    <div class="form-group">
+                        <label for="detailaddress" class="col-sm-2 control-label">详细地址</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="detailaddressInsert" id="detailaddressInsert"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">收货人</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="nameInsert" id="nameInsert">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone" class="col-sm-2 control-label">手机号</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="telephoneInsert" id="telephoneInsert">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="insertAddr" >保存</button>
             </div>
         </div>
     </div>
@@ -101,7 +164,7 @@
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">个人信息</span>
+            <span class="mdl-layout-title">收货地址</span>
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
                 <%-- <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
@@ -146,10 +209,16 @@
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content">
+        <div class="mdl-grid demo-content" >
+            <div class="demo-charts mdl-color--white  mdl-shadow--2dp mdl-cell mdl-cell--1-col mdl-grid">
+        <button class="templatemo-blue-button" name="insertAddr"><h5>添加地址</h5></button>
+            </div>
+        </div>
+<c:forEach items="${addressList}" var="item">
+        <div class="mdl-grid demo-content" id="parent">
             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
                 <div class="tab-content">
-                    <table class="table" cellpadding="6" cellspacing="1">
+                    <table class="table" cellpadding="6" cellspacing="1" address-id="${item.addressid}" id="table">
                         <thead>
                         <th style="border: 0px solid transparent">
                             <%--<h1>个人信息</h1>--%>
@@ -157,33 +226,40 @@
                         </thead>
                         <tbody >
                         <tr >
-                            <th style="border: 0px solid transparent" class="tl">用户号</th>
-                            <td style="border: 0px solid transparent" class="tr" id="userIdVal">${user.getUserid()}</td>
-                        </tr>
-                        <tr>
-                            <th style="border: 0px solid transparent" class="tl">用户名</th>
-                            <td style="border: 0px solid transparent" class="tr" id="nameVal">${user.getUsername()}</td>
-                        </tr>
-                        <tr>
-                            <th style="border: 0px solid transparent" class="tl">注册时间</th>
-                            <td style="border: 0px solid transparent" class="tr" id="regTimeVal">${user.getRegtime()}</td>
-                        </tr>
-                        <tr>
-                            <th style="border: 0px solid transparent" class="tl">邮箱</th>
-                            <td style="border: 0px solid transparent" class="tr" id="emailVal">${user.getEmail()}</td>
+                            <th style="border: 0px solid transparent" class="tl">收货人</th>
+                            <td style="border: 0px solid transparent" class="tr" id="conname">${item.conname}</td>
                         </tr>
                         <tr>
                             <th style="border: 0px solid transparent" class="tl">手机号</th>
-                            <td style="border: 0px solid transparent" class="tr" id="telephoneVal">${user.getTelephone()}</td>
+                            <td style="border: 0px solid transparent" class="tr" id="contel">${item.contel}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 0px solid transparent" class="tl">省</th>
+                            <td style="border: 0px solid transparent" class="tr" id="province">${item.province}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 0px solid transparent" class="tl">市</th>
+                            <td style="border: 0px solid transparent" class="tr" id="city">${item.city}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 0px solid transparent" class="tl">县/区</th>
+                            <td style="border: 0px solid transparent" class="tr" id="county">${item.county}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 0px solid transparent" class="tl">详细地址</th>
+                            <td style="border: 0px solid transparent" class="tr" id="detailaddr">${item.detailaddr}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="changeInfo"><h4>修改信息</h4></button>
+                    <button class="templatemo-blue-button" name="changeAddr"><h5>修改地址</h5></button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="templatemo-blue-button" name="deleteAddr"><h5>删除地址</h5></button>
                 </div>
             </div>
         </div>
+</c:forEach>
     </main>
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">

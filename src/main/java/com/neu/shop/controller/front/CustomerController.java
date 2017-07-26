@@ -1,8 +1,7 @@
 package com.neu.shop.controller.front;
 
-import com.neu.shop.pojo.Msg;
-import com.neu.shop.pojo.User;
-import com.neu.shop.pojo.UserExample;
+import com.neu.shop.pojo.*;
+import com.neu.shop.service.AddressService;
 import com.neu.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -120,4 +119,54 @@ public class CustomerController {
         }
         else  {return Msg.fail("更新失败");}
     }
+
+    @Autowired
+    private AddressService addressService;
+
+    @RequestMapping("/address")
+    public String address(HttpServletRequest request,Model addressModel){
+        HttpSession session=request.getSession();
+        User user=(User)session.getAttribute("user");
+        AddressExample addressExample=new AddressExample();
+        addressExample.or().andUseridEqualTo(user.getUserid());
+        List<Address> addressList=addressService.getAllAddressByExample(addressExample);
+        addressModel.addAttribute("addressList",addressList);
+        return "address";
+    }
+
+    @RequestMapping("/saveAddr")
+    @ResponseBody
+    public Msg saveAddr(Address address){
+
+        addressService.updateByPrimaryKeySelective(address);
+        return Msg.success("成功");
+    }
+
+    @RequestMapping("/deleteAddr")
+    @ResponseBody
+    public Msg deleteAddr(Address address){
+        addressService.deleteByPrimaryKey(address.getAddressid());
+        return Msg.success("删除成功");
+    }
+
+    @RequestMapping("/insertAddr")
+    @ResponseBody
+    public Msg insertAddr(Address address,HttpServletRequest request){
+       HttpSession session=request.getSession();
+       User user=new User();
+       user=(User) session.getAttribute("user");
+       address.setUserid(user.getUserid());
+        addressService.insertSelective(address);
+        return Msg.success("添加成功");
+    }
+
+    @RequestMapping("/list")
+    public String list(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user;
+        user=(User)session.getAttribute("user");
+
+        return "list";
+    }
+
 }
