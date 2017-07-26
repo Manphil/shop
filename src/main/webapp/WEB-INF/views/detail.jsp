@@ -30,6 +30,8 @@
     <!-- <script src="./detail/js/jquery.js"></script> -->
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 
+    <script src="${pageContext.request.contextPath}/js/sort.js"></script>
+
     <!-- bootstrap js -->
     <script src="${pageContext.request.contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/detail.js"></script>

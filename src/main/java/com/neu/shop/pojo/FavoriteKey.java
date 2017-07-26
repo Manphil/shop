@@ -5,6 +5,15 @@ public class FavoriteKey {
 
     private Integer goodsid;
 
+    public FavoriteKey() {
+    }
+
+    public FavoriteKey(Integer userid, Integer goodsid) {
+
+        this.userid = userid;
+        this.goodsid = goodsid;
+    }
+
     public Integer getUserid() {
         return userid;
     }

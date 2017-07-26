@@ -66,9 +66,18 @@
                                     <b>￥${goods.price}</b>
                                 </div>
                                 <div>
-                                    <button
-                                            class="like-button glyphicon glyphicon-heart-empty btn btn-default"
-                                            style="display: none;"></button>
+                                    <c:if test="${goods.fav}">
+                                        <button
+                                                class="like-button glyphicon glyphicon-heart btn btn-default"
+                                                data-id="${goods.goodsid}"
+                                                style="display: none;"></button>
+                                    </c:if>
+                                    <c:if test="${!goods.fav}">
+                                        <button
+                                                class="like-button glyphicon glyphicon-heart-empty btn btn-default"
+                                                data-id="${goods.goodsid}"
+                                                style="display: none;"></button>
+                                    </c:if>
                                     <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
                                 </div>
                             </li>

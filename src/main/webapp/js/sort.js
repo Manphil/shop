@@ -35,6 +35,7 @@ $(document).ready(function(){
 	$('.like-button').click(function(){
 		//$(this).removeClass("glyphicon-heart-empty");
         var goodsId = $(this).attr('data-id');
+        var isChangeBtn = true;
         if(!$(this).hasClass('glyphicon-heart')) {
             //收藏
             $.ajax({
@@ -43,8 +44,12 @@ $(document).ready(function(){
                 data:{
                     goodsid:goodsId
                 },
-                success:function () {
+                success:function (result) {
                     //收藏成功
+                    if(result.code === 200){
+                        location.href = "/shop/login";
+                        isChangeBtn = false;
+                    }
                 },
                 error:function () {
                     alert("收藏失败");
@@ -58,8 +63,12 @@ $(document).ready(function(){
                 data:{
                     goodsid:goodsId
                 },
-                success:function () {
+                success:function (result) {
                     //取消收藏成功
+                    if(result.code === 200){
+                        location.href = "/shop/login";
+                        isChangeBtn = false;
+                    }
                 },
                 error:function () {
                     alert("取消收藏失败");
@@ -67,11 +76,13 @@ $(document).ready(function(){
             })
         }
 
-		$.post("servlet/CollectServlet", { 
+		/*$.post("servlet/CollectServlet", {
 			goodsId: goodsId,
 			});
-		// alert("商品已加入购物车！");
+		// alert("商品已加入购物车！");*/
 
-        $(this).toggleClass("glyphicon-heart glyphicon-heart-empty");
+		if(isChangeBtn) {
+            $(this).toggleClass("glyphicon-heart glyphicon-heart-empty");
+        }
 	});
 });
