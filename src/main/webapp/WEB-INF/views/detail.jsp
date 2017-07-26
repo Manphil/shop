@@ -30,7 +30,7 @@
     <!-- <script src="./detail/js/jquery.js"></script> -->
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 
-    <script src="${pageContext.request.contextPath}/js/sort.js"></script>
+    <%--<script src="${pageContext.request.contextPath}/js/sort.js"></script>--%>
 
     <!-- bootstrap js -->
     <script src="${pageContext.request.contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
@@ -75,6 +75,60 @@
                 $("li").removeClass("now");
                 $(this).addClass("now");
 
+            });
+
+            $('.fav-button').click(function(){
+                //$(this).removeClass("glyphicon-heart-empty");
+                var goodsId = $(this).attr('data-id');
+                var isChangeBtn = true;
+                if(!$(this).children("i").hasClass('fa-heart')) {
+                    //收藏
+                    $.ajax({
+                        url:"/shop/collect",
+                        type:"POST",
+                        data:{
+                            goodsid:goodsId
+                        },
+                        success:function (result) {
+                            //收藏成功
+                            if(result.code === 200){
+                                location.href = "/shop/login";
+                                isChangeBtn = false;
+                            }
+                        },
+                        error:function () {
+                            alert("收藏失败");
+                        }
+                    })
+                } else {
+                    //取消收藏
+                    $.ajax({
+                        url:"/shop/deleteCollect",
+                        type:"POST",
+                        data:{
+                            goodsid:goodsId
+                        },
+                        success:function (result) {
+                            //取消收藏成功
+                            if(result.code === 200){
+                                location.href = "/shop/login";
+                                isChangeBtn = false;
+                            }
+                        },
+                        error:function () {
+                            alert("取消收藏失败");
+                        }
+                    })
+                }
+
+                /*$.post("servlet/CollectServlet", {
+                 goodsId: goodsId,
+                 });
+                 // alert("商品已加入购物车！");*/
+
+                if(isChangeBtn) {
+                    $(this).children("i").toggleClass("fa-heart fa-heart-o");
+                }
             });
         });
     </script>
@@ -187,9 +241,15 @@
                             <button class="add-tocart cart_zpf" type="submit">加入购物车</button>
                         </form>
                         <div class="add_defi new_meta">
-                            <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
-                                <i class="fa fa-heart"></i>
-                                收藏
+                            <a data-original-title="Add to Wishlist" data-toggle="tooltip" class="fav-button big-font" data-id="${goodsInfo['goods'].goodsid}">
+                                <c:if test="${goodsInfo['goods'].fav}">
+                                    <i class="fa fa-heart"></i>
+                                    收藏
+                                </c:if>
+                                <c:if test="${!goodsInfo['goods'].fav}">
+                                    <i class="fa fa-heart-o"></i>
+                                    收藏
+                                </c:if>
                             </a>
                         </div>
                     </div>

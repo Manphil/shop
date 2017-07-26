@@ -1,6 +1,7 @@
 package com.neu.shop.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     private Integer orderid;
@@ -23,10 +24,14 @@ public class Order {
 
     private Integer addressid;
 
+    private List<Goods> goodsInfo;
+
+    private Address address;
+
     public Order() {
     }
 
-    public Order(Integer orderid, Integer userid, Date ordertime, Integer oldprice, Integer newprice, Boolean ispay, Boolean issend, Boolean isreceive, Boolean iscomplete, Integer addressid) {
+    public Order(Integer orderid, Integer userid, Date ordertime, Integer oldprice, Integer newprice, Boolean ispay, Boolean issend, Boolean isreceive, Boolean iscomplete, Integer addressid, List<Goods> goodsInfo, Address address) {
         this.orderid = orderid;
         this.userid = userid;
         this.ordertime = ordertime;
@@ -37,6 +42,8 @@ public class Order {
         this.isreceive = isreceive;
         this.iscomplete = iscomplete;
         this.addressid = addressid;
+        this.goodsInfo = goodsInfo;
+        this.address = address;
     }
 
     public Integer getOrderid() {
@@ -117,5 +124,13 @@ public class Order {
 
     public void setAddressid(Integer addressid) {
         this.addressid = addressid;
+    }
+
+    public List<Goods> getGoodsInfo() {
+        return goodsInfo;
+    }
+
+    public void setGoodsInfo(List<Goods> goodsInfo) {
+        this.goodsInfo = goodsInfo;
     }
 }

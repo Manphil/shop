@@ -32,17 +32,30 @@ public class FrontGoodsController {
     private CateService cateService;
 
     @RequestMapping(value = "/detail",method = RequestMethod.GET)
-    public String detailGoods(Integer goodsid, Model model) {
+    public String detailGoods(Integer goodsid, Model model, HttpSession session) {
 
         if(goodsid == null) {
             return "redirect:/main";
         }
+
+        User user = (User) session.getAttribute("user");
 
         //要传回的数据存在HashMap中
         Map<String,Object> goodsInfo = new HashMap<String,Object>();
 
         //查询商品的基本信息
         Goods goods = goodsService.selectById(goodsid);
+
+        if (user == null) {
+            goods.setFav(false);
+        } else {
+            Favorite favorite = goodsService.selectFavByKey(new FavoriteKey(user.getUserid(), goodsid));
+            if (favorite == null) {
+                goods.setFav(false);
+            } else {
+                goods.setFav(true);
+            }
+        }
 
         //查询商品类别
         Category category = cateService.selectById(goods.getCategory());
