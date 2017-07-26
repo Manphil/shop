@@ -28,10 +28,10 @@ public class Verificate {
             // 获取图形上下文
             Graphics g = image.getGraphics();
             // 设定背景色
-            g.setColor(new Color(0xDCDCDC));
+            g.setColor(new Color(0x9FDCB1));
             g.fillRect(0, 0, width, height);
             // 画边框
-            g.setColor(Color.black);
+            g.setColor(new Color(0x9FDCB1));
             g.drawRect(0, 0, width - 1, height - 1);
             // 取随机产生的认证码
             String strEnsure = "";
@@ -40,7 +40,7 @@ public class Verificate {
                 strEnsure += mapTable[(int) (mapTable.length * Math.random())];
             }
             // 将认证码显示到图像中,如果要生成更多位的认证码,增加drawString语句
-            g.setColor(Color.black);
+            g.setColor(new Color(0x172D44));
             g.setFont(new Font("Atlantic Inline", Font.PLAIN, 18));
             String str = strEnsure.substring(0, 1);
             g.drawString(str, 8, 17);

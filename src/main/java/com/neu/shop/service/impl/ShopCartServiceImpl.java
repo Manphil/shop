@@ -39,4 +39,9 @@ public class ShopCartServiceImpl implements ShopCartService {
     public void updateCartByKey(ShopCart shopCart) {
         shopCartMapper.updateByPrimaryKeySelective(shopCart);
     }
+
+    @Override
+    public ShopCart selectCartByKey(ShopCartKey shopCartKey) {
+        return shopCartMapper.selectByPrimaryKey(shopCartKey);
+    }
 }

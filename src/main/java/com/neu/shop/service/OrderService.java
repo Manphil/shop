@@ -1,9 +1,6 @@
 package com.neu.shop.service;
 
-import com.neu.shop.pojo.Order;
-import com.neu.shop.pojo.OrderExample;
-import com.neu.shop.pojo.OrderItem;
-import com.neu.shop.pojo.OrderItemExample;
+import com.neu.shop.pojo.*;
 
 import java.util.List;
 
@@ -20,4 +17,8 @@ public interface OrderService {
     public List<Order> selectOrderByExample(OrderExample orderExample);
 
     public List<OrderItem> getOrderItemByExample(OrderItemExample orderItemExample);
+
+    public Address getAddressByKey(Integer addressid);
+
+    public void updateOrderByKey(Order order);
 }

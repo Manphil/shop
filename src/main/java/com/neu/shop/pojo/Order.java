@@ -134,7 +134,12 @@ public class Order {
         this.goodsInfo = goodsInfo;
     }
 
-    public void setAddress(Address address){this.address=address;}
 
-    public Address getAddress(){return address;}
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

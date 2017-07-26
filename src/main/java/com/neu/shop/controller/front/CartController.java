@@ -34,6 +34,12 @@ public class CartController {
             return "redirect:/login";
         }
 
+        //判断是否已经加入购物车
+        ShopCart shopCart1 = shopCartService.selectCartByKey(new ShopCartKey(user.getUserid(), shopCart.getGoodsid()));
+        if (shopCart1 != null) {
+            return "redirect:/showcart";
+        }
+
         //用户
         shopCart.setUserid(user.getUserid());
 

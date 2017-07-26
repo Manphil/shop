@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 文辉
-  Date: 2017/7/25
-  Time: 22:54
+  Date: 2017/7/26
+  Time: 19:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -45,7 +45,7 @@
         <div class="module">
             <div class="">
                 <h3>
-                    搜索结果><span style="color: red;">${keyword}</span>
+                    类别><span style="color: red;">${cate}</span>
                 </h3>
                 <hr>
             </div>
@@ -134,7 +134,6 @@
                                         </a>
                                     </li>
                                 </c:if>
-
                             </ul>
                         </nav>
                     </div>
@@ -145,3 +144,4 @@
 </div>
 </body>
 </html>
+

@@ -1,11 +1,9 @@
 package com.neu.shop.service.impl;
 
+import com.neu.shop.dao.AddressMapper;
 import com.neu.shop.dao.OrderItemMapper;
 import com.neu.shop.dao.OrderMapper;
-import com.neu.shop.pojo.Order;
-import com.neu.shop.pojo.OrderExample;
-import com.neu.shop.pojo.OrderItem;
-import com.neu.shop.pojo.OrderItemExample;
+import com.neu.shop.pojo.*;
 import com.neu.shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +21,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired(required = false)
     private OrderItemMapper orderItemMapper;
+
+    @Autowired(required = false)
+    private AddressMapper addressMapper;
 
     @Override
     public void insertOrder(Order order) {
@@ -47,5 +48,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderItem> getOrderItemByExample(OrderItemExample orderItemExample) {
         return orderItemMapper.selectByExample(orderItemExample);
+    }
+
+    @Override
+    public Address getAddressByKey(Integer addressid) {
+        return addressMapper.selectByPrimaryKey(addressid);
+    }
+
+    @Override
+    public void updateOrderByKey(Order order) {
+        orderMapper.updateByPrimaryKeySelective(order);
     }
 }
