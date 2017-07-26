@@ -128,6 +128,11 @@ public class GoodsController {
 
     @RequestMapping("/addCategory")
     public String addcategory(@ModelAttribute("succeseMsg") String msg, Model model) {
+        CategoryExample categoryExample=new CategoryExample();
+        categoryExample.or();
+        List<Category> categoryList;
+        categoryList=cateService.selectByExample(categoryExample);
+        model.addAttribute("categoryList",categoryList);
 
         if(!msg.equals("")) {
             model.addAttribute("msg", msg);

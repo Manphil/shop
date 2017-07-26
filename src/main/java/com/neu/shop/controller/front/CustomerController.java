@@ -1,25 +1,23 @@
 package com.neu.shop.controller.front;
 
-import com.neu.shop.pojo.Msg;
-import com.neu.shop.pojo.User;
-import com.neu.shop.pojo.UserExample;
+import com.neu.shop.pojo.*;
+import com.neu.shop.service.AddressService;
+import com.neu.shop.service.GoodsService;
+import com.neu.shop.service.OrderService;
 import com.neu.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by 蒋松冬 on 2017/7/22.
@@ -120,4 +118,99 @@ public class CustomerController {
         }
         else  {return Msg.fail("更新失败");}
     }
+
+    @Autowired
+    private AddressService addressService;
+
+    @RequestMapping("/info/address")
+    public String address(HttpServletRequest request,Model addressModel){
+        HttpSession session=request.getSession();
+        User user=(User)session.getAttribute("user");
+        AddressExample addressExample=new AddressExample();
+        addressExample.or().andUseridEqualTo(user.getUserid());
+        List<Address> addressList=addressService.getAllAddressByExample(addressExample);
+        addressModel.addAttribute("addressList",addressList);
+        return "address";
+    }
+
+    @RequestMapping("/saveAddr")
+    @ResponseBody
+    public Msg saveAddr(Address address){
+
+        addressService.updateByPrimaryKeySelective(address);
+        return Msg.success("成功");
+    }
+
+    @RequestMapping("/deleteAddr")
+    @ResponseBody
+    public Msg deleteAddr(Address address){
+        addressService.deleteByPrimaryKey(address.getAddressid());
+        return Msg.success("删除成功");
+    }
+
+    @RequestMapping("/insertAddr")
+    @ResponseBody
+    public Msg insertAddr(Address address,HttpServletRequest request){
+       HttpSession session=request.getSession();
+       User user=new User();
+       user=(User) session.getAttribute("user");
+       address.setUserid(user.getUserid());
+        addressService.insertSelective(address);
+        return Msg.success("添加成功");
+    }
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private GoodsService goodsService;
+
+    @RequestMapping("/info/list")
+    public String list(HttpServletRequest request,Model orderModel){
+        HttpSession session=request.getSession();
+        User user;
+        user=(User)session.getAttribute("user");
+        OrderExample orderExample=new OrderExample();
+       orderExample.or().andUseridEqualTo(user.getUserid());
+        List<Order> orderList=orderService.selectOrderByExample(orderExample);
+        orderModel.addAttribute("orderList",orderList);
+        Order order;
+        OrderItem orderItem;
+        List<OrderItem> orderItemList=new ArrayList<>();
+        OrderItemExample orderItemExample=new OrderItemExample();
+        Goods goods;
+        GoodsExample goodsExample=new GoodsExample();
+        List<Goods> goodsList=new ArrayList<>();
+        List<Integer> goodsIdList=new ArrayList<>();
+        Address address;
+       for (Integer i=0;i<orderList.size();i++)
+       {
+           order=orderList.get(i);
+           orderItemExample.or().andOrderidEqualTo(order.getOrderid());
+           orderItemList=orderService.getOrderItemByExample(orderItemExample);
+           goodsIdList.clear();
+           goodsList.clear();
+           for (Integer j=0;j<orderItemList.size();j++)
+           {
+               orderItem=orderItemList.get(j);
+               goodsIdList.add(orderItem.getGoodsid());
+           }
+           goodsExample.or().andGoodsidIn(goodsIdList);
+           goodsList=goodsService.selectByExample(goodsExample);
+           order.setGoodsInfo(goodsList);
+           address=addressService.selectByPrimaryKey(order.getAddressid());
+           order.setAddress(address);
+           orderList.set(i,order);
+       }
+       orderModel.addAttribute("orderList",orderList);
+        return "list";
+    }
+
+    @RequestMapping("/deleteList")
+    @ResponseBody
+    public Msg deleteList(Order order){
+        orderService.deleteById(order.getOrderid());
+        return Msg.success("删除成功");
+    }
+
 }

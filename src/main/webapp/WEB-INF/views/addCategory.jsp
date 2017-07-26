@@ -38,6 +38,33 @@
     </c:if>--%>
 </head>
 <body>
+
+<%--修改商品信息模态框--%>
+<!-- Modal -->
+<div class="modal fade" id="update-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">修改分类名称</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="update-form" name="update-form" method="post">
+                    <div class="form-group">
+                        <label for="categoryName" class="col-sm-2 control-label">分类名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="categoryName" name="categoryName">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="savecatename" >保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Left column -->
 <div class="templatemo-flex-row">
     <jsp:include page="sidebar.jsp"></jsp:include>
@@ -45,9 +72,31 @@
     <div class="templatemo-content col-1 light-gray-bg">
         <jsp:include page="goodsNav.jsp"></jsp:include>
         <div class="templatemo-content-container">
+
             <div class="templatemo-content-widget white-bg">
-                <h2 class="margin-bottom-10">添加商品分类</h2>
-                <label class="control-label" for="catename">分类名称</label>
+                <div class="templatemo-content-widget no-padding">
+                    <div class="panel panel-default table-responsive">
+                        <table id="goodsinfo" class="table  table-bordered templatemo-user-table">
+                            <thead>
+                            <tr>
+                                <td>分类名</td>
+                                <td>编辑</td>
+                                <td>删除</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${categoryList}" var="category">
+                                <tr>
+                                    <td><a href="" class="templatemo-link">${category.catename}</a></td>
+                                    <td><button href="" class="templatemo-edit-btn">编辑</button></td>
+                                    <td><button href="" class="templatemo-delete-btn">删除</button></td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <label class="control-label" for="catename">添加分类</label>
                 <form action="${pageContext.request.contextPath}/admin/goods/addCategoryResult" method="post">
                     <div class="row form-group">
                         <div class="col-lg-6 form-group">
@@ -59,6 +108,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
 </div>
