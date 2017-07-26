@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+    // $(".data-item-li").children("div").addClass("to-big");
 	//分类栏隐藏显示
 	$(".list-group-item").hover(function(){
 		$(this).children("div.sort-detail").show();

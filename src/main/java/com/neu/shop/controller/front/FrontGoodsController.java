@@ -174,7 +174,9 @@ public class FrontGoodsController {
         //查询数据
         GoodsExample goodsExample = new GoodsExample();
         goodsExample.or().andDetailcateLike("%" + cate + "%");
-        goodsExample.or().andCategoryIn(cateId);
+        if (!cateId.isEmpty()) {
+            goodsExample.or().andCategoryIn(cateId);
+        }
         List<Goods> goodsList = goodsService.selectByExample(goodsExample);
 
         //获取图片地址

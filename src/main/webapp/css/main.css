@@ -211,3 +211,10 @@ div.text-right {
 .log-word:hover {
 	color:red !important;
 }
+
+.to-big:hover {
+    transition:transform .8s cubic-bezier(0.23, 1, 0.32, 1), box-shadow .8s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:0 0 20px rgba(0, 0, 0, 0.3);
+    transform:scale(1.05);
+    z-index:2;
+}
