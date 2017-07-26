@@ -462,7 +462,7 @@ input[type="radio"]:checked + label span {
 	color: white;
 }
 
-.templatemo-link { color: black; }
+.templatemo-link { color: #607D8B; }
 .templatemo-link:hover { color: #39ADB4; }
 .templatemo-overflow-hidden { overflow: hidden; }
 .templatemo-user-table thead {

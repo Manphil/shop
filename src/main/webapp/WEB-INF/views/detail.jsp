@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 文辉
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
 <html class="" lang="en">
@@ -244,7 +244,7 @@
                             <a data-original-title="Add to Wishlist" data-toggle="tooltip" class="fav-button big-font" data-id="${goodsInfo['goods'].goodsid}">
                                 <c:if test="${goodsInfo['goods'].fav}">
                                     <i class="fa fa-heart"></i>
-                                    收藏
+                                    取消收藏
                                 </c:if>
                                 <c:if test="${!goodsInfo['goods'].fav}">
                                     <i class="fa fa-heart-o"></i>
