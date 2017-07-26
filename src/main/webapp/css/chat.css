@@ -129,3 +129,25 @@
 #user-no {
 	display: none;
 }
+
+.a-card {
+    text-decoration: none !important;
+    display: block;
+    border: 1px solid #DDD;
+    margin: 0;
+    color: black;
+}
+
+.card {
+    height: 60px;
+    text-align: center;
+    padding-top: 25px;
+}
+
+.a-card:hover {
+    transition:transform .8s cubic-bezier(0.23, 1, 0.32, 1), box-shadow .8s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:0 0 20px rgba(0, 0, 0, 0.3);
+    transform:scale(1.01);
+    background-color: #F8F8F8;
+    z-index:2;
+}
