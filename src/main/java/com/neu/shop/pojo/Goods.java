@@ -24,6 +24,8 @@ public class Goods {
 
     private List<ImagePath> imagePaths;
 
+    private boolean fav;
+
     public Integer getGoodsid() {
         return goodsid;
     }
@@ -102,5 +104,14 @@ public class Goods {
 
     public void setImagePaths(List<ImagePath> imagePaths) {
         this.imagePaths = imagePaths;
+    }
+
+
+    public boolean isFav() {
+        return fav;
+    }
+
+    public void setFav(boolean fav) {
+        this.fav = fav;
     }
 }

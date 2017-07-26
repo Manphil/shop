@@ -1,11 +1,9 @@
 package com.neu.shop.service.impl;
 
+import com.neu.shop.dao.FavoriteMapper;
 import com.neu.shop.dao.GoodsMapper;
 import com.neu.shop.dao.ImagePathMapper;
-import com.neu.shop.pojo.Goods;
-import com.neu.shop.pojo.GoodsExample;
-import com.neu.shop.pojo.ImagePath;
-import com.neu.shop.pojo.ImagePathExample;
+import com.neu.shop.pojo.*;
 import com.neu.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +22,9 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired(required = false)
     ImagePathMapper imagePathMapper;
+
+    @Autowired(required = false)
+    FavoriteMapper favoriteMapper;
 
     @Override
     public Integer addGoods(Goods goods) {
@@ -68,5 +69,20 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<Goods> selectByExampleLimit(GoodsExample digGoodsExample) {
         return goodsMapper.selectByExampleWithBLOBsLimit(digGoodsExample);
+    }
+
+    @Override
+    public void addFavorite(Favorite favorite) {
+        favoriteMapper.insertSelective(favorite);
+    }
+
+    @Override
+    public Favorite selectFavByKey(FavoriteKey favoriteKey) {
+        return favoriteMapper.selectByPrimaryKey(favoriteKey);
+    }
+
+    @Override
+    public void deleteFavByKey(FavoriteKey favoriteKey) {
+        favoriteMapper.deleteByPrimaryKey(favoriteKey);
     }
 }

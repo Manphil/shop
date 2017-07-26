@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,17 +32,30 @@ public class FrontGoodsController {
     private CateService cateService;
 
     @RequestMapping(value = "/detail",method = RequestMethod.GET)
-    public String detailGoods(Integer goodsid, Model model) {
+    public String detailGoods(Integer goodsid, Model model, HttpSession session) {
 
         if(goodsid == null) {
             return "redirect:/main";
         }
+
+        User user = (User) session.getAttribute("user");
 
         //要传回的数据存在HashMap中
         Map<String,Object> goodsInfo = new HashMap<String,Object>();
 
         //查询商品的基本信息
         Goods goods = goodsService.selectById(goodsid);
+
+        if (user == null) {
+            goods.setFav(false);
+        } else {
+            Favorite favorite = goodsService.selectFavByKey(new FavoriteKey(user.getUserid(), goodsid));
+            if (favorite == null) {
+                goods.setFav(false);
+            } else {
+                goods.setFav(true);
+            }
+        }
 
         //查询商品类别
         Category category = cateService.selectById(goods.getCategory());
@@ -93,10 +108,36 @@ public class FrontGoodsController {
     }
 
     @RequestMapping("/collect")
+    @ResponseBody
     public Msg collectGoods(Integer goodsid, HttpSession session) {
         //取登录用户信息,未登录重定向至登录页面
         User user = (User) session.getAttribute("user");
+        if(user == null) {
+            return Msg.fail("收藏失败");
+        }
+
+        //添加收藏
+        Favorite favorite = new Favorite();
+        favorite.setCollecttime(new Date());
+        favorite.setGoodsid(goodsid);
+        favorite.setUserid(user.getUserid());
+
+        goodsService.addFavorite(favorite);
 
         return Msg.success("收藏成功");
+    }
+
+    @RequestMapping("/deleteCollect")
+    @ResponseBody
+    public Msg deleteFavGoods(Integer goodsid, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return Msg.fail("取消收藏失败");
+        }
+
+        //删除收藏
+        goodsService.deleteFavByKey(new FavoriteKey(user.getUserid(),goodsid));
+
+        return Msg.success("取消收藏成功");
     }
 }

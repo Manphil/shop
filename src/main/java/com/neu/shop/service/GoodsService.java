@@ -1,8 +1,6 @@
 package com.neu.shop.service;
 
-import com.neu.shop.pojo.Goods;
-import com.neu.shop.pojo.GoodsExample;
-import com.neu.shop.pojo.ImagePath;
+import com.neu.shop.pojo.*;
 
 import java.util.List;
 
@@ -26,4 +24,10 @@ public interface GoodsService {
     public Goods selectById(Integer goodsid);
 
     public List<Goods> selectByExampleLimit(GoodsExample digGoodsExample);
+
+    public void addFavorite(Favorite favorite);
+
+    public Favorite selectFavByKey(FavoriteKey favoriteKey);
+
+    public void deleteFavByKey(FavoriteKey favoriteKey);
 }
