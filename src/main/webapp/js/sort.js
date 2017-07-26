@@ -34,12 +34,44 @@ $(document).ready(function(){
 
 	$('.like-button').click(function(){
 		//$(this).removeClass("glyphicon-heart-empty");
-		$(this).toggleClass("glyphicon-heart glyphicon-heart-empty");
+        var goodsId = $(this).attr('data-id');
+        if(!$(this).hasClass('glyphicon-heart')) {
+            //收藏
+            $.ajax({
+                url:"/shop/collect",
+                type:"POST",
+                data:{
+                    goodsid:goodsId
+                },
+                success:function () {
+                    //收藏成功
+                },
+                error:function () {
+                    alert("收藏失败");
+                }
+            })
+        } else {
+            //取消收藏
+            $.ajax({
+                url:"/shop/deleteCollect",
+                type:"POST",
+                data:{
+                    goodsid:goodsId
+                },
+                success:function () {
+                    //取消收藏成功
+                },
+                error:function () {
+                    alert("取消收藏失败");
+                }
+            })
+        }
 
-		var goodsId = $(this).attr('data-id');
 		$.post("servlet/CollectServlet", { 
 			goodsId: goodsId,
 			});
 		// alert("商品已加入购物车！");
+
+        $(this).toggleClass("glyphicon-heart glyphicon-heart-empty");
 	});
 });

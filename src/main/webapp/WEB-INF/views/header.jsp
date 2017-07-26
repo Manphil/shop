@@ -67,7 +67,7 @@
                         </ul></li>
                 </ul>
 
-                <form class="navbar-form navbar-right" role="search" method="get" action="./searchResult.jsp">
+                <form class="navbar-form navbar-right" role="search" method="get" action="${pageContext.request.contextPath}/search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search" name="keyword">
                     </div>
