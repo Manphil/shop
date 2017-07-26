@@ -28,10 +28,10 @@ public class AdminOrderController {
     private GoodsService goodsService;
 
     @RequestMapping("/send")
-    public String sendOrder(@RequestParam("page")Integer pn, Model model) {
+    public String sendOrder(@RequestParam(value = "page",defaultValue = "1")Integer pn, Model model) {
 
         //一页显示几个数据
-        PageHelper.startPage(pn, 10);
+        PageHelper.startPage(pn, 2);
 
 
         //查询未发货订单
@@ -57,8 +57,12 @@ public class AdminOrderController {
             GoodsExample goodsExample = new GoodsExample();
             goodsExample.or().andGoodsidIn(goodsIdList);
             List<Goods> goodsList = goodsService.selectByExample(goodsExample);
-
             order.setGoodsInfo(goodsList);
+
+            //查询地址
+            Address address = orderService.getAddressByKey(order.getAddressid());
+            order.setAddress(address);
+
             orderList.set(i, order);
         }
 
@@ -67,6 +71,15 @@ public class AdminOrderController {
         model.addAttribute("pageInfo", page);
 
         return "adminAllOrder";
+    }
+
+    @RequestMapping("/sendGoods")
+    public String sendGoods(Integer orderid) {
+        Order order = new Order();
+        order.setOrderid(orderid);
+        order.setIssend(true);
+        orderService.updateOrderByKey(order);
+        return "redirect:/admin/order/send";
     }
 
     @RequestMapping("/receiver")

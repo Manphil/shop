@@ -37,7 +37,11 @@
         }
 
         .goods-table thead {
-            background-color: #1a3133;
+            background-color: #fbffff;
+        }
+
+        .white-text {
+            color: #404040;
         }
     </style>
 </head>
@@ -58,7 +62,7 @@
                 <div class="templatemo-flex-row flex-content-row">
                     <div class="col-1">
                         <div class="panel panel-default margin-10">
-                            <div class="panel-heading"><h2>${orderInfo.}</h2></div>
+                            <div class="panel-heading"><h2>${orderInfo.address.conname}</h2></div>
                             <div class="panel-body">
                                 <div>
                                     <div class="order-info margin-bottom-10">
@@ -87,18 +91,14 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td>2<%--${goods.goodsid}--%></td>
-                                                    <td>暗室逢灯<%--${goods.goodsname}--%></td>
-                                                    <td>￥23<%--${goods.price}--%></td>
-                                                    <td>3<%--${goods.num}--%></td>
-                                                    <td>234<%--${goods.detailcate}--%></td>
-                                                    <td><a href="" class="templatemo-link">详情</a></td>
-                                                    <td>
-                                                        <button href="" class="templatemo-edit-btn">编辑</button>
-                                                    </td>
-                                                    <td>
-                                                        <button href="" class="templatemo-delete-btn">删除</button>
-                                                    </td>
+                                                    <td>${orderInfo.orderid}</td>
+                                                    <td>${orderInfo.userid}</td>
+                                                    <td>￥${orderInfo.oldprice}</td>
+                                                    <td>￥${orderInfo.newprice}</td>
+                                                    <td>${orderInfo.address.conname}</td>
+                                                    <td>${orderInfo.address.conname}</td>
+                                                    <td>${orderInfo.address.province} ${orderInfo.address.city} ${orderInfo.address.county} ${orderInfo.address.detailaddr}</td>
+                                                    <td>${orderInfo.ordertime}</td>
                                                 </tr>
 
                                                 </tbody>
@@ -126,27 +126,29 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>2<%--${goods.goodsid}--%></td>
-                                                    <td>暗室逢灯<%--${goods.goodsname}--%></td>
-                                                    <td>￥23<%--${goods.price}--%></td>
-                                                    <td>3<%--${goods.num}--%></td>
-                                                        <%--<td>234&lt;%&ndash;${goods.detailcate}&ndash;%&gt;</td>--%>
-                                                    <td><a href="" class="templatemo-link">详情</a></td>
-                                                        <%--<td>
-                                                            <button href="" class="templatemo-edit-btn">编辑</button>
-                                                        </td>
-                                                        <td>
-                                                            <button href="" class="templatemo-delete-btn">删除</button>
-                                                        </td>--%>
-                                                </tr>
+                                                <c:forEach items="${orderInfo.goodsInfo}" var="goods">
+                                                    <tr>
+                                                        <td>${goods.goodsid}</td>
+                                                        <td>${goods.goodsname}</td>
+                                                        <td>￥${goods.price}</td>
+                                                        <td>${goods.num}</td>
+                                                            <%--<td>234&lt;%&ndash;${goods.detailcate}&ndash;%&gt;</td>--%>
+                                                        <td><a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}" class="templatemo-link">详情</a></td>
+                                                            <%--<td>
+                                                                <button href="" class="templatemo-edit-btn">编辑</button>
+                                                            </td>
+                                                            <td>
+                                                                <button href="" class="templatemo-delete-btn">删除</button>
+                                                            </td>--%>
+                                                    </tr>
+                                                </c:forEach>
 
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="margin-bottom-10">
-                                        <a href="" class="templatemo-edit-btn pull-right">发货</a>
+                                        <a href="${pageContext.request.contextPath}/admin/order/sendGoods?goodsid=${orderInfo.orderid}" class="templatemo-edit-btn pull-right">发货</a>
                                     </div>
                                 </div>
                             </div>
@@ -154,6 +156,49 @@
                     </div>
                 </div>
             </c:forEach>
+
+                <div class="pagination-wrap" id="page-div-nav">
+                    <div class="page-info" id="page-info-area">
+                        当前第${pageInfo.pageNum}页，总共${pageInfo.pages}页，总共${pageInfo.total}记录
+                    </div>
+                    <ul class="pagination">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/admin/order/send?page=1" aria-label="Next">
+                                <span aria-hidden="true">首页</span>
+                            </a>
+                        </li>
+
+                        <c:if test="${pageInfo.hasPreviousPage}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/order/send?page=${pageInfo.pageNum - 1}" aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-backward"></i></span>
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <c:forEach items="${pageInfo.navigatepageNums}" var="pageNums">
+                            <c:if test="${pageNums == pageInfo.pageNum}">
+                                <li class="active"><a href="${pageContext.request.contextPath}/admin/order/send?page=${pageNums}">${pageNums}</a></li>
+                            </c:if>
+                            <c:if test="${pageNums != pageInfo.pageNum}">
+                                <li><a href="${pageContext.request.contextPath}/admin/order/send?page=${pageNums}">${pageNums}</a></li>
+                            </c:if>
+                        </c:forEach>
+
+                        <c:if test="${pageInfo.hasNextPage}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/order/send?page=${pageInfo.pageNum + 1}" aria-label="Next">
+                                    <span aria-hidden="true"><i class="fa fa-forward"></i></span>
+                                </a>
+                            </li>
+                        </c:if>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/admin/order/send?page=${pageInfo.pages}" aria-label="Next">
+                                <span aria-hidden="true">末页</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
         </div>
     </div>
 </div>

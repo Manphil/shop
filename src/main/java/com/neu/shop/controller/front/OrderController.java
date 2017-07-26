@@ -87,7 +87,7 @@ public class OrderController {
         }
 
         //把订单信息写入数据库
-        Order order = new Order(null, user.getUserid(), new Date(), oldPrice, newPrice, isPay, false, false, false, addressid);
+        Order order = new Order(null, user.getUserid(), new Date(), oldPrice, newPrice, isPay, false, false, false, addressid,null,null);
         orderService.insertOrder(order);
         //插入的订单号
         Integer orderId = order.getOrderid();

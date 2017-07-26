@@ -17,4 +17,6 @@ public interface ShopCartService {
     public void deleteByKey(ShopCartKey shopCartKey);
 
     public void updateCartByKey(ShopCart shopCart);
+
+    public ShopCart selectCartByKey(ShopCartKey shopCartKey);
 }
