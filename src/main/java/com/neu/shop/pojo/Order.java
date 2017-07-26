@@ -134,6 +134,7 @@ public class Order {
         this.goodsInfo = goodsInfo;
     }
 
+
     public Address getAddress() {
         return address;
     }
