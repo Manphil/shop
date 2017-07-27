@@ -37,4 +37,14 @@ public class CateServiceImpl implements CateService {
     public Category selectById(Integer category) {
         return categoryMapper.selectByPrimaryKey(category);
     }
+
+    @Override
+    public void updateByPrimaryKeySelective(Category category) {
+        categoryMapper.updateByPrimaryKeySelective(category);
+    }
+
+    @Override
+    public void deleteByPrimaryKey(Integer cateid) {
+        categoryMapper.deleteByPrimaryKey(cateid);
+    }
 }
