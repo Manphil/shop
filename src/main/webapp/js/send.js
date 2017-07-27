@@ -26,6 +26,9 @@ $(document).ready(function () {
             var element = '<div class="chat-message1 chat-message"> <div class="chat-message-content1"><div class="info-content"> ' + msgObj.body + '</div> </div> </div>';
             var element_float = '<div class="clear-float"></div>';
             $(".chat-content-body").append(element, element_float);
+
+            //始终保持滚动条滚动到最下方
+            $(".chat-content").scrollTop($(".chat-content")[0].scrollHeight);
             /*$('#message').append("<font color=red>"+msgObj.from+":"+msgObj.body+"</font></br>");*/
         } else if (msgObj.to === clientID && !getChatList(msgObj.from)) {
             //重新获取聊天列表
