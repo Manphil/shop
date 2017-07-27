@@ -132,7 +132,7 @@
             <div class="mdl-grid demo-content" id="parent">
                 <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
                     <h3>未收到货</h3><%--未收到货--%>
-                    <c:forEach items="${orderList}" var="order">
+                    <c:forEach items="${pageInfo.list}" var="order">
                         <c:if test="${!order.isreceive}">
                             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
                             <div class="tab-content col-lg-10">
@@ -190,10 +190,59 @@
                         </div>
                         </c:if>
                     </c:forEach>
+                    <div class="col-lg-4 col-lg-offset-8">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-lg">
+
+                                <c:if test="${pageInfo.hasPreviousPage}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.prePage}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                                <c:if test="${!pageInfo.hasPreviousPage}">
+                                    <li class="disabled">
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.prePage}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                                <c:forEach items="${pageInfo.navigatepageNums}" var="pageNums">
+                                    <c:if test="${pageNums == pageInfo.pageNum}">
+                                        <li class="active"><a href="${pageContext.request.contextPath}/info/list?page=${pageNums}">${pageNums}</a></li>
+                                    </c:if>
+                                    <c:if test="${pageNums != pageInfo.pageNum}">
+                                        <li><a href="${pageContext.request.contextPath}/info/list?&page=${pageNums}">${pageNums}</a></li>
+                                    </c:if>
+                                </c:forEach>
+
+                                <c:if test="${pageInfo.hasNextPage}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.nextPage}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                                <c:if test="${!pageInfo.hasNextPage}">
+                                    <li class="disabled">
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.nextPage}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                            </ul>
+                        </nav>
+                    </div>
+
                 </div>
                 <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
                     <h3>未完成</h3><%--未完成--%>
-                    <c:forEach items="${orderList}" var="order">
+                    <c:forEach items="${pageInfo.list}" var="order">
                         <c:if test="${!order.iscomplete}">
                             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
                                 <div class="tab-content col-lg-10">
@@ -251,10 +300,58 @@
                             </div>
                         </c:if>
                     </c:forEach>
+                    <div class="col-lg-4 col-lg-offset-8">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-lg">
+
+                                <c:if test="${pageInfo.hasPreviousPage}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.prePage}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                                <c:if test="${!pageInfo.hasPreviousPage}">
+                                    <li class="disabled">
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.prePage}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                                <c:forEach items="${pageInfo.navigatepageNums}" var="pageNums">
+                                    <c:if test="${pageNums == pageInfo.pageNum}">
+                                        <li class="active"><a href="${pageContext.request.contextPath}/info/list?page=${pageNums}">${pageNums}</a></li>
+                                    </c:if>
+                                    <c:if test="${pageNums != pageInfo.pageNum}">
+                                        <li><a href="${pageContext.request.contextPath}/info/list?&page=${pageNums}">${pageNums}</a></li>
+                                    </c:if>
+                                </c:forEach>
+
+                                <c:if test="${pageInfo.hasNextPage}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.nextPage}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                                <c:if test="${!pageInfo.hasNextPage}">
+                                    <li class="disabled">
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.nextPage}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
                 <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
                     <h3>已完成</h3><%--已完成--%>
-                    <c:forEach items="${orderList}" var="order">
+                    <c:forEach items="${pageInfo.list}" var="order">
                         <c:if test="${order.iscomplete}">
                             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
                                 <div class="tab-content col-lg-10">
@@ -312,6 +409,54 @@
                             </div>
                         </c:if>
                     </c:forEach>
+                    <div class="col-lg-4 col-lg-offset-8">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-lg">
+
+                                <c:if test="${pageInfo.hasPreviousPage}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.prePage}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                                <c:if test="${!pageInfo.hasPreviousPage}">
+                                    <li class="disabled">
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.prePage}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                                <c:forEach items="${pageInfo.navigatepageNums}" var="pageNums">
+                                    <c:if test="${pageNums == pageInfo.pageNum}">
+                                        <li class="active"><a href="${pageContext.request.contextPath}/info/list?page=${pageNums}">${pageNums}</a></li>
+                                    </c:if>
+                                    <c:if test="${pageNums != pageInfo.pageNum}">
+                                        <li><a href="${pageContext.request.contextPath}/info/list?&page=${pageNums}">${pageNums}</a></li>
+                                    </c:if>
+                                </c:forEach>
+
+                                <c:if test="${pageInfo.hasNextPage}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.nextPage}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                                <c:if test="${!pageInfo.hasNextPage}">
+                                    <li class="disabled">
+                                        <a href="${pageContext.request.contextPath}/info/list?page=${pageInfo.nextPage}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
     </main>
