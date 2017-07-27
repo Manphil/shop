@@ -148,7 +148,7 @@ public class CustomerController {
     public Msg saveAddr(Address address){
 
         addressService.updateByPrimaryKeySelective(address);
-        return Msg.success("成功");
+        return Msg.success("修改成功");
     }
 
     @RequestMapping("/deleteAddr")
@@ -293,7 +293,7 @@ public class CustomerController {
         User user=(User) session.getAttribute("user");
         user.setPassword(Psw);
         userService.updateByPrimaryKeySelective(user);
-        return Msg.success("修改成功");
+        return Msg.success("修改密码成功");
     }
 
     @RequestMapping("/finishList")
@@ -302,7 +302,14 @@ public class CustomerController {
         Order order=orderService.selectByPrimaryKey(orderid);
         order.setIscomplete(true);
         orderService.updateOrderByKey(order);
-        return Msg.success("修改成功");
+        return Msg.success("完成订单成功");
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        session.removeAttribute("user");
+        return "redirect:/shop/login";
     }
 
 }

@@ -63,6 +63,10 @@
             border: none;
             color: white;
         }
+
+        .finish-btn{
+            background-color:#e65b0e !important;
+        }
     </style>
 </head>
 <body>
@@ -254,7 +258,7 @@
                 <div class="mdl-card__actions mdl-card--border">
                     <button class="templatemo-blue-button" name="changeAddr"><h5>修改地址</h5></button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="templatemo-blue-button" name="deleteAddr"><h5>删除地址</h5></button>
+                    <button class="templatemo-blue-button finish-btn" name="deleteAddr"><h5>删除地址</h5></button>
                 </div>
             </div>
         </div>

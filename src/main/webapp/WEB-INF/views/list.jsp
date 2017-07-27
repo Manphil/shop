@@ -234,7 +234,7 @@
                                                     ${good.goodsid}
                                             </td>
                                             <td class="col-lg-2">
-                                                    ${good.goodsname}
+                                                <a href="${pageContext.request.contextPath}/detail?goodsid=${good.goodsid}">${good.goodsname}</a>
                                             </td>
                                             <td class="col-lg-1">
                                                     ${good.price}
@@ -361,7 +361,7 @@
                                                     ${good.goodsid}
                                             </td>
                                             <td class="col-lg-2">
-                                                    ${good.goodsname}
+                                                <a href="${pageContext.request.contextPath}/detail?goodsid=${good.goodsid}">${good.goodsname}</a>
                                             </td>
                                             <td class="col-lg-1">
                                                     ${good.price}
@@ -378,7 +378,6 @@
                                     </c:forEach>
                                 </div>
                                 <div class="mdl-card__actions mdl-card--border">
-                                    <button class="templatemo-blue-button finish-btn" name="deleteList"><h5>删除订单</h5></button>
                                     <button class="templatemo-blue-button " name="finishList"><h5>完成订单</h5></button>
                                 </div>
                             </div>
@@ -492,7 +491,7 @@
                                                     ${good.goodsid}
                                             </td>
                                             <td class="col-lg-2">
-                                                    ${good.goodsname}
+                                                <a href="${pageContext.request.contextPath}/detail?goodsid=${good.goodsid}">${good.goodsname}</a>
                                             </td>
                                             <td class="col-lg-1">
                                                     ${good.price}

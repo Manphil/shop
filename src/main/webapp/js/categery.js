@@ -25,7 +25,10 @@ $(document).ready(function (){
                    swal(result.msg);
                }
                else {
-                   location.reload();
+                   swal(result.msg);
+                   $("button").click(function (){
+                       location.reload();
+                   });
                }
            },
            error:function (){
@@ -43,7 +46,10 @@ $(document).ready(function (){
             data:category,
             dataType:"json",
             success:function (result){
+                swal(result.msg);
+                $("button").click(function (){
                     location.reload();
+                });
             },
             error:function (){
                 alert("更新失败");
