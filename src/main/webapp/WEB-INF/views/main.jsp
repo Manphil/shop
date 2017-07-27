@@ -29,9 +29,9 @@
             })
         </script> -->
     <script>
-        $(document).ready(function () {
+        /*$(document).ready(function () {
             $(".data-item-li").children("div").addClass("to-big");
-        });
+        });*/
     </script>
 </head>
 <body>
@@ -603,7 +603,7 @@
                         <ul>
                             <c:forEach items="${digGoods}" var="goods">
                                 <li class="data-item-li">
-                                    <div>
+                                    <div class="to-big">
                                         <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"><img src="/goodsimage/${goods.imagePaths[0].path}" alt=""
                                                         width="200" height="200"/>
                                         </a>

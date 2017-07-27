@@ -35,7 +35,11 @@
     <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
     <%--<script src="${pageContext.request.contextPath}/js/jquery.form.min.js"></script>--%>
-
+    <style>
+        .show-span {
+            border: none !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -53,7 +57,7 @@
                     <div class="form-group">
                         <label for="goodsid" class="col-sm-2 control-label">id</label>
                         <div class="col-sm-9">
-                            <span id="goodsid"></span>
+                            <span id="goodsid" class="form-control"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -106,6 +110,74 @@
     </div>
 </div>
 
+<%--修改商品活动--%>
+<div class="modal fade" id="activity-goods" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">添加商品活动</h4>
+            </div>
+            <div class="modal-body">
+                <form class="templatemo-login-form">
+                    <div class="row form-group">
+                        <div class="col-lg-6 form-group">
+                            <div id="activity-goodsid" hidden></div>
+                            <label class="control-label" for="activity-id">活动号</label>
+                            <select class="form-control" id="activity-id">
+                                <option value="1">1</option>
+                                <option value="1">1</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-6 form-group">
+                            <label class="control-label" for="activityname">活动名称</label>
+                            <span type="text" class="form-control show-span" id="activityname" name="activityname"></span>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label class="control-label" for="discount">折扣</label>
+                            <span type="number" class="form-control show-span" id="discount" name="discount" step="0.01"></span>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-6 form-group">
+                            <label class="control-label" for="fullprice">满</label>
+                            <span type="number" class="form-control show-span" id="fullprice" name="fullprice"></span>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label class="control-label" for="reduceprice">减</label>
+                            <span type="number" class="form-control show-span" id="reduceprice" name="reduceprice"></span>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-lg-6 form-group">
+                            <label class="control-label" for="fullnum">满</label>
+                            <span type="number" class="form-control show-span" id="fullnum" name="fullnum"></span>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label class="control-label" for="reducenum">免</label>
+                            <span type="number" class="form-control show-span" id="reducenum" name="reducenum"></span>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-lg-12 form-group">
+                            <label class="control-label" for="activitydes">活动描述</label>
+                            <span class="form-control show-span" id="activitydes" rows="3" name="activitydes">asfd</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="saveActivity">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Left column -->
 <div class="templatemo-flex-row">
@@ -124,9 +196,11 @@
                             <td><a href="" class="white-text templatemo-sort-by">价格<span class="caret"></span></a></td>
                             <td><a href="" class="white-text templatemo-sort-by">数量<span class="caret"></span></a></td>
                             <td><a href="" class="white-text templatemo-sort-by">类别<span class="caret"></span></a></td>
+                            <td><a href="" class="white-text templatemo-sort-by">活动<span class="caret"></span></a></td>
                             <td>详情</td>
                             <td>编辑</td>
                             <td>删除</td>
+                            <td>活动</td>
                         </tr>
                         </thead>
                         <tbody>

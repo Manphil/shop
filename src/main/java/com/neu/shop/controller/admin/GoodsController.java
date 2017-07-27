@@ -66,12 +66,16 @@ public class GoodsController {
     @RequestMapping("/add")
     public String showAdd(@ModelAttribute("succeseMsg") String msg, Model model) {
 
+
+
         if(!msg.equals("")) {
             model.addAttribute("msg", msg);
         }
 
         List<Category> categoryList = cateService.selectByExample(new CategoryExample());
         model.addAttribute("categoryList",categoryList);
+
+
 
         //还需要查询分类传给addGoods页面
         return "addGoods";

@@ -1,11 +1,12 @@
 /**
  * Created by 文辉 on 2017/7/22.
  */
+var activity = [];
+var currentPage = 1;
 $(document).ready(function () {
 
     var path = $("#path").text();
 
-    var currentPage = 1;
 
     to_page(path, 1);
 
@@ -129,6 +130,67 @@ $(document).on("click",".templatemo-delete-btn",function () {
         });
 });
 
+/*$(document).on("click",".templatemo-activity-btn",function () {
+    var goodsid = $(this).parents("tr").find("td:eq(0)").text();
+
+});*/
+
+function showActInfo(activityId) {
+    $('#activityname').text(activity[activityId-1].activityname);
+    $('#activitydes').text(activity[activityId-1].activitydes);
+    $('#discount').text(activity[activityId-1].discount);
+    $('#fullprice').text(activity[activityId-1].fullprice);
+    $('#reduceprice').text(activity[activityId-1].reduceprice);
+    $('#fullnum').text(activity[activityId-1].fullnum);
+    $('#reducenum').text(activity[activityId-1].reducenum);
+}
+
+$("#activity-id").change(function () {
+    showActInfo($(this).val());
+});
+
+function getActivity() {
+    $.ajax({
+        url: "/shop/admin/activity/showjson",
+        type: "post",
+        success: function (result) {
+            if(result.code==100) {
+                $("#activity-id").empty();
+                activity = result.info.activity;
+                $.each(activity, function (index,item) {
+                    $("#activity-id").append($("<option></option>").attr("value",item.activityid).append(item.activityid));
+                });
+                showActInfo(1);
+            } else {
+                alert("获取活动信息失败");
+            }
+        }
+    });
+}
+
+//保存活动信息
+$(document).on("click","#saveActivity",function () {
+    var goodsid = $("#activity-goodsid").text();
+    var activityid = $("#activity-id").val();
+
+    $.ajax({
+        url:"/shop/admin/activity/update/",
+        type:"POST",
+        data:{
+            goodsid:goodsid,
+            activityid:activityid
+        },
+        success:function(result){
+            $("#activity-goods").modal('hide');
+            swal(result.msg,'','success');
+            to_page('/shop', currentPage);
+        },
+        error:function(){
+            alert("错误！！");
+        }
+    });
+});
+
 function to_page(path, page) {
     $.ajax({
         url: path + "/admin/goods/showjson",
@@ -159,22 +221,37 @@ function build_goods_table(path,result) {
         var price = $("<td></td>").append(item.price);
         var num = $("<td></td>").append(item.num);
         var detailcate = $("<td></td>").append(item.detailcate);
+        var activityid = $("<td></td>").append(item.activityid);
 
         // var detailA = $('<a tabindex="0" class="btn btn-sm description" role="button" placement="top" data-toggle="popover" data-trigger="focus" title="描述" ></a>').append("描述");
-        /*var detailA = $('<button type="button" class="description" data-container="body" data-toggle="popover" data-placement="top"></button>').append("描述");
+        var detailBtn = $('<button type="button" class="description" data-container="body" data-toggle="popover" data-placement="top"></button>').append("描述");
 
-        var detailA = detailA.attr("data-content",item.description);*/
+        detailBtn = detailBtn.attr("data-content",item.description);
 
         var detailA = $("<a></a>").addClass("templatemo-link").attr("href","/shop/detail?goodsid="+item.goodsid).append("详情");
 
         var editBtn = $("<button></button>").addClass("templatemo-edit-btn").append("编辑");
         var deleteBtn = $("<button></button>").addClass("templatemo-delete-btn").append("删除");
 
+        var desTd = $("<td hidden></td>").append(detailBtn);
+
+        //活动按钮
+        var actBtn = $("<button></button>").addClass("templatemo-activity-btn").attr("data-actGoodsid",item.goodsid).append("添加");
+        actBtn.click(function () {
+            $("#activity-goods").modal({
+                backdrop:'static'
+            });
+            $("#activity-goodsid").text($(this).attr("data-actGoodsid"));
+            getActivity();
+        });
+
+        var actTd = $("<td></td>").append(actBtn);
+
         var detailTd = $("<td></td>").append(detailA);
         var editTd = $("<td></td>").append(editBtn);
         var deleteTd = $("<td></td>").append(deleteBtn);
 
-        $("<tr></tr>").append(goodsid).append(goodsname).append(price).append(num).append(detailcate).append(detailTd).append(editTd).append(deleteTd).appendTo("#goodsinfo tbody");
+        $("<tr></tr>").append(goodsid).append(goodsname).append(price).append(num).append(detailcate).append(activityid).append(desTd).append(detailTd).append(editTd).append(deleteTd).append(actTd).appendTo("#goodsinfo tbody");
     })
 }
 
