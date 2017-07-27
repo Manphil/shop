@@ -16,10 +16,14 @@
     <title>Visual Admin Dashboard - Preferences</title>
     <meta name="description" content="">
     <meta name="author" content="templatemo">
+    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
     <link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/templatemo-style.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/categery.js"></script>
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,6 +35,7 @@
     <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
 
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/templatemo-script.js"></script>
     <%--<c:if test="${empty msg}">
         <script>
             swal(${msg}, "成功","success");
@@ -41,7 +46,7 @@
 
 <%--修改商品信息模态框--%>
 <!-- Modal -->
-<div class="modal fade" id="update-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="update-cate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -60,7 +65,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="savecatename" >保存</button>
+                <button type="button" class="btn btn-primary" id="saveCatename" >保存</button>
             </div>
         </div>
     </div>
@@ -80,16 +85,16 @@
                             <thead>
                             <tr>
                                 <td>分类名</td>
-                                <td>编辑</td>
-                                <td>删除</td>
+                                <td >编辑</td>
+                                <td >删除</td>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach items="${categoryList}" var="category">
                                 <tr>
-                                    <td><a href="" class="templatemo-link">${category.catename}</a></td>
-                                    <td><button href="" class="templatemo-edit-btn">编辑</button></td>
-                                    <td><button href="" class="templatemo-delete-btn">删除</button></td>
+                                    <td><a href="" class="templatemo-link" cateId="${category.cateid}">${category.catename}</a></td>
+                                    <td><button href="" class="templatemo-edit-btn" name="changCate">编辑</button></td>
+                                    <td><button href="" class="templatemo-delete-btn" name="deleteCate">删除</button></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -114,9 +119,7 @@
 </div>
 
 <!-- JS -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.2.min.js"></script>        <!-- jQuery -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-filestyle.min.js"></script>  <!-- http://markusslima.github.io/bootstrap-filestyle/ -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/templatemo-script.js"></script>        <!-- Templatemo Script -->
+        <!-- Templatemo Script -->
 <c:if test="${!empty msg}">
     <script type="text/javascript">
         $(document).ready(function () {
