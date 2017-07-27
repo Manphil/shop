@@ -30,4 +30,6 @@ public interface GoodsService {
     public Favorite selectFavByKey(FavoriteKey favoriteKey);
 
     public void deleteFavByKey(FavoriteKey favoriteKey);
+
+    public List<Favorite> selectFavByExample(FavoriteExample favoriteExample);
 }
