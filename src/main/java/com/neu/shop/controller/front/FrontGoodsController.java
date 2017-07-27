@@ -6,6 +6,7 @@ import com.neu.shop.pojo.*;
 import com.neu.shop.service.CateService;
 import com.neu.shop.service.CommentService;
 import com.neu.shop.service.GoodsService;
+import com.neu.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,12 @@ public class FrontGoodsController {
 
     @Autowired
     private CateService cateService;
+
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/detail",method = RequestMethod.GET)
     public String detailGoods(Integer goodsid, Model model, HttpSession session) {
@@ -74,6 +81,19 @@ public class FrontGoodsController {
         goodsInfo.put("test",1);
         model.addAttribute("goodsInfo",goodsInfo);
 //        model.addAllAttributes(goodsInfo);
+
+        //评论信息
+        CommentExample commentExample=new CommentExample();
+        commentExample.or().andUseridEqualTo(user.getUserid()).andGoodsidEqualTo(goods.getGoodsid());
+        List<Comment> commentList=commentService.selectByExample(commentExample);
+        for (Integer i=0;i<commentList.size();i++)
+        {
+            Comment comment=commentList.get(i);
+            User commentUser=userService.selectByPrimaryKey(comment.getUserid());
+            comment.setUserName(commentUser.getUsername());
+            commentList.set(i,comment);
+        }
+        model.addAttribute("commentList",commentList);
 
         return "detail";
     }
@@ -213,8 +233,7 @@ public class FrontGoodsController {
         return "category";
     }
 
-    @Autowired
-    private CommentService commentService;
+
 
     @RequestMapping("/comment")
     @ResponseBody

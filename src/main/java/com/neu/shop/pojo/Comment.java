@@ -15,6 +15,8 @@ public class Comment {
 
     private Date commenttime;
 
+    private String username;
+
     public Integer getCommentid() {
         return commentid;
     }
@@ -62,4 +64,8 @@ public class Comment {
     public void setCommenttime(Date commenttime) {
         this.commenttime = commenttime;
     }
+
+    public void setUserName(String userName) {this.username=userName;}
+
+    public String getUsername() {return username;}
 }
