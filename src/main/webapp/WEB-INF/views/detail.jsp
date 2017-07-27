@@ -147,6 +147,13 @@
             });
         });
     </script>
+    <style>
+        .head{
+            width: 45px !important;
+            background: rgba(0,0,0,.0001) none repeat scroll 0 0 !important;
+            border: 1px solid rgba(0,0,0,.075) !important;
+        }
+    </style>
 
 </head>
 
@@ -294,7 +301,7 @@
                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
                                                                   data-toggle="tab">商品描述</a></li>
                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">评价
-                            (2)</a></li>
+                            (${commentList.size()})</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -314,97 +321,52 @@
                                     <div class="tb_desc">
                                         <div class="review_area_heading">
                                             <div id="comnt">
-                                                <h2>2条评论</h2>
+                                                <h2>${commentList.size()}条评论</h2>
                                                 <ol class="commentlist">
-                                                    <li id="li-comment-22" class="comment even thread-even depth-1"
-                                                        itemscope="">
-                                                        <div id="comment-22" class="comment_container">
-                                                            <img class="avatar avatar-60 photo" width="60" height="60"
-                                                                 src="img/icon/men_icon.jpg" alt="">
-                                                            <div class="comment-text">
-                                                                <div class="star-rating" title="Rated 4 out of 5"
-                                                                     itemscope="">
-                                                                    <div class="price_rating price_rating_2">
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a class="not-rated" href="#">
-                                                                            <i class="fa fa-star-o"
-                                                                               aria-hidden="true"></i>
-                                                                        </a>
-                                                                        <span>
+                                                    <c:forEach items="${commentList}" var="comment">
+                                                        <li id="li-comment-22" class="comment even thread-even depth-1"
+                                                            itemscope="">
+                                                            <div id="comment-22" class="comment_container">
+                                                                <img class="head avatar avatar-60 photo "width="60" height="60"
+                                                                     src="${pageContext.request.contextPath}/image/head.jpg" alt="">
+                                                                <div class="comment-text">
+                                                                    <div class="star-rating" title="Rated 4 out of 5"
+                                                                         itemscope="">
+                                                                        <div class="price_rating price_rating_2">
+                                                                          <c:forEach  begin="1" end="${comment.point}">
+                                                                              <a href="#">
+                                                                                  <i class="fa fa-star"></i>
+                                                                              </a>
+                                                                          </c:forEach>
+                                                                            <c:forEach begin="${comment.point+1}" end="5">
+                                                                                <a class="not-rated" href="#">
+                                                                                    <i class="fa fa-star-o"
+                                                                                       aria-hidden="true"></i>
+                                                                                </a>
+                                                                            </c:forEach>
+                                                                            <span>
                                                                                 <strong>4</strong>
                                                                                 out of 5
                                                                             </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="meta">
+                                                                        <strong>${comment.username}</strong>
+                                                                        –
+                                                                        <time datetime="${comment.commenttime}">
+                                                                            ${comment.commenttime.year+1900}年
+                                                                            ${comment.commenttime.month}月
+                                                                            ${comment.commenttime.day}日
+                                                                        </time>
+                                                                        :
+                                                                    </p>
+                                                                    <div class="description">
+                                                                        <p>${comment.content}</p>
                                                                     </div>
                                                                 </div>
-                                                                <p class="meta">
-                                                                    <strong>admin</strong>
-                                                                    –
-                                                                    <time datetime="2015-12-16T15:26:49+00:00">December
-                                                                        16, 2015
-                                                                    </time>
-                                                                    :
-                                                                </p>
-                                                                <div class="description">
-                                                                    <p>like</p>
-                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="comment even thread-even depth-1" itemscope="">
-                                                        <div class="comment_container">
-                                                            <img class="avatar avatar-60 photo" width="60" height="60"
-                                                                 src="img/icon/men_icon.jpg" alt="">
-                                                            <div class="comment-text">
-                                                                <div class="star-rating" title="Rated 4 out of 5"
-                                                                     itemscope="">
-                                                                    <div class="price_rating price_rating_2">
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                            <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a class="not-rated" href="#">
-                                                                            <i class="fa fa-star-o"
-                                                                               aria-hidden="true"></i>
-                                                                        </a>
-                                                                        <span>
-                                                                                <strong>4</strong>
-                                                                                out of 5
-                                                                            </span>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="meta">
-                                                                    <strong>alex</strong>
-                                                                    –
-                                                                    <time datetime="2015-12-16T15:26:49+00:00">December
-                                                                        18, 2015
-                                                                    </time>
-                                                                    :
-                                                                </p>
-                                                                <div class="description">
-                                                                    <p>google</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                        </li>
+                                                    </c:forEach>
                                                 </ol>
                                             </div>
                                             <%--<div class="review_form_area">
