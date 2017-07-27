@@ -33,6 +33,9 @@
             /*background-color: #f8ffff !important;*/
             background-color: #fbffff !important;
         }
+        .templatemo-content-container {
+            padding: 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -40,7 +43,18 @@
     <jsp:include page="sidebar.jsp"/>
     <!-- Main content -->
     <div class="templatemo-content col-1 light-gray-bg">
-        <jsp:include page="adminOrderNav.jsp"/>
+        <div class="templatemo-top-nav-container">
+            <div class="row">
+                <nav class="templatemo-top-nav col-lg-12 col-md-12">
+                    <ul class="text-uppercase">
+                        <li><a href="${pageContext.request.contextPath}/admin/chat" class="active">聊天</a></li>
+                        <%--<li><a href="${pageContext.request.contextPath}/admin/order/receiver">未收货</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/order/complete">已完成</a></li>--%>
+                        <%--<li><a href="login.html">Sign in form</a></li>--%>
+                    </ul>
+                </nav>
+            </div>
+        </div>
         <div class="templatemo-content-container">
             <div class="templatemo-content-widget white-bg">
                 <div id="main">

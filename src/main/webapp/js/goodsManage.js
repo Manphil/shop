@@ -161,9 +161,12 @@ function build_goods_table(path,result) {
         var detailcate = $("<td></td>").append(item.detailcate);
 
         // var detailA = $('<a tabindex="0" class="btn btn-sm description" role="button" placement="top" data-toggle="popover" data-trigger="focus" title="描述" ></a>').append("描述");
-        var detailA = $('<button type="button" class="description" data-container="body" data-toggle="popover" data-placement="top"></button>').append("描述");
+        /*var detailA = $('<button type="button" class="description" data-container="body" data-toggle="popover" data-placement="top"></button>').append("描述");
 
-        var detailA = detailA.attr("data-content",item.description);
+        var detailA = detailA.attr("data-content",item.description);*/
+
+        var detailA = $("<a></a>").addClass("templatemo-link").attr("href","/shop/detail?goodsid="+item.goodsid).append("详情");
+
         var editBtn = $("<button></button>").addClass("templatemo-edit-btn").append("编辑");
         var deleteBtn = $("<button></button>").addClass("templatemo-delete-btn").append("删除");
 

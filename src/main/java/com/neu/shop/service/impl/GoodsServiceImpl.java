@@ -85,4 +85,9 @@ public class GoodsServiceImpl implements GoodsService {
     public void deleteFavByKey(FavoriteKey favoriteKey) {
         favoriteMapper.deleteByPrimaryKey(favoriteKey);
     }
+
+    @Override
+    public List<Favorite> selectFavByExample(FavoriteExample favoriteExample) {
+        return favoriteMapper.selectByExample(favoriteExample);
+    }
 }

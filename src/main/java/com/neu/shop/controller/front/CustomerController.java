@@ -222,4 +222,53 @@ public class CustomerController {
         return Msg.success("删除成功");
     }
 
+
+    @RequestMapping("/info/favorite")
+    public String showFavorite(@RequestParam(value = "page",defaultValue = "1") Integer pn, HttpServletRequest request,Model model){
+        HttpSession session=request.getSession();
+        User user=(User)session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        //一页显示几个数据
+        PageHelper.startPage(pn, 16);
+
+        FavoriteExample favoriteExample = new FavoriteExample();
+        favoriteExample.or().andUseridEqualTo(user.getUserid());
+        List<Favorite> favoriteList = goodsService.selectFavByExample(favoriteExample);
+
+        List<Integer> goodsIdList = new ArrayList<Integer>();
+        for (Favorite tmp:favoriteList) {
+            goodsIdList.add(tmp.getGoodsid());
+        }
+
+        GoodsExample goodsExample = new GoodsExample();
+        List<Goods> goodsList = new ArrayList<>();
+        if (!goodsIdList.isEmpty()) {
+            goodsExample.or().andGoodsidIn(goodsIdList);
+            goodsList = goodsService.selectByExample(goodsExample);
+        }
+
+        //获取图片地址
+        for (int i = 0; i < goodsList.size(); i++) {
+            Goods goods = goodsList.get(i);
+
+            List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
+
+            goods.setImagePaths(imagePathList);
+
+            //判断是否收藏
+            goods.setFav(true);
+
+            goodsList.set(i, goods);
+        }
+
+        //显示几个页号
+        PageInfo page = new PageInfo(goodsList,5);
+        model.addAttribute("pageInfo", page);
+
+        return "favorite";
+    }
+
 }
