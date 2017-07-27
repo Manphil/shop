@@ -195,6 +195,7 @@
         <header class="demo-drawer-header">
             <%-- <img src="images/user.jpg" class="demo-avatar">--%>
             <div class="demo-avatar-dropdown">
+                <h1>淘一淘</h1>
                 <%-- <span>hello@example.com</span>--%>
                 <div class="mdl-layout-spacer"></div>
                 <%--<button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
