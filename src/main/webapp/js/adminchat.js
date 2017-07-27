@@ -193,7 +193,7 @@ $(document).ready(function () {
         onSuccess: function () {
             //订阅topic
             client.subscribe("topic");
-            alert("连接成功");
+            // alert("连接成功");
         }
     });
     //var loadMessage = setInterval(receive,1000);
