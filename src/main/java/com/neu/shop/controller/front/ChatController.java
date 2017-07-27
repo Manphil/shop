@@ -27,11 +27,11 @@ public class ChatController {
     UserService userService;
 
     @RequestMapping("/chat")
-    public String showChat(HttpSession session, Model model) {
-        //查询历史消息聊天对象
+    public String showChat(HttpSession session, Model model, Integer sendto) {
+        /*//查询历史消息聊天对象
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            return "redirect:/shop/login";
+            return "redirect:/login";
         }
         ChatExample chatExample = new ChatExample();
         chatExample.or().andReceiveuserEqualTo(user.getUserid());
@@ -58,10 +58,57 @@ public class ChatController {
         UserExample userExample = new UserExample();
         userExample.or().andUseridIn(useridList);
         List<User> userList = userService.selectByExample(userExample);
-        model.addAttribute("chatuserlist", userList);
+        model.addAttribute("chatuserlist", userList);*/
 
+        if (sendto != null) {
+            User user = userService.selectByPrimaryKey(sendto);
+            model.addAttribute("sendto", user);
+        }
         return "chat";
     }
+
+
+    @RequestMapping("/chatto")
+    @ResponseBody
+    public Msg getChatTo(HttpSession session, Model model, Integer sendto) {
+        //查询历史消息聊天对象
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return Msg.fail("未登录");
+        }
+        ChatExample chatExample = new ChatExample();
+        chatExample.or().andReceiveuserEqualTo(user.getUserid());
+//        chatExample.or().andSenduserEqualTo(user.getUserid());
+//        chatExample.setOrderByClause("MsgTime asc");
+        List<Chat> chatList1 = chatService.selectChatByExample(chatExample);
+
+        ChatExample chatExample2 = new ChatExample();
+//        chatExample.or().andReceiveuserEqualTo(user.getUserid());
+        chatExample2.or().andSenduserEqualTo(user.getUserid());
+//        chatExample.setOrderByClause("MsgTime asc");
+        List<Chat> chatList2 = chatService.selectChatByExample(chatExample2);
+
+        //获取userid列表
+        List<Integer> useridList = new ArrayList<>();
+        for (Chat chat : chatList1) {
+            useridList.add(chat.getSenduser());
+        }
+        for (Chat chat : chatList2) {
+            useridList.add(chat.getReceiveuser());
+        }
+
+        if (sendto != null) {
+            useridList.add(sendto);
+        }
+
+        //获取用户信息
+        UserExample userExample = new UserExample();
+        userExample.or().andUseridIn(useridList);
+        List<User> userList = userService.selectByExample(userExample);
+
+        return Msg.success("获取聊天列表成功").add("userlist",userList);
+    }
+
 
     @RequestMapping("/getMessage")
     @ResponseBody
@@ -76,13 +123,18 @@ public class ChatController {
         return Msg.success("获取消息成功").add("message", chatList);
     }
 
-    @RequestMapping("/frontchat")
-    public String frontChat() {
-        return "frontChat";
+    @RequestMapping("/admin/chat")
+    public String frontChat(Integer sendto, Model model) {
+        if (sendto != null) {
+            User user = userService.selectByPrimaryKey(sendto);
+            model.addAttribute("sendto", user);
+        }
+        return "adminChat";
     }
 
     @RequestMapping("/adminchat")
-    public String adminChat(HttpSession session, Model model) {
+    @ResponseBody
+    public Msg adminChat(HttpSession session, Model model, Integer sendto) {
 
         //查询历史消息聊天对象
         /*User user = (User) session.getAttribute("user");
@@ -111,12 +163,16 @@ public class ChatController {
             useridList.add(chat.getReceiveuser());
         }
 
+        if (sendto != null) {
+            useridList.add(sendto);
+        }
+
         //获取用户信息
         UserExample userExample = new UserExample();
         userExample.or().andUseridIn(useridList);
         List<User> userList = userService.selectByExample(userExample);
-        model.addAttribute("chatuserlist", userList);
-        return "adminChat";
+//        model.addAttribute("chatuserlist", userList);
+        return Msg.success("获取列表成功").add("userlist",userList);
     }
 
     @RequestMapping("/sendMessage")

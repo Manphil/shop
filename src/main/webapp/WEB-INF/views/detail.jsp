@@ -77,6 +77,21 @@
 
             });
 
+            /*$("#chatto").click(function () {
+                $.ajax({
+                    url: "/shop/chat/", //把表单数据发送到ajax.jsp
+                    type: "POST",
+                    data: {
+                        sendto: 5
+                    },
+                    error: function (request) {
+                        alert(result.msg);
+                    },
+                    success: function (result) {
+                    }
+                });
+            });*/
+
             $('.fav-button').click(function(){
                 //$(this).removeClass("glyphicon-heart-empty");
                 var goodsId = $(this).attr('data-id');
@@ -230,7 +245,7 @@
 
                     <div class="rel-div">
                         <div class="add_defi new_meta">
-                            <a href="#" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
+                            <a id="chatto" href="${pageContext.request.contextPath}/chat?sendto=5" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
                                 <i class="fa fa-commenting"></i>
                                 联系客服
                             </a>

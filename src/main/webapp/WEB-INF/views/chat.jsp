@@ -33,13 +33,13 @@
     <div class="chat-div">
         <div class="chat-list">
             <div class="a-far">
-                <c:forEach items="${chatuserlist}" var="userinfo">
+                <%--<c:forEach items="${chatuserlist}" var="userinfo">
                     <a class="a-card" data-userid="${userinfo.userid}">
                         <div class="card">
                             ${userinfo.username}
                         </div>
                     </a>
-                </c:forEach>
+                </c:forEach>--%>
             </div>
             <%--<div class="list-item" id="list-item0">
                 <h3 id="user-name"></h3>
@@ -82,9 +82,9 @@
             <div class="chat-name">
                 <div class="chat-name-detail">
                     <h3 id="receive">
-
+                        ${sendto.username}
                     </h3>
-                    <span id="receiveId" hidden></span>
+                    <span id="receiveId" hidden>${sendto.userid}</span>
                     <h3 id="send" hidden>
                         ${sessionScope.user.username}
                     </h3>

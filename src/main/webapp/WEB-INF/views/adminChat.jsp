@@ -32,23 +32,23 @@
     </div>
     <div class="chat-div">
         <div class="chat-list">
-            <div>
-                <c:forEach items="${chatuserlist}" var="userinfo">
+            <div class="a-far">
+                <%--<c:forEach items="${chatuserlist}" var="userinfo">
                     <a class="a-card" data-userid="${userinfo.userid}">
                         <div class="card">
                                 ${userinfo.username}
                         </div>
                     </a>
-                </c:forEach>
+                </c:forEach>--%>
             </div>
         </div>
         <div class="chat">
             <div class="chat-name">
                 <div class="chat-name-detail">
                     <h3 id="receive">
-
+                        ${sendto.username}
                     </h3>
-                    <span id="receiveId" hidden></span>
+                    <span id="receiveId" hidden>${sendto.userid}</span>
                     <h3 id="send" hidden>
                         客服
                     </h3>
