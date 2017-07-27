@@ -1,10 +1,7 @@
 package com.neu.shop.controller.front;
 
 import com.neu.shop.pojo.*;
-import com.neu.shop.service.AddressService;
-import com.neu.shop.service.GoodsService;
-import com.neu.shop.service.OrderService;
-import com.neu.shop.service.ShopCartService;
+import com.neu.shop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +35,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private ActivityService activityService;
+
     @RequestMapping("/order")
     public String showOrder(HttpSession session, Model model) {
 
@@ -57,15 +58,37 @@ public class OrderController {
 
         //获取购物车中的商品信息
         List<Goods> goodsAndImage = new ArrayList<>();
+
+        Float totalPrice = new Float(0);
+        Integer oldTotalPrice = 0;
+
         for (ShopCart cart:shopCart) {
             Goods goods = goodsService.selectById(cart.getGoodsid());
 
             List<ImagePath> imagePathList = goodsService.findImagePath(goods.getGoodsid());
             goods.setImagePaths(imagePathList);
             goods.setNum(cart.getGoodsnum());
+
+            //活动信息
+            Activity activity = activityService.selectByKey(goods.getActivityid());
+            goods.setActivity(activity);
+
+            if(activity.getDiscount() != 1) {
+                goods.setNewPrice(goods.getPrice()*goods.getNum()* activity.getDiscount());
+            } else {
+                if (goods.getNum() >= activity.getFullnum()) {
+                    goods.setNewPrice((float) (goods.getPrice()*(goods.getNum()-activity.getReducenum())));
+                } else {
+                    goods.setNewPrice((float) (goods.getPrice()*goods.getNum()));
+                }
+            }
+            totalPrice = totalPrice + goods.getNewPrice();
+            oldTotalPrice = oldTotalPrice + goods.getNum() * goods.getPrice();
             goodsAndImage.add(goods);
         }
 
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("oldTotalPrice", oldTotalPrice);
         model.addAttribute("goodsAndImage", goodsAndImage);
 
         return "orderConfirm";

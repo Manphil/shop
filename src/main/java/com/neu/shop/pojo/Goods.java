@@ -26,6 +26,10 @@ public class Goods {
 
     private boolean fav;
 
+    private Activity activity;
+
+    private Float newPrice;
+
     public Integer getGoodsid() {
         return goodsid;
     }
@@ -113,5 +117,21 @@ public class Goods {
 
     public void setFav(boolean fav) {
         this.fav = fav;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    public Float getNewPrice() {
+        return newPrice;
+    }
+
+    public void setNewPrice(Float newPrice) {
+        this.newPrice = newPrice;
     }
 }

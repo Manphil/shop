@@ -14,5 +14,7 @@ public interface ActivityService {
 
     void insertActivitySelective(Activity activity);
 
+    Activity selectByKey(Integer activityid);
+
 //    void updateGoodsActSelective(Goods goods);
 }

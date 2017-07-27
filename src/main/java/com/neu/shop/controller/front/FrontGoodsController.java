@@ -3,10 +3,7 @@ package com.neu.shop.controller.front;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neu.shop.pojo.*;
-import com.neu.shop.service.CateService;
-import com.neu.shop.service.CommentService;
-import com.neu.shop.service.GoodsService;
-import com.neu.shop.service.UserService;
+import com.neu.shop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +34,9 @@ public class FrontGoodsController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ActivityService activityService;
 
     @RequestMapping(value = "/detail",method = RequestMethod.GET)
     public String detailGoods(Integer goodsid, Model model, HttpSession session) {
@@ -73,18 +73,19 @@ public class FrontGoodsController {
         //商品评论
 
         //商品折扣信息
+        Activity activity = activityService.selectByKey(goods.getActivityid());
+        goods.setActivity(activity);
 
         //返回数据
         goodsInfo.put("goods", goods);
         goodsInfo.put("cate", category);
         goodsInfo.put("image", imagePath);
-        goodsInfo.put("test",1);
         model.addAttribute("goodsInfo",goodsInfo);
 //        model.addAllAttributes(goodsInfo);
 
         //评论信息
         CommentExample commentExample=new CommentExample();
-        commentExample.or().andUseridEqualTo(user.getUserid()).andGoodsidEqualTo(goods.getGoodsid());
+        commentExample.or().andGoodsidEqualTo(goods.getGoodsid());
         List<Comment> commentList=commentService.selectByExample(commentExample);
         for (Integer i=0;i<commentList.size();i++)
         {
