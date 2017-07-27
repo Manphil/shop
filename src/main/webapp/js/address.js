@@ -61,7 +61,7 @@ $(document).ready(function (){
                 location.reload();
             },
             error:function (){
-                alert("更新失败");
+                alert("删除失败");
             }
             });
     });

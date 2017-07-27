@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var oldPswflag=0;
     var newPswflag=0;
-    $("#name").val($("#nameVal").text());
+    $("#name").text($("#nameVal").text());
     $("#email").val($("#emailVal").text());
     $("#telephone").val($("#telephoneVal").text());
     $("#changeInfo").click(function(){

@@ -91,6 +91,10 @@ public class CustomerController {
         User user;
         Integer userId;
         user=(User) session.getAttribute("user");
+        if (user==null)
+        {
+            return "redirect:/login";
+        }
         userId=user.getUserid();
         user=userService.selectByPrimaryKey(userId);
         userModel.addAttribute("user",user);
@@ -128,6 +132,10 @@ public class CustomerController {
     public String address(HttpServletRequest request,Model addressModel){
         HttpSession session=request.getSession();
         User user=(User)session.getAttribute("user");
+        if (user==null)
+        {
+            return "redirect:/login";
+        }
         AddressExample addressExample=new AddressExample();
         addressExample.or().andUseridEqualTo(user.getUserid());
         List<Address> addressList=addressService.getAllAddressByExample(addressExample);
@@ -174,6 +182,12 @@ public class CustomerController {
         HttpSession session=request.getSession();
         User user;
         user=(User)session.getAttribute("user");
+
+        if (user==null)
+        {
+            return "redirect:/login";
+        }
+
         OrderExample orderExample=new OrderExample();
        orderExample.or().andUseridEqualTo(user.getUserid());
         List<Order> orderList=orderService.selectOrderByExample(orderExample);

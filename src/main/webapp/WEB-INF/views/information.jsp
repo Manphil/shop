@@ -95,7 +95,7 @@ limitations under the License
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">昵称</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="name" id="name">
+                            <div  name="name" id="name"></div>
                         </div>
                     </div>
                     <div class="form-group">
