@@ -2,16 +2,15 @@ package com.neu.shop.controller.admin;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.neu.shop.pojo.Activity;
-import com.neu.shop.pojo.ActivityExample;
-import com.neu.shop.pojo.Goods;
-import com.neu.shop.pojo.GoodsExample;
+import com.neu.shop.pojo.*;
 import com.neu.shop.service.ActivityService;
+import com.neu.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -24,6 +23,9 @@ public class ActivityController {
 
     @Autowired(required = false)
     ActivityService activityService;
+
+    @Autowired(required = false)
+    GoodsService goodsService;
 
     @RequestMapping("/show")
     public String showActivity(@RequestParam(value = "page",defaultValue = "1") Integer pn, Model model) {
@@ -41,5 +43,40 @@ public class ActivityController {
         model.addAttribute("pageInfo", page);
 
         return "activity";
+    }
+
+    @RequestMapping("/showjson")
+    @ResponseBody
+    public Msg showActivityJson(@RequestParam(value = "page",defaultValue = "1") Integer pn, Model model) {
+
+        ActivityExample activityExample = new ActivityExample();
+        activityExample.or();
+
+        List<Activity> activityList = activityService.getAllActivity(activityExample);
+
+        return Msg.success("获取活动信息成功").add("activity",activityList);
+    }
+
+    @RequestMapping("/add")
+    public String showAddActivity() {
+        return "addActivity";
+    }
+
+    @RequestMapping("/addResult")
+    public String addActivity(Activity activity) {
+
+        activityService.insertActivitySelective(activity);
+
+        return "redirect:/admin/activity/show";
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public Msg updateActivity(Integer goodsid, Integer activityid) {
+        Goods goods = new Goods();
+        goods.setActivityid(activityid);
+        goods.setGoodsid(goodsid);
+        goodsService.updateGoodsById(goods);
+        return Msg.success("更新商品活动成功");
     }
 }

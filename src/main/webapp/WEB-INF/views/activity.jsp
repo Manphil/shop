@@ -39,80 +39,23 @@
 </head>
 <body>
 
-<%--修改商品信息模态框--%>
-<!-- Modal -->
-<div class="modal fade" id="update-goods" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">修改商品信息</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" id="update-form" name="update-form" method="post">
-                    <div class="form-group">
-                        <label for="goodsid" class="col-sm-2 control-label">id</label>
-                        <div class="col-sm-9">
-                            <span id="goodsid"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="goodsname" class="col-sm-2 control-label">商品名</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="goodsname" id="goodsname">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="price" class="col-sm-2 control-label">价格</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" name="price" id="price">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="num" class="col-sm-2 control-label">数量</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" id="num" name="num">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-sm-2 control-label">描述</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" id="description" name="description"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="category" class="col-sm-2 control-label">类别</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" id="category" name="category">
-                                <c:forEach items="${categoryList}" var="item">
-                                    <option value="${item.cateid}">${item.catename}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="detailcate" class="col-sm-2 control-label">详细分类</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="detailcate" name="detailcate">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="saveUpdate">保存</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <!-- Left column -->
 <div class="templatemo-flex-row">
     <jsp:include page="sidebar.jsp"/>
     <!-- Main content -->
     <div class="templatemo-content col-1 light-gray-bg">
-        <jsp:include page="goodsNav.jsp"/>
+        <div class="templatemo-top-nav-container">
+            <div class="row">
+                <nav class="templatemo-top-nav col-lg-12 col-md-12">
+                    <ul class="text-uppercase">
+                        <li><a href="${pageContext.request.contextPath}/admin/activity/show" class="active">所有活动</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/activity/add">添加活动</a></li>
+                        <%--<li><a href="${pageContext.request.contextPath}/admin/goods/addCategory">添加分类</a></li>--%>
+                        <%--<li><a href="login.html">。。。</a></li>--%>
+                    </ul>
+                </nav>
+            </div>
+        </div>
         <div class="templatemo-content-container">
             <div class="templatemo-content-widget no-padding">
                 <div class="panel panel-default table-responsive">
@@ -143,7 +86,7 @@
                                 </c:if>
 
                                 <c:if test="${!empty activity.fullnum}">
-                                    <td>满${activity.fullnum}减${activity.reducenum}</td>
+                                    <td>满${activity.fullnum}免${activity.reducenum}</td>
                                 </c:if>
                                 <c:if test="${empty activity.fullnum}">
                                     <td>无满免</td>
@@ -159,15 +102,14 @@
 
             <div class="pagination-wrap" id="page-div-nav">
                 <div class="page-info" id="page-info-area">
-                    <%--当前第${pageInfo.pageNum}页，总共${pageInfo.pages}页，总共${pageInfo.total}记录--%>
+                    当前第${pageInfo.pageNum}页，总共${pageInfo.pages}页，总共${pageInfo.total}记录
                 </div>
-                <%--<ul class="pagination">
+                <ul class="pagination">
                     <li>
                         <a href="${pageContext.request.contextPath}/admin/goods/show?page=1" aria-label="Next">
                             <span aria-hidden="true">首页</span>
                         </a>
                     </li>
-
                     <c:if test="${pageInfo.hasPreviousPage}">
                         <li>
                             <a href="${pageContext.request.contextPath}/admin/goods/show?page=${pageInfo.pageNum - 1}" aria-label="Previous">
@@ -197,7 +139,7 @@
                             <span aria-hidden="true">末页</span>
                         </a>
                     </li>
-                </ul>--%>
+                </ul>
             </div>
         </div>
     </div>
@@ -205,7 +147,6 @@
 <div id="path" style="display: none;">${pageContext.request.contextPath}</div>
 <!-- jQuery -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/templatemo-script.js"></script>
-<script src="${pageContext.request.contextPath}/js/goodsManage.js"></script>
 <!-- Templatemo Script -->
 <script>
     $(document).ready(function () {
@@ -213,7 +154,12 @@
         var imageUrl = $('img.content-bg-img').attr('src');
         $('.templatemo-content-img-bg').css('background-image', 'url(' + imageUrl + ')');
         $('img.content-bg-img').hide();
+
+        /*$("a").click(function () {
+            $(this).addClass("active");
+        });*/
     });
+
 </script>
 </body>
 </html>

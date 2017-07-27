@@ -3,14 +3,17 @@ package com.neu.shop.service.impl;
 import com.neu.shop.dao.ActivityMapper;
 import com.neu.shop.pojo.Activity;
 import com.neu.shop.pojo.ActivityExample;
+import com.neu.shop.pojo.Goods;
 import com.neu.shop.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by 文辉 on 2017/7/27.
  */
+@Service("activityService")
 public class ActivityServiceImpl implements ActivityService {
 
     @Autowired(required = false)
@@ -19,4 +22,14 @@ public class ActivityServiceImpl implements ActivityService {
     public List<Activity> getAllActivity(ActivityExample activityExample) {
         return activityMapper.selectByExample(activityExample);
     }
+
+    @Override
+    public void insertActivitySelective(Activity activity) {
+        activityMapper.insertSelective(activity);
+    }
+
+    /*@Override
+    public void updateGoodsActSelective(Goods goods) {
+
+    }*/
 }

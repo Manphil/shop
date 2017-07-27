@@ -2,6 +2,7 @@ package com.neu.shop.service;
 
 import com.neu.shop.pojo.Activity;
 import com.neu.shop.pojo.ActivityExample;
+import com.neu.shop.pojo.Goods;
 
 import java.util.List;
 
@@ -9,5 +10,9 @@ import java.util.List;
  * Created by 文辉 on 2017/7/27.
  */
 public interface ActivityService {
-    public List<Activity> getAllActivity(ActivityExample activityExample);
+    List<Activity> getAllActivity(ActivityExample activityExample);
+
+    void insertActivitySelective(Activity activity);
+
+//    void updateGoodsActSelective(Goods goods);
 }
