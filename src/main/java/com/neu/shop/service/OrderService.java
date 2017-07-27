@@ -21,4 +21,6 @@ public interface OrderService {
     public Address getAddressByKey(Integer addressid);
 
     public void updateOrderByKey(Order order);
+
+    public Order selectByPrimaryKey(Integer orderid);
 }

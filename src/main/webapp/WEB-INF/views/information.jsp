@@ -120,6 +120,52 @@ limitations under the License
     </div>
 </div>
 
+<%--修改商品信息模态框--%>
+<!-- Modal -->
+<div class="modal fade" id="update-Psw" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPsw">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabelPsw">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="updatePsw-form" name="update-form" method="post">
+                    <div class="form-group">
+                        <label for="oldPsw" class="col-sm-2 control-label">旧密码</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" name="oldPsw" id="oldPsw">
+                        </div>
+                    </div>
+                    <div class="form-group" style="display: none" id="oldPswError">
+                        <label for="name" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-9">
+                            <label style="color: #BD1F3B">密码错误</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPsw" class="col-sm-2 control-label">新密码</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" name="newPsw" id="newPsw">
+                        </div>
+                    </div>
+                    <div class="form-group" style="display: none" id="newPswError">
+                        <label for="name" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-9">
+                            <label style="color: #BD1F3B">密码应长度大于8</label>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="savePsw" >保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
@@ -165,7 +211,8 @@ limitations under the License
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/main"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>主页</a>
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/information"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>个人信息</a>
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/list"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>订单管理</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>地址管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>地址管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/favorite"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>我的收藏</a>
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
@@ -189,7 +236,11 @@ limitations under the License
                             </tr>
                             <tr>
                                 <th style="border: 0px solid transparent" class="tl">注册时间</th>
-                                <td style="border: 0px solid transparent" class="tr" id="regTimeVal">${user.getRegtime()}</td>
+                                <td style="border: 0px solid transparent" class="tr" id="regTimeVal">
+                                    ${user.regtime.year+1900} 年
+                                    ${user.regtime.month} 月
+                                    ${user.regtime.day} 日
+                                </td>
                             </tr>
                             <tr>
                                 <th style="border: 0px solid transparent" class="tl">邮箱</th>
@@ -199,11 +250,13 @@ limitations under the License
                                 <th style="border: 0px solid transparent" class="tl">手机号</th>
                                 <td style="border: 0px solid transparent" class="tr" id="telephoneVal">${user.getTelephone()}</td>
                             </tr>
+                            <i Psw="${user.getPassword()}" id="Psw"></i>
                             </tbody>
                         </table>
                     </div>
                 <div class="mdl-card__actions mdl-card--border">
                     <button class="templatemo-blue-button" id="changeInfo"><h5>修改信息</h5></button>
+                    <button class="templatemo-blue-button" id="changePsw"><h5>修改密码</h5></button>
                 </div>
             </div>
         </div>
