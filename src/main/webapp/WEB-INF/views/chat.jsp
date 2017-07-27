@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 文辉
@@ -33,7 +32,7 @@
     </div>
     <div class="chat-div">
         <div class="chat-list">
-            <div>
+            <div class="a-far">
                 <c:forEach items="${chatuserlist}" var="userinfo">
                     <a class="a-card" data-userid="${userinfo.userid}">
                         <div class="card">

@@ -82,7 +82,40 @@ public class ChatController {
     }
 
     @RequestMapping("/adminchat")
-    public String adminChat() {
+    public String adminChat(HttpSession session, Model model) {
+
+        //查询历史消息聊天对象
+        /*User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/shop/login";
+        }*/
+        Integer userid = 5;
+        ChatExample chatExample = new ChatExample();
+        chatExample.or().andReceiveuserEqualTo(userid);
+//        chatExample.or().andSenduserEqualTo(user.getUserid());
+//        chatExample.setOrderByClause("MsgTime asc");
+        List<Chat> chatList1 = chatService.selectChatByExample(chatExample);
+
+        ChatExample chatExample2 = new ChatExample();
+//        chatExample.or().andReceiveuserEqualTo(user.getUserid());
+        chatExample2.or().andSenduserEqualTo(userid);
+//        chatExample.setOrderByClause("MsgTime asc");
+        List<Chat> chatList2 = chatService.selectChatByExample(chatExample2);
+
+        //获取userid列表
+        List<Integer> useridList = new ArrayList<>();
+        for (Chat chat : chatList1) {
+            useridList.add(chat.getSenduser());
+        }
+        for (Chat chat : chatList2) {
+            useridList.add(chat.getReceiveuser());
+        }
+
+        //获取用户信息
+        UserExample userExample = new UserExample();
+        userExample.or().andUseridIn(useridList);
+        List<User> userList = userService.selectByExample(userExample);
+        model.addAttribute("chatuserlist", userList);
         return "adminChat";
     }
 

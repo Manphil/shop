@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,87 +33,43 @@
     <div class="chat-div">
         <div class="chat-list">
             <div>
-                <a href="" class="a-card">
-                    <div class="card">
-                        鼠标移上来
-                    </div>
-                </a>
-                <a href="" class="a-card">
-                    <div class="card">
-                        鼠标移上来
-                    </div>
-                </a>
-                <a href="" class="a-card">
-                    <div class="card">
-                        鼠标移上来
-                    </div>
-                </a>
+                <c:forEach items="${chatuserlist}" var="userinfo">
+                    <a class="a-card" data-userid="${userinfo.userid}">
+                        <div class="card">
+                                ${userinfo.username}
+                        </div>
+                    </a>
+                </c:forEach>
             </div>
-            <%--<div class="list-item" id="list-item0">
-                <h3 id="user-name"></h3>
-                <span id="user-no"></span>
-            </div>
-            <div class="list-item" id="list-item1">
-                <h3 id="user-name"></h3>
-                <span id="user-no"></span>
-            </div>
-            <div class="list-item" id="list-item2">
-                <h3 id="user-name"></h3>
-                <span id="user-no"></span>
-            </div>
-            <div class="list-item" id="list-item3">
-                <h3 id="user-name"></h3>
-                <span id="user-no"></span>
-            </div>
-            <div class="list-item" id="list-item4">
-                <h3 id="user-name"></h3>
-                <span id="user-no"></span>
-            </div>
-            <div class="list-item" id="list-item5">
-                <h3 id="user-name"></h3>
-                <span id="user-no"></span>
-            </div>
-            <div class="list-item" id="list-item6">
-                <h3 id="user-name"></h3>
-                <span id="user-no"></span>
-            </div>
-            <div class="list-item" id="list-item7">
-                <h3 id="user-name"></h3>
-                <span id="user-no"></span>
-            </div>
-            <div class="list-item" id="list-item8">
-                <h3 id="user-name"></h3>
-                <span id="user-no"></span>
-            </div>--%>
         </div>
         <div class="chat">
             <div class="chat-name">
                 <div class="chat-name-detail">
-                    <%-- <h3 id="receive">
-                         ${sessionScope.user.username}
-                     </h3>
-                     <span id="receiveId" hidden>${sessionScope.user.userid}</span>
-                     <h3 id="send" hidden>
-                         ${sessionScope.user.username}
-                     </h3>
-                     <span id="sendId" hidden>${sessionScope.user.userid}</span>--%>
+                    <h3 id="receive">
 
-                    <%String clientID=request.getParameter("clientID");
+                    </h3>
+                    <span id="receiveId" hidden></span>
+                    <h3 id="send" hidden>
+                        客服
+                    </h3>
+                    <span id="sendId" hidden>5</span>
+
+                    <%--<%String clientID=request.getParameter("clientID");
                         String toID=request.getParameter("toID");
                     %>
-                    <h3 id="receive">
-                        <%=toID%>
-                    </h3>
-                    <span id="receiveId" hidden><%=toID%></span>
-                    <h3 id="send" hidden>
-                        <%=clientID%>
-                    </h3>
-                    <span id="sendId" hidden><%=clientID%></span>
+                       <h3 id="receive">
+                           <%=toID%>
+                       </h3>
+                       <span id="receiveId" hidden><%=toID%></span>
+                       <h3 id="send" hidden>
+                           <%=clientID%>
+                       </h3>
+                       <span id="sendId" hidden><%=clientID%></span>--%>
                 </div>
             </div>
             <div class="chat-content">
                 <div class="chat-content-body">
-                    <div class="chat-message1 chat-message">
+                    <%--<div class="chat-message1 chat-message">
                         <div class="chat-message-content1">
                             <span class="glyphicon glyphicon-triangle-left message-icon-left" aria-hidden="true"></span>
                             <div class="info-content">
@@ -130,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="clear-float"></div>
+                    <div class="clear-float"></div>--%>
                 </div>
             </div>
             <div class="chat-input">

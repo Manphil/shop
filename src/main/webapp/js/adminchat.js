@@ -15,10 +15,13 @@ $(document).ready(function() {
     };
     //收到消息
     client.onMessageArrived = function(message){
+
+        var userid = $("#receiveId").text();
+        clientID = $('#sendId').text();
         var msgObj=jQuery.parseJSON(message.payloadString);
         // $('#toID').val(msgObj.from);
         // debugger
-        if (msgObj.to===clientID){
+        if (msgObj.to===clientID&&msgObj.from===userid){
             // debugger;
             var element = '<div class="chat-message1 chat-message"> <div class="chat-message-content1"><div class="info-content"> ' + msgObj.body + '</div> </div> </div>';
             var element_float = '<div class="clear-float"></div>';

@@ -5,6 +5,9 @@ $(window).on('beforeunload',function(){
     window.opener.document.getElementById("flag").value="0";
 });
 $(document).ready(function() {
+
+    console.log(getChatList(2));
+
     clientID=$('#sendId').text();
     client = new Messaging.Client('127.0.0.1',61614,clientID);
     client.onConnectionLost = function(){
@@ -13,10 +16,11 @@ $(document).ready(function() {
     //收到消息
     client.onMessageArrived = function(message){
         clientID=$('#sendId').text();
+        var userid = $("#receiveId").text();
         var msgObj=jQuery.parseJSON(message.payloadString);
         // $('#toID').val(msgObj.from);
         // debugger
-        if (msgObj.to===clientID){
+        if (msgObj.to===clientID&&msgObj.from===userid){
             // debugger;
             var element = '<div class="chat-message1 chat-message"> <div class="chat-message-content1"><div class="info-content"> ' + msgObj.body + '</div> </div> </div>';
             var element_float = '<div class="clear-float"></div>';
@@ -182,6 +186,26 @@ function showMessage(message) {
 
 	//始终保持滚动条滚动到最下方
 	$(".chat-content").scrollTop($(".chat-content")[0].scrollHeight);
+
+}
+
+//获取所有聊天列表
+function getChatList(id) {
+    var chatList = [];
+    $('.a-far>a').each(function(){
+        chatList.push($(this).attr("data-userid"));
+     });
+    console.log(chatList);
+    for (var i = 0; i<chatList.length;i++) {
+        if(chatList[i]==id){
+            return true;
+        }
+    }
+    return false;
+
+    /*$('.a-far').children().each(function(index,item){
+        alert(item.attr("data-userid"));
+    })*/
 
 }
 /*
