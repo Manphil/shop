@@ -168,35 +168,35 @@ public class CustomerController {
     private GoodsService goodsService;
 
     @RequestMapping("/info/list")
-    public String list(HttpServletRequest request,Model orderModel){
+    public String list(HttpServletRequest request,Model orderModel,@RequestParam(value = "page",defaultValue = "1") Integer pn){
+        //一页显示几个数据
+        PageHelper.startPage(pn, 3);
         HttpSession session=request.getSession();
         User user;
         user=(User)session.getAttribute("user");
         OrderExample orderExample=new OrderExample();
        orderExample.or().andUseridEqualTo(user.getUserid());
         List<Order> orderList=orderService.selectOrderByExample(orderExample);
-        orderModel.addAttribute("orderList",orderList);
+       /* orderModel.addAttribute("orderList",orderList);*/
         Order order;
         OrderItem orderItem;
         List<OrderItem> orderItemList=new ArrayList<>();
-        OrderItemExample orderItemExample=new OrderItemExample();
         Goods goods;
-        GoodsExample goodsExample=new GoodsExample();
-        List<Goods> goodsList=new ArrayList<>();
-        List<Integer> goodsIdList=new ArrayList<>();
         Address address;
        for (Integer i=0;i<orderList.size();i++)
        {
            order=orderList.get(i);
+           OrderItemExample orderItemExample=new OrderItemExample();
            orderItemExample.or().andOrderidEqualTo(order.getOrderid());
            orderItemList=orderService.getOrderItemByExample(orderItemExample);
-           goodsIdList.clear();
-           goodsList.clear();
+           List<Goods> goodsList=new ArrayList<>();
+           List<Integer> goodsIdList=new ArrayList<>();
            for (Integer j=0;j<orderItemList.size();j++)
            {
                orderItem=orderItemList.get(j);
                goodsIdList.add(orderItem.getGoodsid());
            }
+           GoodsExample goodsExample=new GoodsExample();
            goodsExample.or().andGoodsidIn(goodsIdList);
            goodsList=goodsService.selectByExample(goodsExample);
            order.setGoodsInfo(goodsList);
@@ -204,7 +204,14 @@ public class CustomerController {
            order.setAddress(address);
            orderList.set(i,order);
        }
-       orderModel.addAttribute("orderList",orderList);
+
+
+
+        //显示几个页号
+        PageInfo page = new PageInfo(orderList,2);
+
+        orderModel.addAttribute("pageInfo", page);
+
         return "list";
     }
 

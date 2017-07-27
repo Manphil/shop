@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    var oldPswflag=0;
+    var newPswflag=0;
     $("#name").val($("#nameVal").text());
     $("#email").val($("#emailVal").text());
     $("#telephone").val($("#telephoneVal").text());
@@ -7,6 +9,7 @@ $(document).ready(function(){
             backdrop:'static'
         });
     });
+
 
     $("#saveInfo").click(function (){
         var saveInfo={};
@@ -35,4 +38,71 @@ $(document).ready(function(){
             }
         });
     });
+
+    $("#changePsw").click(function (){
+        $("#update-Psw").modal({
+            backdrop:'static'
+        });
+    });
+
+    $("#oldPsw").blur(function (){
+        if ($("#oldPsw").val()!=$("#Psw").attr("Psw"))
+        {
+            $("#oldPswError").show();
+        }
+        else
+        {
+            $("#oldPswError").hide();
+            oldPswflag=1;
+        }
+    })
+
+   /* $("#newPsw").focus(function (){
+        if ($("#oldPsw").val()==$("#Psw").attr("Psw"))
+        {
+            $("#oldPswError").hide();
+            oldPswflag=1;
+        }
+    });*/
+
+    $("#newPsw").blur(function (){
+        if($("#newPsw").val().length<8)
+        {
+            $("#newPswError").show();
+        }
+        else {
+            $("#newPswError").hide();
+            newPswflag=1;
+        }
+    });
+
+    $("#savePsw").click(function (){
+        if (oldPswflag==1&&newPswflag==1)
+        {
+            var Psw={};
+            Psw=$("#newPsw").val();
+            $.ajax({
+                type: "POST",
+                url: "/shop/saveInfo",
+                contentType:"application/x-www-form-urlencoded; charset=utf-8",
+                data:saveInfo,
+                dateType:"json",
+                success: function(result){
+                    if (result.msg=="更新失败")
+                    {
+                        swal(result.msg);
+                    }
+                    else {
+                        $("#update-info").modal('hide');
+                        swal("修改成功", "", "success");
+                        location.reload();
+                    }
+                },
+                error:function (){
+                    alert("更新失败");
+                }
+            });
+        }
+    })
+
 });
