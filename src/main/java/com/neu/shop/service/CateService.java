@@ -17,4 +17,8 @@ public interface CateService {
     public List<Category> selectByExampleLimit(CategoryExample digCategoryExample);
 
     public Category selectById(Integer category);
+
+    public void updateByPrimaryKeySelective(Category category);
+
+    public void deleteByPrimaryKey(Integer cateid);
 }

@@ -133,7 +133,6 @@ public class GoodsController {
         List<Category> categoryList;
         categoryList=cateService.selectByExample(categoryExample);
         model.addAttribute("categoryList",categoryList);
-
         if(!msg.equals("")) {
             model.addAttribute("msg", msg);
         }
@@ -159,5 +158,26 @@ public class GoodsController {
             redirectAttributes.addFlashAttribute("succeseMsg","分类添加成功!");
             return "redirect:/admin/goods/addCategory";
         }
+    }
+
+    @RequestMapping("/saveCate")
+    @ResponseBody
+    public Msg saveCate(Category category){
+        CategoryExample categoryExample=new CategoryExample();
+        categoryExample.or().andCatenameEqualTo(category.getCatename());
+        List<Category> categoryList=cateService.selectByExample(categoryExample);
+        if (categoryList.isEmpty())
+        {
+            cateService.updateByPrimaryKeySelective(category);
+            return Msg.success("更新成功");
+        }
+        else return Msg.success("名字已经存在");
+    }
+
+    @RequestMapping("/deleteCate")
+    @ResponseBody
+    public Msg deleteCate(Category category){
+        cateService.deleteByPrimaryKey(category.getCateid());
+        return Msg.success("删除成功");
     }
 }
