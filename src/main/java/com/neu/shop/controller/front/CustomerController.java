@@ -271,4 +271,24 @@ public class CustomerController {
         return "favorite";
     }
 
+    @RequestMapping("/savePsw")
+    @ResponseBody
+    public Msg savePsw(String Psw,HttpServletRequest request)
+    {
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        user.setPassword(Psw);
+        userService.updateByPrimaryKeySelective(user);
+        return Msg.success("修改成功");
+    }
+
+    @RequestMapping("/finishList")
+    @ResponseBody
+    public Msg finishiList(Integer orderid){
+        Order order=orderService.selectByPrimaryKey(orderid);
+        order.setIscomplete(true);
+        orderService.updateOrderByKey(order);
+        return Msg.success("修改成功");
+    }
+
 }

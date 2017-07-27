@@ -80,12 +80,12 @@ $(document).ready(function(){
         if (oldPswflag==1&&newPswflag==1)
         {
             var Psw={};
-            Psw=$("#newPsw").val();
+            Psw.Psw=$("#newPsw").val();
             $.ajax({
                 type: "POST",
-                url: "/shop/saveInfo",
+                url: "/shop/savePsw",
                 contentType:"application/x-www-form-urlencoded; charset=utf-8",
-                data:saveInfo,
+                data:Psw,
                 dateType:"json",
                 success: function(result){
                     if (result.msg=="更新失败")
@@ -94,7 +94,6 @@ $(document).ready(function(){
                     }
                     else {
                         $("#update-info").modal('hide');
-                        swal("修改成功", "", "success");
                         location.reload();
                     }
                 },

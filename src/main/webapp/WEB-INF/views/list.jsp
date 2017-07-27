@@ -47,6 +47,7 @@
     <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
     <script src="${pageContext.request.contextPath}/js/distpicker.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.raty.js"></script>
     <style>
         #view-source {
             position: fixed;
@@ -76,9 +77,54 @@
             -webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
             box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
         }
+
+        .finish-btn{
+            background-color:#e65b0e !important;
+        }
+
+        .font-color{
+            color: #00BBD6; !important;
+        }
+
+
     </style>
 </head>
 <body>
+
+<%--修改商品信息模态框--%>
+<!-- Modal -->
+<div class="modal fade" id="evaluate" tabindex="-1" role="dialog" aria-labelledby="myModalLabelPsw">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabelPsw">商品评价</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="updatePsw-form" name="update-form" method="post">
+                    <div class="form-group">
+                        <label for="star" class="col-sm-2 control-label">商品评分</label>
+                        <div class="col-sm-9">
+                            <div id="star" data-num="3.5"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">详细描述</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" rows="3" id="description"></textarea>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="saveEvaluate" >保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
@@ -125,15 +171,16 @@
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/main"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>主页</a>
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/information"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>个人信息</a>
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/list"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>订单管理</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>地址管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>地址管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/favorite"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>我的收藏</a>
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
             <div class="mdl-grid demo-content" id="parent">
                 <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                    <h3>未收到货</h3><%--未收到货--%>
+                    <h3>未发货</h3><%--未收到货--%>
                     <c:forEach items="${pageInfo.list}" var="order">
-                        <c:if test="${!order.isreceive}">
+                        <c:if test="${!order.issend}">
                             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
                             <div class="tab-content col-lg-10">
                                 <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>
@@ -144,9 +191,9 @@
                                         </td>
                                         <td class="no-border col-lg-4">
                                             订单日期:
-                                            ${order.ordertime.year}年
-                                            ${order.ordertime.month}月
-                                            ${order.ordertime.day}日
+                                            ${order.ordertime.year+1990} 年
+                                            ${order.ordertime.month} 月
+                                            ${order.ordertime.day} 日
                                         </td>
                                         <td  class="no-border col-lg-6">
                                             收货地址:
@@ -157,23 +204,42 @@
                                     </tr>
                                     </tbody>
                                 </table>
+                                <table class="table " cellpadding="6" cellspacing="1" ><%--商品描述--%>
+                                    <tbody>
+                                    <tr>
+                                        <td class="col-lg-1">
+                                            商品号
+                                        </td>
+                                        <td class="col-lg-2">
+                                            商品名称
+                                        </td>
+                                        <td class="col-lg-1">
+                                            价格
+                                        </td>
+                                        <td class="col-lg-1">
+                                            数量
+                                        </td>
+                                        <td class="col-lg-2">
+                                            商品分类
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             <c:forEach items="${order.goodsInfo}" var="good">
                                     <table class="table table-bordered" cellpadding="6" cellspacing="1" ><%--商品信息--%>
-                                        <thead>
-                                        商品号:${good.goodsid}
-                                        </thead>
+
                                         <tbody>
                                         <tr>
-                                            <td class="col-lg-2">
-                                                ${good.goodsname}
+                                            <td class="col-lg-1">
+                                                    ${good.goodsid}
                                             </td>
                                             <td class="col-lg-2">
                                                     ${good.goodsname}
                                             </td>
-                                            <td class="col-lg-2">
+                                            <td class="col-lg-1">
                                                     ${good.price}
                                             </td>
-                                            <td class="col-lg-2">
+                                            <td class="col-lg-1">
                                                     ${good.num}
                                             </td>
                                             <td class="col-lg-2">
@@ -185,7 +251,6 @@
                             </c:forEach>
                             </div>
                             <div class="mdl-card__actions mdl-card--border">
-                                <button class="templatemo-blue-button" name="deleteList"><h5>删除订单</h5></button>
                             </div>
                         </div>
                         </c:if>
@@ -241,9 +306,9 @@
 
                 </div>
                 <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                    <h3>未完成</h3><%--未完成--%>
+                    <h3>未收货</h3><%--未完成--%>
                     <c:forEach items="${pageInfo.list}" var="order">
-                        <c:if test="${!order.iscomplete}">
+                        <c:if test="${order.issend&&!order.isreceive}">
                             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
                                 <div class="tab-content col-lg-10">
                                     <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>
@@ -254,9 +319,9 @@
                                             </td>
                                             <td class="no-border col-lg-4">
                                                 订单日期:
-                                                    ${order.ordertime.year}年
-                                                    ${order.ordertime.month}月
-                                                    ${order.ordertime.day}日
+                                                    ${order.ordertime.year+1990} 年
+                                                    ${order.ordertime.month} 月
+                                                    ${order.ordertime.day} 日
                                             </td>
                                             <td  class="no-border col-lg-6">
                                                 收货地址:
@@ -267,23 +332,41 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <c:forEach items="${order.goodsInfo}" var="good">
-                                    <table class="table table-bordered" cellpadding="6" cellspacing="1" ><%--商品信息--%>
-                                        <thead>
-                                        商品号:${good.goodsid}
-                                        </thead>
+                                    <table class="table " cellpadding="6" cellspacing="1" ><%--商品描述--%>
                                         <tbody>
                                         <tr>
+                                            <td class="col-lg-1">
+                                                商品号
+                                            </td>
                                             <td class="col-lg-2">
-                                                    ${good.goodsname}
+                                                商品名称
+                                            </td>
+                                            <td class="col-lg-1">
+                                                价格
+                                            </td>
+                                            <td class="col-lg-1">
+                                                数量
+                                            </td>
+                                            <td class="col-lg-2">
+                                                商品分类
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <c:forEach items="${order.goodsInfo}" var="good">
+                                    <table class="table table-bordered" cellpadding="6" cellspacing="1" ><%--商品信息--%>
+                                        <tbody>
+                                        <tr>
+                                            <td class="col-lg-1">
+                                                    ${good.goodsid}
                                             </td>
                                             <td class="col-lg-2">
                                                     ${good.goodsname}
                                             </td>
-                                            <td class="col-lg-2">
+                                            <td class="col-lg-1">
                                                     ${good.price}
                                             </td>
-                                            <td class="col-lg-2">
+                                            <td class="col-lg-1">
                                                     ${good.num}
                                             </td>
                                             <td class="col-lg-2">
@@ -295,7 +378,8 @@
                                     </c:forEach>
                                 </div>
                                 <div class="mdl-card__actions mdl-card--border">
-                                    <button class="templatemo-blue-button" name="deleteList"><h5>删除订单</h5></button>
+                                    <button class="templatemo-blue-button finish-btn" name="deleteList"><h5>删除订单</h5></button>
+                                    <button class="templatemo-blue-button " name="finishList"><h5>完成订单</h5></button>
                                 </div>
                             </div>
                         </c:if>
@@ -363,9 +447,9 @@
                                             </td>
                                             <td class="no-border col-lg-4">
                                                 订单日期:
-                                                    ${order.ordertime.year}年
-                                                    ${order.ordertime.month}月
-                                                    ${order.ordertime.day}日
+                                                    ${order.ordertime.year+1990} 年
+                                                    ${order.ordertime.month} 月
+                                                    ${order.ordertime.day} 日
                                             </td>
                                             <td  class="no-border col-lg-6">
                                                 收货地址:
@@ -376,27 +460,51 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <c:forEach items="${order.goodsInfo}" var="good">
-                                    <table class="table table-bordered" cellpadding="6" cellspacing="1" ><%--商品信息--%>
-                                        <thead>
-                                        商品号:${good.goodsid}
-                                        </thead>
+                                    <table class="table " cellpadding="6" cellspacing="1" ><%--商品描述--%>
                                         <tbody>
                                         <tr>
+                                            <td class="col-lg-1">
+                                                商品号
+                                            </td>
                                             <td class="col-lg-2">
-                                                    ${good.goodsname}
+                                                商品名称
+                                            </td>
+                                            <td class="col-lg-1">
+                                                价格
+                                            </td>
+                                            <td class="col-lg-1">
+                                                数量
+                                            </td>
+                                            <td class="col-lg-2">
+                                                商品分类
+                                            </td>
+                                            <td class="col-lg-1">
+
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <c:forEach items="${order.goodsInfo}" var="good">
+                                    <table class="table table-bordered" cellpadding="6" cellspacing="1" ><%--商品信息--%>
+                                        <tbody>
+                                        <tr>
+                                            <td class="col-lg-1">
+                                                    ${good.goodsid}
                                             </td>
                                             <td class="col-lg-2">
                                                     ${good.goodsname}
                                             </td>
-                                            <td class="col-lg-2">
+                                            <td class="col-lg-1">
                                                     ${good.price}
                                             </td>
-                                            <td class="col-lg-2">
+                                            <td class="col-lg-1">
                                                     ${good.num}
                                             </td>
                                             <td class="col-lg-2">
                                                     ${good.category}
+                                            </td>
+                                            <td class="col-lg-1">
+                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect font-color" name="evaluate" ><h5>评价</h5></button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -404,7 +512,7 @@
                                     </c:forEach>
                                 </div>
                                 <div class="mdl-card__actions mdl-card--border">
-                                    <button class="templatemo-blue-button" name="deleteList"><h5>删除订单</h5></button>
+                                    <button class="templatemo-blue-button finish-btn" name="deleteList"><h5>删除订单</h5></button>
                                 </div>
                             </div>
                         </c:if>

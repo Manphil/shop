@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neu.shop.pojo.*;
 import com.neu.shop.service.CateService;
+import com.neu.shop.service.CommentService;
 import com.neu.shop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -208,5 +211,20 @@ public class FrontGoodsController {
         model.addAttribute("pageInfo", page);
         model.addAttribute("cate", cate);
         return "category";
+    }
+
+    @Autowired
+    private CommentService commentService;
+
+    @RequestMapping("/comment")
+    @ResponseBody
+    public Msg comment(Comment comment, HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        comment.setUserid(user.getUserid());
+        Date date=new Date();
+        comment.setCommenttime(date);
+        commentService.insertSelective(comment);
+        return Msg.success("评论成功");
     }
 }

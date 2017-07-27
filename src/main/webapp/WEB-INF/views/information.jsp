@@ -127,12 +127,12 @@ limitations under the License
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabelPsw">修改个人信息</h4>
+                <h4 class="modal-title" id="myModalLabelPsw">修改密码</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" id="updatePsw-form" name="update-form" method="post">
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">旧密码</label>
+                        <label for="oldPsw" class="col-sm-2 control-label">旧密码</label>
                         <div class="col-sm-9">
                             <input type="password" class="form-control" name="oldPsw" id="oldPsw">
                         </div>
@@ -144,7 +144,7 @@ limitations under the License
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="col-sm-2 control-label">新密码</label>
+                        <label for="newPsw" class="col-sm-2 control-label">新密码</label>
                         <div class="col-sm-9">
                             <input type="password" class="form-control" name="newPsw" id="newPsw">
                         </div>
@@ -211,7 +211,8 @@ limitations under the License
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/main"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>主页</a>
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/information"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>个人信息</a>
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/list"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>订单管理</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>地址管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>地址管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/favorite"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>我的收藏</a>
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
@@ -235,7 +236,11 @@ limitations under the License
                             </tr>
                             <tr>
                                 <th style="border: 0px solid transparent" class="tl">注册时间</th>
-                                <td style="border: 0px solid transparent" class="tr" id="regTimeVal">${user.getRegtime()}</td>
+                                <td style="border: 0px solid transparent" class="tr" id="regTimeVal">
+                                    ${user.regtime.year+1900} 年
+                                    ${user.regtime.month} 月
+                                    ${user.regtime.day} 日
+                                </td>
                             </tr>
                             <tr>
                                 <th style="border: 0px solid transparent" class="tl">邮箱</th>
