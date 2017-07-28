@@ -28,6 +28,10 @@ public class ChatController {
 
     @RequestMapping("/chat")
     public String showChat(HttpSession session, Model model, Integer sendto) {
+        User loginuser = (User) session.getAttribute("user");
+        if (loginuser == null) {
+            return "redirect:/login";
+        }
         /*//查询历史消息聊天对象
         User user = (User) session.getAttribute("user");
         if (user == null) {
@@ -112,7 +116,12 @@ public class ChatController {
 
     @RequestMapping("/getMessage")
     @ResponseBody
-    public Msg getMessageInfo(Integer senduser, Integer receiveuser) {
+    public Msg getMessageInfo(Integer senduser, Integer receiveuser, HttpSession session) {
+
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return Msg.fail("未登录");
+        }
 
         ChatExample chatExample = new ChatExample();
         chatExample.or().andReceiveuserEqualTo(senduser).andSenduserEqualTo(receiveuser);
@@ -124,7 +133,13 @@ public class ChatController {
     }
 
     @RequestMapping("/admin/chat")
-    public String frontChat(Integer sendto, Model model) {
+    public String frontChat(Integer sendto, Model model, HttpSession session) {
+
+        Admin adminuser = (Admin) session.getAttribute("admin");
+        if (adminuser == null) {
+            return "redirect:/admin/login";
+        }
+
         if (sendto != null) {
             User user = userService.selectByPrimaryKey(sendto);
             model.addAttribute("sendto", user);
@@ -137,10 +152,10 @@ public class ChatController {
     public Msg adminChat(HttpSession session, Model model, Integer sendto) {
 
         //查询历史消息聊天对象
-        /*User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return "redirect:/shop/login";
-        }*/
+        Admin adminuser = (Admin) session.getAttribute("admin");
+        if (adminuser == null) {
+            return Msg.fail("请先登录");
+        }
         Integer userid = 5;
         ChatExample chatExample = new ChatExample();
         chatExample.or().andReceiveuserEqualTo(userid);
@@ -178,7 +193,7 @@ public class ChatController {
     @RequestMapping("/sendMessage")
     @ResponseBody
     public Msg saveMessage(Chat chat) {
-        System.out.println(chat.getMsgcontent());
+//        System.out.println(chat.getMsgcontent());
         chat.setMsgtime(new Date());
         chatService.insertChatSelective(chat);
         return Msg.success("保存成功");

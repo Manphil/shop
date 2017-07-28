@@ -199,7 +199,7 @@
                         <h3>${goodsInfo['goods'].goodsname}</h3>
                     </div>
                     <div class="price_rating">
-                        <a href="#">
+                        <%--<a href="#">
                             <i class="fa fa-star"></i>
                         </a>
                         <a href="#">
@@ -218,7 +218,7 @@
                             (
                             <span class="count">2</span>
                             customer reviews)
-                        </a>
+                        </a>--%>
                     </div>
                     <!-- <div class="evavet_description">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
@@ -226,7 +226,7 @@
                 </div>
                 <div class="elav_info">
                     <!-- 价格 -->
-                    <div class="price_box price_box_acr">
+                    <div class="price_box price_box_acr new_meta">
                         <%--<span class="old- price old- price-2">$250.00</span>--%>
                         <span class="spical-price spical-price-2">￥${goodsInfo['goods'].price}</span>
                     </div>

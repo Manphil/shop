@@ -53,7 +53,11 @@ public class CartController {
     }
 
     @RequestMapping("/showcart")
-    public String showCart() {
+    public String showCart(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if(user == null) {
+            return "redirect:/login";
+        }
         return "shopcart";
     }
 
@@ -88,6 +92,10 @@ public class CartController {
     @ResponseBody
     public Msg deleteCart(@PathVariable("goodsid")Integer goodsid, HttpSession session) {
         User user = (User) session.getAttribute("user");
+        if(user == null) {
+            return Msg.fail("请先登录");
+        }
+
         shopCartService.deleteByKey(new ShopCartKey(user.getUserid(), goodsid));
         return Msg.success("删除成功");
     }
@@ -96,6 +104,9 @@ public class CartController {
     @ResponseBody
     public Msg updateCart(Integer goodsid,Integer num,HttpSession session) {
         User user = (User) session.getAttribute("user");
+        if(user == null) {
+            return Msg.fail("请先登录");
+        }
         ShopCart shopCart = new ShopCart();
         shopCart.setUserid(user.getUserid());
         shopCart.setGoodsid(goodsid);

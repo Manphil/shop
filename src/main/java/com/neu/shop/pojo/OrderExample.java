@@ -295,52 +295,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceEqualTo(Integer value) {
+        public Criteria andOldpriceEqualTo(Float value) {
             addCriterion("oldPrice =", value, "oldprice");
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceNotEqualTo(Integer value) {
+        public Criteria andOldpriceNotEqualTo(Float value) {
             addCriterion("oldPrice <>", value, "oldprice");
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceGreaterThan(Integer value) {
+        public Criteria andOldpriceGreaterThan(Float value) {
             addCriterion("oldPrice >", value, "oldprice");
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceGreaterThanOrEqualTo(Integer value) {
+        public Criteria andOldpriceGreaterThanOrEqualTo(Float value) {
             addCriterion("oldPrice >=", value, "oldprice");
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceLessThan(Integer value) {
+        public Criteria andOldpriceLessThan(Float value) {
             addCriterion("oldPrice <", value, "oldprice");
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceLessThanOrEqualTo(Integer value) {
+        public Criteria andOldpriceLessThanOrEqualTo(Float value) {
             addCriterion("oldPrice <=", value, "oldprice");
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceIn(List<Integer> values) {
+        public Criteria andOldpriceIn(List<Float> values) {
             addCriterion("oldPrice in", values, "oldprice");
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceNotIn(List<Integer> values) {
+        public Criteria andOldpriceNotIn(List<Float> values) {
             addCriterion("oldPrice not in", values, "oldprice");
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceBetween(Integer value1, Integer value2) {
+        public Criteria andOldpriceBetween(Float value1, Float value2) {
             addCriterion("oldPrice between", value1, value2, "oldprice");
             return (Criteria) this;
         }
 
-        public Criteria andOldpriceNotBetween(Integer value1, Integer value2) {
+        public Criteria andOldpriceNotBetween(Float value1, Float value2) {
             addCriterion("oldPrice not between", value1, value2, "oldprice");
             return (Criteria) this;
         }
@@ -355,52 +355,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceEqualTo(Integer value) {
+        public Criteria andNewpriceEqualTo(Float value) {
             addCriterion("newPrice =", value, "newprice");
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceNotEqualTo(Integer value) {
+        public Criteria andNewpriceNotEqualTo(Float value) {
             addCriterion("newPrice <>", value, "newprice");
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceGreaterThan(Integer value) {
+        public Criteria andNewpriceGreaterThan(Float value) {
             addCriterion("newPrice >", value, "newprice");
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceGreaterThanOrEqualTo(Integer value) {
+        public Criteria andNewpriceGreaterThanOrEqualTo(Float value) {
             addCriterion("newPrice >=", value, "newprice");
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceLessThan(Integer value) {
+        public Criteria andNewpriceLessThan(Float value) {
             addCriterion("newPrice <", value, "newprice");
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceLessThanOrEqualTo(Integer value) {
+        public Criteria andNewpriceLessThanOrEqualTo(Float value) {
             addCriterion("newPrice <=", value, "newprice");
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceIn(List<Integer> values) {
+        public Criteria andNewpriceIn(List<Float> values) {
             addCriterion("newPrice in", values, "newprice");
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceNotIn(List<Integer> values) {
+        public Criteria andNewpriceNotIn(List<Float> values) {
             addCriterion("newPrice not in", values, "newprice");
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceBetween(Integer value1, Integer value2) {
+        public Criteria andNewpriceBetween(Float value1, Float value2) {
             addCriterion("newPrice between", value1, value2, "newprice");
             return (Criteria) this;
         }
 
-        public Criteria andNewpriceNotBetween(Integer value1, Integer value2) {
+        public Criteria andNewpriceNotBetween(Float value1, Float value2) {
             addCriterion("newPrice not between", value1, value2, "newprice");
             return (Criteria) this;
         }

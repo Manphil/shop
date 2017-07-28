@@ -96,7 +96,7 @@ public class OrderController {
 
     @RequestMapping("/orderFinish")
     @ResponseBody
-    public Msg orderFinish(Integer oldPrice, Float newPrice, Boolean isPay, Integer addressid,HttpSession session) {
+    public Msg orderFinish(Float oldPrice, Float newPrice, Boolean isPay, Integer addressid,HttpSession session) {
         User user = (User) session.getAttribute("user");
 
         //获取订单信息

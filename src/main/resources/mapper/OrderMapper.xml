@@ -5,8 +5,8 @@
     <id column="orderId" jdbcType="INTEGER" property="orderid" />
     <result column="userId" jdbcType="INTEGER" property="userid" />
     <result column="orderTime" jdbcType="TIMESTAMP" property="ordertime" />
-    <result column="oldPrice" jdbcType="INTEGER" property="oldprice" />
-    <result column="newPrice" jdbcType="INTEGER" property="newprice" />
+    <result column="oldPrice" jdbcType="REAL" property="oldprice" />
+    <result column="newPrice" jdbcType="REAL" property="newprice" />
     <result column="isPay" jdbcType="BIT" property="ispay" />
     <result column="isSend" jdbcType="BIT" property="issend" />
     <result column="isReceive" jdbcType="BIT" property="isreceive" />
@@ -107,13 +107,13 @@
   </delete>
   <insert id="insert" parameterType="com.neu.shop.pojo.Order">
     insert into indent (orderId, userId, orderTime, 
-      oldPrice, newPrice, isPay, 
-      isSend, isReceive, isComplete, 
-      addressId)
+      oldPrice, newPrice, isPay, isSend, 
+      isReceive, isComplete, addressId
+      )
     values (#{orderid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{ordertime,jdbcType=TIMESTAMP}, 
-      #{oldprice,jdbcType=INTEGER}, #{newprice,jdbcType=INTEGER}, #{ispay,jdbcType=BIT}, 
-      #{issend,jdbcType=BIT}, #{isreceive,jdbcType=BIT}, #{iscomplete,jdbcType=BIT}, 
-      #{addressid,jdbcType=INTEGER})
+      #{oldprice,jdbcType=REAL}, #{newprice,jdbcType=REAL}, #{ispay,jdbcType=BIT}, #{issend,jdbcType=BIT}, 
+      #{isreceive,jdbcType=BIT}, #{iscomplete,jdbcType=BIT}, #{addressid,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.neu.shop.pojo.Order" useGeneratedKeys="true" keyProperty="orderid">
     insert into indent
@@ -160,10 +160,10 @@
         #{ordertime,jdbcType=TIMESTAMP},
       </if>
       <if test="oldprice != null">
-        #{oldprice,jdbcType=INTEGER},
+        #{oldprice,jdbcType=REAL},
       </if>
       <if test="newprice != null">
-        #{newprice,jdbcType=INTEGER},
+        #{newprice,jdbcType=REAL},
       </if>
       <if test="ispay != null">
         #{ispay,jdbcType=BIT},
@@ -201,10 +201,10 @@
         orderTime = #{record.ordertime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.oldprice != null">
-        oldPrice = #{record.oldprice,jdbcType=INTEGER},
+        oldPrice = #{record.oldprice,jdbcType=REAL},
       </if>
       <if test="record.newprice != null">
-        newPrice = #{record.newprice,jdbcType=INTEGER},
+        newPrice = #{record.newprice,jdbcType=REAL},
       </if>
       <if test="record.ispay != null">
         isPay = #{record.ispay,jdbcType=BIT},
@@ -231,8 +231,8 @@
     set orderId = #{record.orderid,jdbcType=INTEGER},
       userId = #{record.userid,jdbcType=INTEGER},
       orderTime = #{record.ordertime,jdbcType=TIMESTAMP},
-      oldPrice = #{record.oldprice,jdbcType=INTEGER},
-      newPrice = #{record.newprice,jdbcType=INTEGER},
+      oldPrice = #{record.oldprice,jdbcType=REAL},
+      newPrice = #{record.newprice,jdbcType=REAL},
       isPay = #{record.ispay,jdbcType=BIT},
       isSend = #{record.issend,jdbcType=BIT},
       isReceive = #{record.isreceive,jdbcType=BIT},
@@ -252,10 +252,10 @@
         orderTime = #{ordertime,jdbcType=TIMESTAMP},
       </if>
       <if test="oldprice != null">
-        oldPrice = #{oldprice,jdbcType=INTEGER},
+        oldPrice = #{oldprice,jdbcType=REAL},
       </if>
       <if test="newprice != null">
-        newPrice = #{newprice,jdbcType=INTEGER},
+        newPrice = #{newprice,jdbcType=REAL},
       </if>
       <if test="ispay != null">
         isPay = #{ispay,jdbcType=BIT},
@@ -279,8 +279,8 @@
     update indent
     set userId = #{userid,jdbcType=INTEGER},
       orderTime = #{ordertime,jdbcType=TIMESTAMP},
-      oldPrice = #{oldprice,jdbcType=INTEGER},
-      newPrice = #{newprice,jdbcType=INTEGER},
+      oldPrice = #{oldprice,jdbcType=REAL},
+      newPrice = #{newprice,jdbcType=REAL},
       isPay = #{ispay,jdbcType=BIT},
       isSend = #{issend,jdbcType=BIT},
       isReceive = #{isreceive,jdbcType=BIT},

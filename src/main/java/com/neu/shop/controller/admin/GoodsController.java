@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,14 +35,18 @@ public class GoodsController {
 
     @RequestMapping("/showjson")
     @ResponseBody
-    public Msg getAllGoods(@RequestParam(value = "page",defaultValue = "1") Integer pn, HttpServletResponse response, Model model) {
+    public Msg getAllGoods(@RequestParam(value = "page", defaultValue = "1") Integer pn, HttpServletResponse response, Model model, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return Msg.fail("请先登录");
+        }
         //一页显示几个数据
         PageHelper.startPage(pn, 10);
 
         List<Goods> employees = goodsService.selectByExample(new GoodsExample());
 
         //显示几个页号
-        PageInfo page = new PageInfo(employees,5);
+        PageInfo page = new PageInfo(employees, 5);
 
         model.addAttribute("pageInfo", page);
 
@@ -49,8 +54,11 @@ public class GoodsController {
     }
 
     @RequestMapping("/show")
-    public String goodsManage(@RequestParam(value = "page",defaultValue = "1") Integer pn, HttpServletResponse response, Model model) throws IOException {
-
+    public String goodsManage(@RequestParam(value = "page",defaultValue = "1") Integer pn, HttpServletResponse response, Model model, HttpSession session) throws IOException {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         /*//一页显示几个数据
         PageHelper.startPage(pn, 10);
         List<Goods> employees = goodsService.selectByExample(new GoodsExample());
@@ -64,9 +72,11 @@ public class GoodsController {
     }
 
     @RequestMapping("/add")
-    public String showAdd(@ModelAttribute("succeseMsg") String msg, Model model) {
-
-
+    public String showAdd(@ModelAttribute("succeseMsg") String msg, Model model, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
 
         if(!msg.equals("")) {
             model.addAttribute("msg", msg);
@@ -83,7 +93,11 @@ public class GoodsController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public Msg updateGoods(Goods goods) {
+    public Msg updateGoods(Goods goods, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return Msg.fail("请先登录");
+        }
        /* goods.setGoodsid(goodsid);*/
         goodsService.updateGoodsById(goods);
         return Msg.success("更新成功!");
@@ -131,13 +145,17 @@ public class GoodsController {
     }
 
     @RequestMapping("/addCategory")
-    public String addcategory(@ModelAttribute("succeseMsg") String msg, Model model) {
-        CategoryExample categoryExample=new CategoryExample();
+    public String addcategory(@ModelAttribute("succeseMsg") String msg, Model model, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
+        CategoryExample categoryExample = new CategoryExample();
         categoryExample.or();
         List<Category> categoryList;
-        categoryList=cateService.selectByExample(categoryExample);
-        model.addAttribute("categoryList",categoryList);
-        if(!msg.equals("")) {
+        categoryList = cateService.selectByExample(categoryExample);
+        model.addAttribute("categoryList", categoryList);
+        if (!msg.equals("")) {
             model.addAttribute("msg", msg);
         }
         return "addCategory";

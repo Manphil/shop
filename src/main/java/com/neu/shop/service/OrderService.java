@@ -12,7 +12,6 @@ public interface OrderService {
 
     public void deleteById(Integer orderid);
 
-    public void insertOrderItem(OrderItem orderItem);
 
     public List<Order> selectOrderByExample(OrderExample orderExample);
 
@@ -23,4 +22,6 @@ public interface OrderService {
     public void updateOrderByKey(Order order);
 
     public Order selectByPrimaryKey(Integer orderid);
+
+    void insertOrderItem(OrderItem orderItem);
 }

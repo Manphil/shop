@@ -652,7 +652,7 @@
                         <ul>
                             <c:forEach items="${houseGoods}" var="housegoods">
                                 <li class="data-item-li">
-                                    <div>
+                                    <div class="to-big">
                                         <a href="${pageContext.request.contextPath}/detail?goodsid=${housegoods.goodsid}"> <img
                                                 src="/goodsimage/${housegoods.imagePaths[0].path}" alt=""
                                                 width="200" height="200">
@@ -702,7 +702,7 @@
                         <ul>
                             <c:forEach items="${colGoods}" var="colgoods">
                                 <li class="data-item-li">
-                                    <div>
+                                    <div class="to-big">
                                         <a href="${pageContext.request.contextPath}/detail?goodsid=${colgoods.goodsid}"> <img
                                                 src="/goodsimage/${colgoods.imagePaths[0].path}" alt=""
                                                 width="200" height="200">
