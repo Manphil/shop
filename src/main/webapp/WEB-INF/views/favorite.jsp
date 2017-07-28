@@ -160,7 +160,7 @@
                                 <c:forEach items="${pageInfo.list}" var="goods">
                                     <li class="data-item-li">
                                         <div class="to-big">
-                                            <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"> <img src="/goodsimage/${goods.imagePaths[0].path}" width="240px" height="240px" alt=""/>
+                                            <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"> <img src="/shopimage/${goods.imagePaths[0].path}" width="240px" height="240px" alt=""/>
                                             </a>
                                         </div>
                                         <p class="text-right">

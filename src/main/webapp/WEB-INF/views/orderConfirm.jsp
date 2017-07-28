@@ -40,7 +40,7 @@
         </div>
 
         <%--确认收货地址--%>
-        <h4 class="header-border h4-mar">确认收货地址<a href="#" class="pull-right manage-a">管理收货地址</a></h4>
+        <h4 class="header-border h4-mar">确认收货地址<a href="${pageContext.request.contextPath}/info/address" class="pull-right manage-a">管理收货地址</a></h4>
 
         <%--<form action="" method="post">--%>
         <div class="address">
@@ -82,7 +82,7 @@
                                     <tr>
                                         <td class="product-thumbnail product-thumbnail-2"><a
                                                 href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"><img
-                                                src="/goodsimage/${goods.imagePaths[0].path}"
+                                                src="/shopimage/${goods.imagePaths[0].path}"
                                                 alt=""/></a></td>
                                         <td class="product-name product-name_2"><a
                                                 href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}">${goods.goodsname}</a>

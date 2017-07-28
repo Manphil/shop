@@ -198,4 +198,9 @@ public class ChatController {
         chatService.insertChatSelective(chat);
         return Msg.success("保存成功");
     }
+
+    @RequestMapping("/chatrobot")
+    public String showChatRobot() {
+        return "chatrobot";
+    }
 }

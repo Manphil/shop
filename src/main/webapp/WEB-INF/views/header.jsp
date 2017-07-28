@@ -31,7 +31,7 @@
                 </li>
             </c:if>
 
-            <li><a href="./register.jsp">注册</a></li>
+            <li><a href="${pageContext.request.contextPath}/register">注册</a></li>
         </ul>
     </div>
     <div class="col-md-8">
@@ -77,7 +77,7 @@
                             class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="${pageContext.request.contextPath}/info/address">地址管理</a></li>
-                            <%--<li><a href="login.jsp">交易中</a></li>--%>
+                            <li><a href="${pageContext.request.contextPath}/order">交易中</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="${pageContext.request.contextPath}/chatrobot">小淘</a></li>
                         </ul></li>

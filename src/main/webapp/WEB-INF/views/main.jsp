@@ -223,7 +223,7 @@
             <div class="sort">
                 <div class="sort-channel">
                     <ul class="sort-channel-list list-group">
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=数码">闲置数码</a>
+                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=数码">数码</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
                                     <dt>
@@ -270,7 +270,7 @@
                                 </dl>
                             </div>
                         </li>
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=日用">闲置日用</a>
+                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=日用">日用</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
                                     <dt>
@@ -305,7 +305,7 @@
                                 </dl>
                             </div>
                         </li>
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=闲置书籍">闲置书籍</a>
+                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=闲置书籍">书籍</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
                                     <dt>
@@ -353,7 +353,7 @@
                                 </dl>
                             </div>
                         </li>
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=服饰">闲置服饰</a>
+                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=服饰">服饰</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
                                     <dt>
@@ -485,7 +485,7 @@
                                 </dl>
                             </div>
                         </li>
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=闲置百货">闲置百货</a>
+                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=闲置百货">百货</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
                                     <dt>
@@ -604,7 +604,7 @@
                             <c:forEach items="${digGoods}" var="goods">
                                 <li class="data-item-li">
                                     <div class="to-big">
-                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"><img src="/goodsimage/${goods.imagePaths[0].path}" alt=""
+                                        <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"><img src="/shopimage/${goods.imagePaths[0].path}" alt=""
                                                         width="200" height="200"/>
                                         </a>
                                     </div>
@@ -654,7 +654,7 @@
                                 <li class="data-item-li">
                                     <div class="to-big">
                                         <a href="${pageContext.request.contextPath}/detail?goodsid=${housegoods.goodsid}"> <img
-                                                src="/goodsimage/${housegoods.imagePaths[0].path}" alt=""
+                                                src="/shopimage/${housegoods.imagePaths[0].path}" alt=""
                                                 width="200" height="200">
                                         </a>
                                     </div>
@@ -704,7 +704,7 @@
                                 <li class="data-item-li">
                                     <div class="to-big">
                                         <a href="${pageContext.request.contextPath}/detail?goodsid=${colgoods.goodsid}"> <img
-                                                src="/goodsimage/${colgoods.imagePaths[0].path}" alt=""
+                                                src="/shopimage/${colgoods.imagePaths[0].path}" alt=""
                                                 width="200" height="200">
                                         </a>
                                     </div>
@@ -753,7 +753,7 @@
                                 <li class="data-item-li">
                                     <div class="to-big">
                                         <a href="${pageContext.request.contextPath}/detail?goodsid=${bookgoods.goodsid}"> <img
-                                                src="/goodsimage/${bookgoods.imagePaths[0].path}" alt=""
+                                                src="/shopimage/${bookgoods.imagePaths[0].path}" alt=""
                                                 width="200" height="200">
                                         </a>
                                     </div>

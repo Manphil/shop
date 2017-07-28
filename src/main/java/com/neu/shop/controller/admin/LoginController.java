@@ -34,7 +34,7 @@ public class LoginController {
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("admin", selectAdmin);
-            return "redirect:/admin/user";
+            return "redirect:/admin/user/show";
         }
     }
 

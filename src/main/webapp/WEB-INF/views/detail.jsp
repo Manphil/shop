@@ -181,7 +181,7 @@
                     <div id="leftbox">
                         <div id="showbox">
                             <c:forEach items="${goodsInfo['image']}" var="path">
-                                <img src="/goodsimage/${path.path}" width="400" height="400"/>
+                                <img src="/shopimage/${path.path}" width="400" height="400"/>
                             </c:forEach>
                         </div>
                         <div id="showsum">
