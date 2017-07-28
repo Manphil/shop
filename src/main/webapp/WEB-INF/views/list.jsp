@@ -186,7 +186,6 @@
                             <div class="tab-content col-lg-12">
                                 <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>
                                     <tbody>
-                                        <td class="no-border col-lg-2" >
                                     <td class="no-border col-lg-2" >
                                         订单号：<i name="orderid">${order.orderid}</i>
                                     </td>
