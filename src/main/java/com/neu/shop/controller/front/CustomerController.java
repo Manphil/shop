@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -176,9 +175,8 @@ public class CustomerController {
     private GoodsService goodsService;
 
     @RequestMapping("/info/list")
-    public String list(HttpServletRequest request,Model orderModel,@RequestParam(value = "page",defaultValue = "1") Integer pn){
-        //一页显示几个数据
-        PageHelper.startPage(pn, 3);
+    public String list(HttpServletRequest request,Model orderModel){
+
         HttpSession session=request.getSession();
         User user;
         user=(User)session.getAttribute("user");
@@ -191,7 +189,7 @@ public class CustomerController {
         OrderExample orderExample=new OrderExample();
        orderExample.or().andUseridEqualTo(user.getUserid());
         List<Order> orderList=orderService.selectOrderByExample(orderExample);
-       /* orderModel.addAttribute("orderList",orderList);*/
+        orderModel.addAttribute("orderList",orderList);
         Order order;
         OrderItem orderItem;
         List<OrderItem> orderItemList=new ArrayList<>();
@@ -221,13 +219,79 @@ public class CustomerController {
 
 
 
-        //显示几个页号
-        PageInfo page = new PageInfo(orderList,2);
-
-        orderModel.addAttribute("pageInfo", page);
+       orderModel.addAttribute("orderList",orderList);
 
         return "list";
     }
+
+   /* @RequestMapping("/info/list")
+    public String list(HttpServletRequest request,Model orderModel,
+                       @RequestParam(value = "pageIssend",defaultValue = "1") Integer pnIssend,
+                       @RequestParam(value = "pageIsrecive",defaultValue = "1") Integer pnIsrecive,
+                       @RequestParam(value = "pageIscompelete",defaultValue = "1") Integer pnIscompelete
+
+    ){
+        //一页显示几个数据
+        PageHelper.startPage(pnIssend, 3);
+        PageHelper.startPage(pnIsrecive, 3);
+        PageHelper.startPage(pnIscompelete, 3);
+        HttpSession session=request.getSession();
+        User user;
+        user=(User)session.getAttribute("user");
+
+        if (user==null)
+        {
+            return "redirect:/login";
+        }
+
+        OrderExample orderExample=new OrderExample();
+        orderExample.or().andUseridEqualTo(user.getUserid());
+        List<Order> orderList=orderService.selectOrderByExample(orderExample);
+       *//* orderModel.addAttribute("orderList",orderList);*//*
+        Order order;
+        OrderItem orderItem;
+        List<OrderItem> orderItemList=new ArrayList<>();
+        Goods goods;
+        Address address;
+        for (Integer i=0;i<orderList.size();i++)
+        {
+            order=orderList.get(i);
+            OrderItemExample orderItemExample=new OrderItemExample();
+            orderItemExample.or().andOrderidEqualTo(order.getOrderid());
+            orderItemList=orderService.getOrderItemByExample(orderItemExample);
+            List<Goods> goodsList=new ArrayList<>();
+            List<Integer> goodsIdList=new ArrayList<>();
+            for (Integer j=0;j<orderItemList.size();j++)
+            {
+                orderItem=orderItemList.get(j);
+                goodsIdList.add(orderItem.getGoodsid());
+            }
+            GoodsExample goodsExample=new GoodsExample();
+            goodsExample.or().andGoodsidIn(goodsIdList);
+            goodsList=goodsService.selectByExample(goodsExample);
+            order.setGoodsInfo(goodsList);
+            address=addressService.selectByPrimaryKey(order.getAddressid());
+            order.setAddress(address);
+            orderList.set(i,order);
+        }
+
+
+
+        //显示几个页号
+        PageInfo pageIssend = new PageInfo(orderList,2);
+
+        PageInfo pageIsrecive = new PageInfo(orderList,2);
+
+        PageInfo pageIscompelete = new PageInfo(orderList,2);
+
+        orderModel.addAttribute("pageInfoIssend", pageIssend);
+
+        orderModel.addAttribute("pageInfoIsrecive", pageIsrecive);
+
+        orderModel.addAttribute("pageInfoIscompelete", pageIscompelete);
+
+        return "list";
+    }*/
 
     @RequestMapping("/deleteList")
     @ResponseBody
@@ -300,6 +364,7 @@ public class CustomerController {
     @ResponseBody
     public Msg finishiList(Integer orderid){
         Order order=orderService.selectByPrimaryKey(orderid);
+        order.setIsreceive(true);
         order.setIscomplete(true);
         orderService.updateOrderByKey(order);
         return Msg.success("完成订单成功");
