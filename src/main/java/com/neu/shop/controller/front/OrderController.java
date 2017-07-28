@@ -42,6 +42,9 @@ public class OrderController {
     public String showOrder(HttpSession session, Model model) {
 
         User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
 
         //查询当前用户的收货地址
         AddressExample addressExample = new AddressExample();
@@ -75,12 +78,14 @@ public class OrderController {
 
             if(activity.getDiscount() != 1) {
                 goods.setNewPrice(goods.getPrice()*goods.getNum()* activity.getDiscount());
-            } else {
+            } else if(activity.getFullnum() != null) {
                 if (goods.getNum() >= activity.getFullnum()) {
                     goods.setNewPrice((float) (goods.getPrice()*(goods.getNum()-activity.getReducenum())));
                 } else {
                     goods.setNewPrice((float) (goods.getPrice()*goods.getNum()));
                 }
+            } else {
+                goods.setNewPrice((float) (goods.getPrice()*goods.getNum()));
             }
             totalPrice = totalPrice + goods.getNewPrice();
             oldTotalPrice = oldTotalPrice + goods.getNum() * goods.getPrice();

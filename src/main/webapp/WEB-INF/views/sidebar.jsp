@@ -9,7 +9,7 @@
 <div class="templatemo-sidebar">
     <header class="templatemo-site-header">
         <div class="square"></div>
-        <h1>海海商城后台管理</h1>
+        <h1>后台管理</h1>
     </header>
     <div class="mobile-menu-icon">
         <i class="fa fa-bars"></i>

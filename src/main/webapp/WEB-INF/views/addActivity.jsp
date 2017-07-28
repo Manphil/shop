@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Visual Admin Dashboard - Preferences</title>
+    <title>后台管理</title>
     <meta name="description" content="">
     <meta name="author" content="templatemo">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
@@ -43,7 +43,18 @@
     <jsp:include page="sidebar.jsp"></jsp:include>
     <!-- Main content -->
     <div class="templatemo-content col-1 light-gray-bg">
-        <jsp:include page="goodsNav.jsp"></jsp:include>
+        <div class="templatemo-top-nav-container">
+            <div class="row">
+                <nav class="templatemo-top-nav col-lg-12 col-md-12">
+                    <ul class="text-uppercase">
+                        <li><a href="${pageContext.request.contextPath}/admin/activity/show">所有活动</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/activity/add" class="active">添加活动</a></li>
+                        <%--<li><a href="${pageContext.request.contextPath}/admin/goods/addCategory">添加分类</a></li>--%>
+                        <%--<li><a href="login.html">。。。</a></li>--%>
+                    </ul>
+                </nav>
+            </div>
+        </div>
         <div class="templatemo-content-container">
             <div class="templatemo-content-widget white-bg">
                 <h2 class="margin-bottom-10">增加活动</h2>

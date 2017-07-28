@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Material Design Lite</title>
+    <title>个人信息-我的订单</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -186,22 +186,31 @@
                             <div class="tab-content col-lg-12">
                                 <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>
                                     <tbody>
-                                    <td class="no-border col-lg-2" >
+                                    <td class="no-border col-lg-9" >
                                         订单号：<i name="orderid">${order.orderid}</i>
-                                    </td>
-                                    <td class="no-border col-lg-7">
+                                        &nbsp;
+                                        &nbsp;
                                         订单日期:
                                             ${order.ordertime.year+1900} 年
                                             ${order.ordertime.month+1} 月
                                             ${order.ordertime.date} 日
-                                        &nbsp;
-                                        &nbsp;
                                         &nbsp;
                                         收货地址:
                                             ${order.address.province}
                                             ${order.address.city}
                                             ${order.address.county}
                                     </td>
+                                    <%--<td class="no-border col-lg-7">
+                                        订单日期:
+                                            ${order.ordertime.year+1900} 年
+                                            ${order.ordertime.month+1} 月
+                                            ${order.ordertime.date} 日
+                                        &nbsp;
+                                        收货地址:
+                                            ${order.address.province}
+                                            ${order.address.city}
+                                            ${order.address.county}
+                                    </td>--%>
                                     <td  class="no-border col-lg-3">
                                         原价:${order.oldprice}  现价:${order.newprice}
                                     </td>
@@ -269,10 +278,20 @@
                                     <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>
                                         <tbody>
                                         <tr>
-                                            <td class="no-border col-lg-2" >
+                                            <td class="no-border col-lg-9" >
                                                 订单号：<i name="orderid">${order.orderid}</i>
+                                                &nbsp;
+                                                订单日期:
+                                                    ${order.ordertime.year+1900} 年
+                                                    ${order.ordertime.month+1} 月
+                                                    ${order.ordertime.date} 日
+                                                &nbsp;
+                                                收货地址:
+                                                    ${order.address.province}
+                                                    ${order.address.city}
+                                                    ${order.address.county}
                                             </td>
-                                            <td class="no-border col-lg-7">
+                                            <%--<td class="no-border col-lg-7">
                                                 订单日期:
                                                     ${order.ordertime.year+1900} 年
                                                     ${order.ordertime.month+1} 月
@@ -284,7 +303,7 @@
                                                     ${order.address.province}
                                                     ${order.address.city}
                                                     ${order.address.county}
-                                            </td>
+                                            </td>--%>
                                             <td  class="no-border col-lg-3">
                                                 原价:${order.oldprice}  现价:${order.newprice}
                                             </td>
@@ -353,10 +372,21 @@
                                     <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>
                                         <tbody>
                                         <tr>
-                                            <td class="no-border col-lg-2" >
+                                            <td class="no-border col-lg-9" >
                                                 订单号：<i name="orderid">${order.orderid}</i>
+                                                &nbsp;
+                                                &nbsp;
+                                                订单日期:
+                                                    ${order.ordertime.year+1900} 年
+                                                    ${order.ordertime.month+1} 月
+                                                    ${order.ordertime.date} 日
+                                                &nbsp;
+                                                收货地址:
+                                                    ${order.address.province}
+                                                    ${order.address.city}
+                                                    ${order.address.county}
                                             </td>
-                                            <td class="no-border col-lg-7">
+                                           <%-- <td class="no-border col-lg-7">
                                                 订单日期:
                                                     ${order.ordertime.year+1900} 年
                                                     ${order.ordertime.month+1} 月
@@ -368,7 +398,7 @@
                                                     ${order.address.province}
                                                     ${order.address.city}
                                                     ${order.address.county}
-                                            </td>
+                                            </td>--%>
                                             <td  class="no-border col-lg-3">
                                                原价:${order.oldprice}  现价:${order.newprice}
                                             </td>

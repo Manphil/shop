@@ -109,7 +109,7 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    limit 8
+    limit 10
   </select>
   <select id="selectByExample" parameterType="com.neu.shop.pojo.GoodsExample" resultMap="BaseResultMap">
     select

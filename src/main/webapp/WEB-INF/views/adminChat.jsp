@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>东大淘身边</title>
+    <title>后台管理</title>
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/mqttws31.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/chat.css">

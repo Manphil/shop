@@ -29,7 +29,7 @@ limitations under the License
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Material Design Lite</title>
+    <title>个人信息</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -240,8 +240,8 @@ limitations under the License
                                 <th style="border: 0px solid transparent" class="tl">注册时间</th>
                                 <td style="border: 0px solid transparent" class="tr" id="regTimeVal">
                                     ${user.regtime.year+1900} 年
-                                    ${user.regtime.month} 月
-                                    ${user.regtime.day} 日
+                                    ${user.regtime.month+1} 月
+                                    ${user.regtime.date} 日
                                 </td>
                             </tr>
                             <tr>

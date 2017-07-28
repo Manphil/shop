@@ -40,7 +40,7 @@
         <div class="form-group">
             <div class="checkbox squaredTwo">
                 <input type="checkbox" id="c1" name="cc" />
-                <label for="c1"><span></span>记住密码</label>
+                <%--<label for="c1"><span></span>记住密码</label>--%>
                 <span class="error-msg">${errorMsg}</span>
             </div>
         </div>

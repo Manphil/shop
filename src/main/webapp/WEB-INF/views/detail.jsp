@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Simple-Product</title>
+    <title>淘一淘-${goodsInfo['goods'].goodsname}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,6 +34,7 @@
 
     <!-- bootstrap js -->
     <script src="${pageContext.request.contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/sort.js"></script>
     <script src="${pageContext.request.contextPath}/js/detail.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -143,6 +144,12 @@
 
                 if(isChangeBtn) {
                     $(this).children("i").toggleClass("fa-heart fa-heart-o");
+                    var likeContent = $(this).children("span").text();
+                    if(likeContent == '收藏'){
+                        $(this).children("span").text('取消收藏');
+                    } else {
+                        $(this).children("span").text('收藏');
+                    }
                 }
             });
         });
@@ -286,7 +293,7 @@
                                 </c:if>
                                 <c:if test="${!goodsInfo['goods'].fav}">
                                     <i class="fa fa-heart-o"></i>
-                                    收藏
+                                    <span class="like-content">收藏</span>
                                 </c:if>
                             </a>
                         </div>
