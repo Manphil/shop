@@ -330,7 +330,7 @@
                                                                 <img class="head avatar avatar-60 photo "width="60" height="60"
                                                                      src="${pageContext.request.contextPath}/image/head.jpg" alt="">
                                                                 <div class="comment-text">
-                                                                    <div class="star-rating" title="Rated 4 out of 5"
+                                                                    <div class="star-rating" title="Rated ${comment.point} out of 5"
                                                                          itemscope="">
                                                                         <div class="price_rating price_rating_2">
                                                                           <c:forEach  begin="1" end="${comment.point}">
@@ -345,8 +345,8 @@
                                                                                 </a>
                                                                             </c:forEach>
                                                                             <span>
-                                                                                <strong>4</strong>
-                                                                                out of 5
+                                                                                <strong>${comment.point}</strong>
+                                                                                out of ${5-comment.point}
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -355,10 +355,13 @@
                                                                         –
                                                                         <time datetime="${comment.commenttime}">
                                                                             ${comment.commenttime.year+1900}年
-                                                                            ${comment.commenttime.month}月
-                                                                            ${comment.commenttime.day}日
+                                                                            ${comment.commenttime.month+1}月
+                                                                            ${comment.commenttime.date}日
                                                                         </time>
                                                                         :
+                                                                        <a  href="${pageContext.request.contextPath}/chat?sendto=${comment.userid}" data-original-title="Add to Wishlist" data-toggle="tooltip" class=" big-font">
+                                                                            <i class="fa fa-commenting"></i>
+                                                                        </a>
                                                                     </p>
                                                                     <div class="description">
                                                                         <p>${comment.content}</p>
