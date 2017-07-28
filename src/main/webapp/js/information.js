@@ -30,7 +30,9 @@ $(document).ready(function(){
                 else {
                     $("#update-info").modal('hide');
                     swal("修改成功", "", "success");
-                    location.reload();
+                    $("button").click(function (){
+                        location.reload();
+                    });
                 }
             },
             error:function (){
@@ -94,7 +96,10 @@ $(document).ready(function(){
                     }
                     else {
                         $("#update-info").modal('hide');
-                        location.reload();
+                        swal(result.msg);
+                        $("button").click(function (){
+                            location.reload();
+                        });
                     }
                 },
                 error:function (){

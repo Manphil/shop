@@ -10,7 +10,10 @@ $(document).ready(function (){
            data:order,
            dataType:"json",
            success:function (result){
-               location.reload();
+               swal(result.msg);
+               $("button").click(function (){
+                   location.reload();
+               });
            },
            error:function (){
                alert("删除失败");
@@ -29,10 +32,13 @@ $(document).ready(function (){
             data:order,
             dataType:"json",
             success:function (result){
-                location.reload();
+                swal(result.msg);
+                $("button").click(function (){
+                    location.reload();
+                });
             },
             error:function (){
-                alert("删除失败");
+                alert("点击失败");
             }
         });
     })

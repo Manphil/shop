@@ -63,6 +63,10 @@
             border: none;
             color: white;
         }
+
+        .finish-btn{
+            background-color:#e65b0e !important;
+        }
     </style>
 </head>
 <body>
@@ -191,6 +195,7 @@
         <header class="demo-drawer-header">
             <%-- <img src="images/user.jpg" class="demo-avatar">--%>
             <div class="demo-avatar-dropdown">
+                <h1>淘一淘</h1>
                 <%-- <span>hello@example.com</span>--%>
                 <div class="mdl-layout-spacer"></div>
                 <%--<button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
@@ -254,7 +259,7 @@
                 <div class="mdl-card__actions mdl-card--border">
                     <button class="templatemo-blue-button" name="changeAddr"><h5>修改地址</h5></button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="templatemo-blue-button" name="deleteAddr"><h5>删除地址</h5></button>
+                    <button class="templatemo-blue-button finish-btn" name="deleteAddr"><h5>删除地址</h5></button>
                 </div>
             </div>
         </div>

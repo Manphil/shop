@@ -37,7 +37,9 @@ $(document).ready(function (){
                 else {
                     $("#update-info").modal('hide');
                     swal("修改成功", "", "success");
-                    location.reload();
+                    $("button").click(function (){
+                        location.reload();
+                    });
                 }
             },
             error:function (){
@@ -58,7 +60,9 @@ $(document).ready(function (){
             dateType:"json",
             success:function (result){
                 swal(result.msg);
-                location.reload();
+                $("button").click(function (){
+                    location.reload();
+                });
             },
             error:function (){
                 alert("删除失败");
@@ -90,11 +94,14 @@ $(document).ready(function (){
            dataType:"json",
            success:function (result){
                swal(result.msg);
-               location.reload();
+               $("button").click(function (){
+                   location.reload();
+               });
            },
            error:function (){
                alert("添加失败");
            }
        });
+
     });
 });
