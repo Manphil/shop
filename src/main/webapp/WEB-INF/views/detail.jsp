@@ -153,6 +153,10 @@
             background: rgba(0,0,0,.0001) none repeat scroll 0 0 !important;
             border: 1px solid rgba(0,0,0,.075) !important;
         }
+        .span-block{
+            display: block !important;
+            padding:5px;
+        }
     </style>
 
 </head>
@@ -241,7 +245,19 @@
                             <span class="sku_wrapper big-font">
                                 优惠:
                                 <c:if test="${goodsInfo['goods'].activityid != 1}">
-                                    <span class="sku">W-hat-8</span>
+                                    <span class="sku">${goodsInfo['goods'].activity.activityname}</span>
+                                    <span class="span-block">${goodsInfo['goods'].activity.activitydes}</span>
+                                    <span class="span-block">折扣:${goodsInfo['goods'].activity.discount}</span>
+                                    <c:if test="${!empty goodsInfo['goods'].activity.fullprice}">
+                                        <span class="span-block">
+                                            满${goodsInfo['goods'].activity.fullprice}减${goodsInfo['goods'].activity.reduceprice}
+                                        </span>
+                                    </c:if>
+                                    <c:if test="${!empty goodsInfo['goods'].activity.fullnum}">
+                                        <span class="span-block">
+                                            满${goodsInfo['goods'].activity.fullnum}免${goodsInfo['goods'].activity.reducenum}
+                                        </span>
+                                    </c:if>
                                 </c:if>
                                 <c:if test="${goodsInfo['goods'].activityid == 1}">
                                     <span class="sku">暂无优惠，敬请期待！</span>

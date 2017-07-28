@@ -11,10 +11,10 @@
         <!-- <h1 style="font-size: 20px;margin-top: 9px">东大咸鱼</h1> -->
 
         <ul class="nav nav-pills">
-            <c:if test="${sessionScope.user==null}">
+            <c:if test="${empty sessionScope.user}">
                 <li><a href="./login.jsp" style="color: #F22E00">请登录</a></li>
             </c:if>
-            <c:if test="${sessionScope.user!=null}">
+            <c:if test="${!empty sessionScope.user}">
                 <li class="info-a">
                     <a href="${pageContext.request.contextPath}/information" style="color: #F22E00">
                         ${sessionScope.user.username}

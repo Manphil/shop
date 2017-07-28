@@ -12,7 +12,7 @@ public class Order {
 
     private Integer oldprice;
 
-    private Integer newprice;
+    private Float newprice;
 
     private Boolean ispay;
 
@@ -31,7 +31,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(Integer orderid, Integer userid, Date ordertime, Integer oldprice, Integer newprice, Boolean ispay, Boolean issend, Boolean isreceive, Boolean iscomplete, Integer addressid, List<Goods> goodsInfo, Address address) {
+    public Order(Integer orderid, Integer userid, Date ordertime, Integer oldprice, Float newprice, Boolean ispay, Boolean issend, Boolean isreceive, Boolean iscomplete, Integer addressid, List<Goods> goodsInfo, Address address) {
         this.orderid = orderid;
         this.userid = userid;
         this.ordertime = ordertime;
@@ -78,11 +78,11 @@ public class Order {
         this.oldprice = oldprice;
     }
 
-    public Integer getNewprice() {
+    public Float getNewprice() {
         return newprice;
     }
 
-    public void setNewprice(Integer newprice) {
+    public void setNewprice(Float newprice) {
         this.newprice = newprice;
     }
 

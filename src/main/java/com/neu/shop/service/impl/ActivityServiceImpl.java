@@ -28,6 +28,11 @@ public class ActivityServiceImpl implements ActivityService {
         activityMapper.insertSelective(activity);
     }
 
+    @Override
+    public Activity selectByKey(Integer activityid) {
+        return activityMapper.selectByPrimaryKey(activityid);
+    }
+
     /*@Override
     public void updateGoodsActSelective(Goods goods) {
 

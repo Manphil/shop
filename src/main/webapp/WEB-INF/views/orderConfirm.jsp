@@ -77,7 +77,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:set var="totalPrice" value="0"/>
+                                <%--<c:set var="oldTotalPrice" value="0"/>--%>
                                 <c:forEach items="${goodsAndImage}" var="goods">
                                     <tr>
                                         <td class="product-thumbnail product-thumbnail-2"><a
@@ -95,8 +95,8 @@
                                             </div>
                                         </td>
                                         <td class="product-price"><span
-                                                class="amount-list amount-list-2">￥${goods.price*goods.num}</span></td>
-                                        <c:set value="${totalPrice+goods.price*goods.num}" var="totalPrice"/>
+                                                class="amount-list amount-list-2">￥${goods.newPrice}</span></td>
+                                        <%--<c:set value="${oldTotalPrice+goods.price*goods.num*goods.activity.discount}" var="oldTotalPrice"/>--%>
                                     </tr>
                                 </c:forEach>
 
@@ -137,7 +137,7 @@
                                             <td data-title="Subtotal"><span
                                                     class="woocommerce-Price-amount amount">￥<span
                                                     class="woocommerce-Price-currencySymbol"
-                                                    id="total-old">${totalPrice}</span>
+                                                    id="total-old">${oldTotalPrice}</span>
 													</span></td>
                                         </tr>
                                         <tr class="order-total">
