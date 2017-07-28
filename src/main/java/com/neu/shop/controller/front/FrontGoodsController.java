@@ -241,6 +241,9 @@ public class FrontGoodsController {
     public Msg comment(Comment comment, HttpServletRequest request){
         HttpSession session=request.getSession();
         User user=(User) session.getAttribute("user");
+        if (user == null) {
+            return Msg.fail("评论失败");
+        }
         comment.setUserid(user.getUserid());
         Date date=new Date();
         comment.setCommenttime(date);

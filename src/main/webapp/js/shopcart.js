@@ -63,14 +63,14 @@ function deleteCartGoods(goodsid) {
 }
 
 //改变商品数量更新购物车
-function updateCart(goodsid) {
+function updateCart(goodsid, newNum) {
     //获取当前数量
-    var newNum = $(".num").val();
+    // var newNum = $(".num").val();
     $.ajax({
         url: "/shop/update",
         data: {
             goodsid: goodsid,
-            num:newNum,
+            num:newNum
         },
         method: "post",
         success: function (result) {
@@ -135,7 +135,7 @@ function build_cart_table(result) {
                     .append(numIput));
 
             numIput.change(function () {
-               updateCart(item.goodsid);
+               updateCart(item.goodsid,$(this).val());
             });
 
             var totalPrice = $("<td></td>").addClass("product-price")

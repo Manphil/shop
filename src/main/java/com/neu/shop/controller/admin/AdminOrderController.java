@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,12 @@ public class AdminOrderController {
     private GoodsService goodsService;
 
     @RequestMapping("/send")
-    public String sendOrder(@RequestParam(value = "page",defaultValue = "1")Integer pn, Model model) {
+    public String sendOrder(@RequestParam(value = "page",defaultValue = "1")Integer pn, Model model, HttpSession session) {
+
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
 
         //一页显示几个数据
         PageHelper.startPage(pn, 2);
@@ -47,14 +53,19 @@ public class AdminOrderController {
             orderItemExample.or().andOrderidEqualTo(order.getOrderid());
             List<OrderItem> orderItemList = orderService.getOrderItemByExample(orderItemExample);
             List<Integer> goodsIdList = new ArrayList<>();
+
+            List<Goods> goodsList = new ArrayList<>();
             for (OrderItem orderItem : orderItemList) {
-                goodsIdList.add(orderItem.getGoodsid());
+//                goodsIdList.add(orderItem.getGoodsid());
+                Goods goods = goodsService.selectById(orderItem.getGoodsid());
+                goods.setNum(orderItem.getNum());
+                goodsList.add(goods);
             }
 
             //根据goodsid查询商品
-            GoodsExample goodsExample = new GoodsExample();
+            /*GoodsExample goodsExample = new GoodsExample();
             goodsExample.or().andGoodsidIn(goodsIdList);
-            List<Goods> goodsList = goodsService.selectByExample(goodsExample);
+            List<Goods> goodsList = goodsService.selectByExample(goodsExample);*/
             order.setGoodsInfo(goodsList);
 
             //查询地址
@@ -72,7 +83,11 @@ public class AdminOrderController {
     }
 
     @RequestMapping("/sendGoods")
-    public String sendGoods(Integer orderid) {
+    public String sendGoods(Integer orderid, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         Order order = new Order();
         order.setOrderid(orderid);
         order.setIssend(true);
@@ -81,7 +96,11 @@ public class AdminOrderController {
     }
 
     @RequestMapping("/receiver")
-    public String receiveOrder(@RequestParam(value = "page",defaultValue = "1")Integer pn, Model model) {
+    public String receiveOrder(@RequestParam(value = "page",defaultValue = "1")Integer pn, Model model,HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         //一页显示几个数据
         PageHelper.startPage(pn, 2);
 
@@ -99,14 +118,21 @@ public class AdminOrderController {
             orderItemExample.or().andOrderidEqualTo(order.getOrderid());
             List<OrderItem> orderItemList = orderService.getOrderItemByExample(orderItemExample);
             List<Integer> goodsIdList = new ArrayList<>();
-            for (OrderItem orderItem : orderItemList) {
+            /*for (OrderItem orderItem : orderItemList) {
                 goodsIdList.add(orderItem.getGoodsid());
             }
-
+*/
+            List<Goods> goodsList = new ArrayList<>();
+            for (OrderItem orderItem : orderItemList) {
+//                goodsIdList.add(orderItem.getGoodsid());
+                Goods goods = goodsService.selectById(orderItem.getGoodsid());
+                goods.setNum(orderItem.getNum());
+                goodsList.add(goods);
+            }
             //根据goodsid查询商品
-            GoodsExample goodsExample = new GoodsExample();
+           /* GoodsExample goodsExample = new GoodsExample();
             goodsExample.or().andGoodsidIn(goodsIdList);
-            List<Goods> goodsList = goodsService.selectByExample(goodsExample);
+            List<Goods> goodsList = goodsService.selectByExample(goodsExample);*/
             order.setGoodsInfo(goodsList);
 
             //查询地址
@@ -124,7 +150,11 @@ public class AdminOrderController {
     }
 
     @RequestMapping("/complete")
-    public String completeOrder(@RequestParam(value = "page",defaultValue = "1")Integer pn, Model model) {
+    public String completeOrder(@RequestParam(value = "page", defaultValue = "1") Integer pn, Model model, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
         //一页显示几个数据
         PageHelper.startPage(pn, 2);
 
@@ -142,14 +172,22 @@ public class AdminOrderController {
             orderItemExample.or().andOrderidEqualTo(order.getOrderid());
             List<OrderItem> orderItemList = orderService.getOrderItemByExample(orderItemExample);
             List<Integer> goodsIdList = new ArrayList<>();
-            for (OrderItem orderItem : orderItemList) {
+            /*for (OrderItem orderItem : orderItemList) {
                 goodsIdList.add(orderItem.getGoodsid());
+            }*/
+
+            List<Goods> goodsList = new ArrayList<>();
+            for (OrderItem orderItem : orderItemList) {
+//                goodsIdList.add(orderItem.getGoodsid());
+                Goods goods = goodsService.selectById(orderItem.getGoodsid());
+                goods.setNum(orderItem.getNum());
+                goodsList.add(goods);
             }
 
             //根据goodsid查询商品
-            GoodsExample goodsExample = new GoodsExample();
+            /*GoodsExample goodsExample = new GoodsExample();
             goodsExample.or().andGoodsidIn(goodsIdList);
-            List<Goods> goodsList = goodsService.selectByExample(goodsExample);
+            List<Goods> goodsList = goodsService.selectByExample(goodsExample);*/
             order.setGoodsInfo(goodsList);
 
             //查询地址
@@ -160,7 +198,7 @@ public class AdminOrderController {
         }
 
         //显示几个页号
-        PageInfo page = new PageInfo(orderList,5);
+        PageInfo page = new PageInfo(orderList, 5);
         model.addAttribute("pageInfo", page);
         return "adminOrderComplete";
     }

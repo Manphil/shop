@@ -35,10 +35,6 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.deleteByPrimaryKey(orderid);
     }
 
-    @Override
-    public void insertOrderItem(OrderItem orderItem) {
-        orderItemMapper.insertSelective(orderItem);
-    }
 
     @Override
     public List<Order> selectOrderByExample(OrderExample orderExample) {
@@ -63,5 +59,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order selectByPrimaryKey(Integer orderid) {
         return orderMapper.selectByPrimaryKey(orderid);
+    }
+
+    @Override
+    public void insertOrderItem(OrderItem orderItem) {
+        orderItemMapper.insertSelective(orderItem);
     }
 }
