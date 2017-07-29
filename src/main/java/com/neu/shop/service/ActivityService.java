@@ -16,5 +16,7 @@ public interface ActivityService {
 
     Activity selectByKey(Integer activityid);
 
+    void deleteByActivityId(Integer activityid);
+
 //    void updateGoodsActSelective(Goods goods);
 }

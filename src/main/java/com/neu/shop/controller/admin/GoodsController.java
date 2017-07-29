@@ -130,7 +130,8 @@ public class GoodsController {
 //                System.out.println(realPath);
                 //图片路径
                 String imageName = UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
-                String imagePath = realPath.substring(0,realPath.indexOf("shop")) + "shopimage\\" + imageName;
+//                String imagePath = realPath.substring(0,realPath.indexOf("shop")) + "shopimage\\" + imageName;
+                String imagePath = "D:\\Code\\Apache-Tomcat-v8.0\\webapps\\shopimage\\" + imageName;
 //                String imagePath = UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
                 //把图片路径存入数据库中
                 goodsService.addImagePath(new ImagePath(null, goods.getGoodsid(),imageName));

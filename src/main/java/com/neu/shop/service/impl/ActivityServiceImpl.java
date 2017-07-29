@@ -33,6 +33,11 @@ public class ActivityServiceImpl implements ActivityService {
         return activityMapper.selectByPrimaryKey(activityid);
     }
 
+    @Override
+    public void deleteByActivityId(Integer activityid) {
+        activityMapper.deleteByPrimaryKey(activityid);
+    }
+
     /*@Override
     public void updateGoodsActSelective(Goods goods) {
 

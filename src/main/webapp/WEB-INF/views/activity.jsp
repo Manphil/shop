@@ -91,8 +91,7 @@
                                 <c:if test="${empty activity.fullnum}">
                                     <td>无满免</td>
                                 </c:if>
-
-                                <td><button href="" class="templatemo-delete-btn">删除</button></td>
+                                <td><a href="${pageContext.request.contextPath}/admin/activity/delete?activityid=${activity.activityid}" class="templatemo-delete-btn" style="padding: 0;">删除</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>

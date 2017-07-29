@@ -98,4 +98,15 @@ public class ActivityController {
         goodsService.updateGoodsById(goods);
         return Msg.success("更新商品活动成功");
     }
+
+    @RequestMapping("delete")
+    public String deleteActivity(Integer activityid, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        if (admin == null) {
+            return "redirect:/admin/login";
+        }
+
+        activityService.deleteByActivityId(activityid);
+        return "redirect:/admin/activity/show";
+    }
 }
