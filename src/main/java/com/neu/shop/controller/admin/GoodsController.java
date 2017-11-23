@@ -128,10 +128,13 @@ public class GoodsController {
                 String realPath = request.getSession().getServletContext().getRealPath("/");
 //                    String realPath = request.getContextPath();
 //                System.out.println(realPath);
-                //图片路径
+                //图片路径=项目在本地磁盘的路径\shop\target\shop\shopimage
                 String imageName = UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
 //                String imagePath = realPath.substring(0,realPath.indexOf("shop")) + "shopimage\\" + imageName;
-                String imagePath = "D:\\Code\\Apache-Tomcat-v8.0\\webapps\\shopimage\\" + imageName;
+                String imagePath = realPath + "shopimage\\" + imageName;
+
+                //负载均衡时使用的图片路径
+//                String imagePath = "D:\\Code\\Apache-Tomcat-v8.0\\webapps\\shopimage\\" + imageName;
 //                String imagePath = UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
                 //把图片路径存入数据库中
                 goodsService.addImagePath(new ImagePath(null, goods.getGoodsid(),imageName));
