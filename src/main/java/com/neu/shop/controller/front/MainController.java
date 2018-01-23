@@ -62,6 +62,10 @@ public class MainController {
         digCategoryExample.or().andCatenameLike(cate);
         List<Category> digCategoryList = cateService.selectByExample(digCategoryExample);
 
+        if (digCategoryList.size() == 0) {
+            return null;
+        }
+
         //查询属于刚查到的分类的商品
         GoodsExample digGoodsExample = new GoodsExample();
         List<Integer> digCateId = new ArrayList<Integer>();
