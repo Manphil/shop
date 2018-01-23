@@ -37,6 +37,10 @@ CREATE TABLE `activity` (
   `reduceNum` int(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+INSERT INTO `activity` (`activityId`, `activityName`, `activityDes`, `discount`, `fullPrice`, `reducePrice`, `fullNum`, `reduceNum`) VALUES
+(1, 'default', 'default activity', 1, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -76,6 +80,13 @@ CREATE TABLE `category` (
   `cateId` int(12) NOT NULL,
   `cateName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `category` (`cateId`, `cateName`) VALUES
+(1, '数码'),
+(2, '服饰'),
+(3, '家电'),
+(4, '书籍');
 
 -- --------------------------------------------------------
 
