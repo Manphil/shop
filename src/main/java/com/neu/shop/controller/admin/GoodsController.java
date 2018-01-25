@@ -130,7 +130,7 @@ public class GoodsController {
 //                System.out.println(realPath);
                 //图片路径=项目在本地磁盘的路径\shop\target\shop\shopimage
                 String imageName = UUID.randomUUID().toString().replace("-", "") + multipartFile.getOriginalFilename();
-                String imagePath = realPath.substring(0,realPath.indexOf("shop")) + "shopimage\\" + imageName;
+                String imagePath = realPath.substring(0,realPath.indexOf("shop")) + "shopimage" + File.separatorChar + imageName;
 //                String imagePath = realPath + "shopimage\\" + imageName;
 
                 //负载均衡时使用的图片路径
