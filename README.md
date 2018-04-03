@@ -10,5 +10,7 @@
 
 > 3. 聊天使用了activemq，需要先下载安装，然后开启服务，即可使用。
 
+> 4. 如果修改个人信息地址不成功的，报404错误，在IDEA的工具栏的运行配置Edit Configuration里面的Deployment选项中war explode中的Application Context中的"/"改成"/shop"即可
+
 
 ***如果还有其他Bug，请提Issues或邮件联系。***
