@@ -374,7 +374,7 @@ public class CustomerController {
     public String logout(HttpServletRequest request){
         HttpSession session=request.getSession();
         session.removeAttribute("user");
-        return "redirect:/shop/login";
+        return "redirect:/login";
     }
 
 }
